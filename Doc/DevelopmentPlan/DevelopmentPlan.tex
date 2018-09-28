@@ -2,18 +2,20 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{color}
 
-\title{SE 3XA3: Development Plan\\Title of Project}
+\title{SE 3XA3: Development Plan\\MAC Schedule Importer}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 12, Team 0C
+		\\ Cassandra Nicolak, nicolace
+		\\ Michelle Leung, leungm16
+		\\ Winnie Liang, liangw15
 }
 
 \date{}
 
-\input{../Comments}
+%\input{../Comments}
 
 \begin{document}
 
@@ -23,9 +25,9 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+2018/09/28 & Cassandra Nicolak, Michelle Leung, Winnie Liang & Rev0\\
+%Date2 & Name(s) & Description of changes\\
+%... & ... & ...\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -34,25 +36,131 @@ Date2 & Name(s) & Description of changes\\
 
 \maketitle
 
-Put your introductory blurb here.
+Our team will be being redesigning an existing Chrome extension that allows a user to import their school schedule (from their institution's website) into their Google calendar.
+
 
 \section{Team Meeting Plan}
+\subsection{Logistics}
+\hspace{5mm}We will have both in-person and online meetings throughout the term. In-person meetings will be held once a week an hour before our first lab of the week (Tuesdays at 17:45 - 18:45) and online meetings will vary depending on necessity. Any online meetings that will be needed for the week will be decided during the in-person meeting on Tuesdays. \\
 
+Online meetings will be held through Skype. The location for the in-person meeting will be posted in team's Facebook Group the day before. A more consistent meeting place will be decided after the second in-person meeting and will be added in the next revision of this document.
+
+\subsection{Meeting Roles}
+\hspace{5mm}Meeting roles will vary from week-to-week depending on the tasks and deadlines. The agenda for the following week's in-person meeting will be discussed in the last 20 minutes of the current meeting. This will include who will be the next week's chair and scribe.\\
+
+Meeting Chair: Facilitates the meeting for the week and leads the meeting agenda. The chair will be determined based on the topic.
+Scribe: Records the minutes during the meeting (fills in agenda template).
+Planner: Updates the Gantt chart if needed.
+
+\subsection{Agenda Outline}
+\begin{itemize}
+\item Meeting Topic
+\item Date/Time/Location
+\item Meeting Chair
+\item Attendees
+\item Meeting Objective
+\item Status of tasks assigned from last meeting
+\item Obstacles and issues that need to be addressed
+\item Tasks to be completed for next meeting
+\item Objective for next meeting
+\item Meeting Notes
+
+\end{itemize}
 \section{Team Communication Plan}
+\hspace{5mm}The team's Facebook group chat will be used for general discussion and on-going issues. When unexpected issues arise and an emergency meeting is needed, this will be communicated through the team's Facebook group. If member(s) are unreachable through Facebook, they will be texted and called. 
+Skype has a screen sharing feature and will be used when all members are required for troubleshooting. Skype will also be the main method of communication for online meetings.
+A team Discord or Slack will be created before the next revision of this document and will have the following different channels for specific tasks:
+\begin{itemize}
+\item General
+\item Git
+\item Documentation
+\item Programming
+\begin{itemize}
+\item Different channels will be made for sub-tasks.
+\end{itemize}
+\item Troubleshooting
+\item Testing
+\item Meeting Minutes
+\item Holidays/Vacation Notice
+
+\end{itemize}
+
 
 \section{Team Member Roles}
+\hspace{5mm}All team members are experienced with programming in Python, version control with Git and LaTeX. Michelle is more experienced with documentation requirements so she will take on the primary role of Documentation Lead. Winnie will focus on the technical aspects of the project and will take on the primary role of Software Lead. Cassandra will focus on the overall structure and flow of tasks and take on the primary role of Project Manager.\\
+
+Secondary roles will be assigned on a weekly basis and reflected in the team's Gantt project.
+
+\subsection{Primary Role}
+\begin{itemize}
+\item Software Lead: Ensures that all responsibilities and requirements for programming and software are met. 
+\item Documentation Lead: Ensures that all responsibilities and requirements for documentation are met. Gantt Chart Facilitator.
+\item Project Manager: Responsible for the time management of tasks and deadlines.
+\end{itemize}
+
+\subsection{Secondary Role}
+\begin{itemize}
+\item Writer: Writes a rough draft of the document (or section of document) into proper sentences. Entire group will share the task of brainstorming ideas in bullet-form in Google Docs.
+\item Editor: Edits Rough Draft
+\item Scribe: Responsible for Meeting Minutes 
+\item Programmer: Implements the software design for the assigned function/task.
+\item Tester: Develops and administers test cases.
+\end{itemize}
 
 \section{Git Workflow Plan}
+\begin{itemize}
+\item Master Branch should always be functional.
+\item Working branches will be made according to the needs and areas of specialization:
+\begin{itemize}
+\item Front-End
+\item Back-End
+\item Documentation
+\end{itemize}
+
+\item Branches are to be synced at least one a week in-person. 
+\item Tags will be used for deliverables. These assigned by the teaching assistant during lab sessions.
+
+\item How will labels be used?
+\item Milestones are used to mark important deadlines on the Gantt chart. They are used as a guide to ensure that our project is progressing on time.
+
+\end{itemize}
 
 \section{Proof of Concept Demonstration Plan}
 
+The next team meeting will complete the following tasks that will prepare the group for their proof of concept demonstration:
+
+\begin{itemize}
+\item Design a basic version that illustrates the primary function of the program that will also validate technical feasibility.
+\item Find libraries that are required and discuss what changes need to be made from the source code.
+\item Identify the scope and divide up steps for the final implementation.
+\item Address potential obstacles that could be encountered during development.
+\item Create a test plan. This will also identify what platforms are capable of providing users.
+
+\item Describe what you will demonstrate to show the risks can
+be overcome.
+\end{itemize}
+
 \section{Technology}
+\begin{itemize}
+\item Languages of source code: JavaScript, HTML, CSS
+\item Programming language for port: Python 3
+\item IDE: Visual Studio Code, Python IDLE, Pycharm
+\item Document generation: LaTeX through TeX.
+\item Testing framework: Will be  decided before developing test cases.
 
+\end{itemize}
 \section{Coding Style}
+Our coding style will follow the following style guide:\color{blue} 
+\href{https://google.github.io/styleguide/pyguide.html}{ Google Python Style Guide} 
 
+\color{black}
 \section{Project Schedule}
 
-Provide a pointer to your Gantt Chart.
+Please refer to the link to find the current Gantt Chart:
+\color{blue}
+\href{https://gitlab.cas.mcmaster.ca/liangw15/3XA3Project/blob/master/Doc/DevelopmentPlan/Group12_Gantt03.pdf}{ Gantt03}
+%\href{run:C:/Users/Michelle/Documents/M3/Year 3/3XA3/Group12_Gantt01.pdf}{FILE}
+\color{black}
 
 \section{Project Review}
 
