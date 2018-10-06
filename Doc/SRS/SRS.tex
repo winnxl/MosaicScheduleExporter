@@ -52,8 +52,7 @@
 
 This document describes the requirements for MAC Schedule Importer.  The template for the Software
 Requirements Specification (SRS) is a subset of the Volere
-template  \cite{volere}.  If you make further modifications
-to the template, you should explicity state what modifications were made.
+template  \cite{volere}.
 
 \section{Project Drivers}
 
@@ -61,7 +60,7 @@ to the template, you should explicity state what modifications were made.
 \hspace{5mm}The purpose of this project is to reimplement the open-source Chrome extension UMD Google Calendar Schedule Importer, which imports the class schedule for students at the University of Maryland into Google Calendar. The reimplementation will be modified to allow students from McMaster University to import their schedules from Mosaic through a Desktop application.
 
 \subsection{The Client, the Customer, and Other Stakeholders}
-\hspace{5mm}The stakeholders of this project are currently the development team (0C) as well as the students and educational staff of the McMaster University course SFWRENG 3XA3. Other stakeholders of the application include McMaster University students, and McMaster's University Technology Services.  Additionally, potential stakeholders include third parties such as Google, open-software developers, and other universities that may be interested in our product for their usage.
+\hspace{5mm}The stakeholders of this project are currently the development team (0C) as well as the students and educational staff of the McMaster University course SFWRENG 3XA3. Other stakeholders of the application include McMaster University students and McMaster's University Technology Services.  Additionally, potential stakeholders include third parties such as Google, open-software developers and other universities that may be interested in our product for their usage.
 
 \subsection{Users of the Product}
 \hspace{5mm}The main users of this application will be McMaster students who would like to have their academic schedules easily accessible through their Google Calendars. The user group may vary from having very basic to advance knowledge of computers, software applications and mobile devices. All users are expected to be able to use and have access to a computer. Moreover, the user is assumed to be connected to the Internet to have access to Mosaic and Google Calendars from their preferred browser. 
@@ -77,7 +76,7 @@ Another constraint is that Mosaic shuts down for weekly maintenance every Thursd
 \item MacID: A McMaster University student's login account.
 \item UMD Schedule Importer:  University of Maryland's Google Calendar Schedule Importer that was developed by a previous student.
 \item Functional Requirements: Requirements that describe the behaviour of the application.
-\item UI: User Interface
+\item UI: User Interface.
 \item Non-functional Requirements: Requirements that describe the qualities of the application.
 \item User: A person who will be using the final version of the application. 
 \item Calendar: Refers to a user's Google Calendar.
@@ -87,7 +86,7 @@ Another constraint is that Mosaic shuts down for weekly maintenance every Thursd
 \end{itemize}
 \subsection{Relevant Facts and Assumptions}
 
-\hspace{5mm}The application will be intended to be used by McMaster University students who are currently enrolled in courses. Users must also have a valid MacID and password in order to log into Mosaic. As well, users must have a valid Google Mail account. It will be assumed that users have, at a minimum, general knowledge to operate computers in order to run the desktop application. 
+\hspace{5mm}The application will be intended to be used by McMaster University students who are currently enrolled in courses. Users must also have a valid MacID and password in order to log into Mosaic. Users must have a valid Google Mail account as well. It will be assumed that users have, at a minimum, general knowledge to operate computers in order to run the desktop application. 
 
 \section{Functional Requirements}
 
@@ -120,16 +119,16 @@ Deliverables:
 The interface shall notify the user if it is unable to access Mosaic.\\
 Rationale: To inform the user of why the application cannot proceed.
 \item Requirement number : FR02\\
-The application must notify the users of the specific information they will import into their Google Calendar prior to proceeding.\\
+The application must notify the users of the exact information they will import into their Google Calendar prior to proceeding.\\
 Rationale: To ensure the information being inserted into the calendar is correct.
 \item Requirement number : FR03\\
-The application must account for multiple usage from a user. \\
+The application must account for multiple uses from a user. \\
 Rationale: To allow for changes in a user’s schedule.
 \item Requirement number : FR04\\
 The application must have a simple GUI. \\
 Rationale: Target users may not know how to use a console’s command line. A GUI is also more visually appealing.
 \item Requirement number : FR05\\
-The user interface must have a Help option that explains to how to use the application to the user.\\
+The user interface must have a 'Help' option that explains to how to use the application to the user.\\
 Rationale: To allow for easy and quick use of the application.
 \item Requirement number : FR06\\
 The user interface must show the user  the changes to their existing Google Calendar before changing it. \\
@@ -138,13 +137,13 @@ Rationale: To allow users to check the changes.
 The application must ask for confirmation to confirm that the listed changes are correct. \\
 Rationale: To allow users to confirm their changes.
 \item Requirement number : FR08\\
-The application will display a preview of the user’s timetable before importing.\\
+The application will display a preview of the user's timetable before importing.\\
 Rationale: To allow users to confirm the information prior to importing.
 \item Requirement number : FR09\\
-The application must request for permission to access the user's personal information in their Mosaic and Google account. \\
+The application must request permission to access the user's personal information in their Mosaic and Google account. \\
 Rationale: To ensure users are informed of processing private information.
 \item Requirement number : FR10\\
-The application must have an option that can exit the application at any given time.\\
+The application must have an option that allows a user to exit the application at any given time.\\
 Rationale: To  allow users to exit the application.
 
 \end{itemize}
@@ -156,7 +155,7 @@ Rationale: To  allow users to exit the application.
 \item Requirement number : NF01\\
 The application shall comply with accessibility standards and not prevent users affected by colour blindness from using the application.\\
 Rationale: This will ensure that colour on the UI will not impact the use of the application.\\
-Fit Criterion: All information will be visible and not dependant on colour.\\
+Fit Criterion: All information will be visible and not be dependant on colour.\\
 Priority: High\\
 History: Created October 4, 2018
 
@@ -171,7 +170,7 @@ History: Created October 4, 2018
 \subsection{Usability and Humanity Requirements}
 \begin{itemize}
 \item Requirement number : NF03 \\
-The application shall be intuitive and easy to use for any users who have at least a post-secondary education.\\
+The application shall be intuitive and easy to use for any users who have at least completed high school or equivalent.\\
 Rationale: Users must be able to the application.\\
 Fit Criterion: The intended user is a McMaster University student which would have at least general knowledge on how to use computer applications.\\
 Priority: High\\
@@ -179,7 +178,7 @@ History: Created October 4, 2018
 
 \item Requirement number : NF04 \\
 The application shall be easy to install.\\
-Rationale: In order to fulfill requirement NF05, users must have the application installed in order for it to be used.\\
+Rationale: In order to fulfill requirement NF03, users must have the application installed in order for it to be used.\\
 Fit Criterion: The intended user is a McMaster University student which would have at least general knowledge on how to install computer software.\\
 Priority: Medium\\
 History: Created October 4, 2018
@@ -187,12 +186,12 @@ History: Created October 4, 2018
 \item Requirement number : NF05\\
 All text displayed on the interface will be in the English language.\\
 Rationale: The application is intended for users who attend McMaster University where the primary language is English.\\
-Fit Criterion: All information should be at a basic English language level.\\
+Fit Criterion: All information should be at a basic English reading level.\\
 Priority: Medium\\
 History: Created October 5, 2018
 
 \item Requirement number : NF06 \\
-Status indicators to show users how close they are to completion.\\
+The application will have status indicators to show users how close they are to completion.\\
 Priority: Medium\\
 History: Created October 5, 2018
 
@@ -206,7 +205,7 @@ History: Created October 5, 2018
 \begin{itemize}
 \item Requirement number : NF08\\
 The application shall be able to be operated by a single user on a desktop computer or laptop.\\
-Rationale: In order to fulfill requirement NF05, users must be able to operate the application.\\
+Rationale: In order to fulfill requirement NF03, users must be able to operate the application.\\
 Fit Criterion: Users are able to run and use the application on their desktop computer or laptop.\\
 Priority: High\\
 History: Created October 5, 2018
@@ -219,8 +218,8 @@ Priority: Medium\\
 History: Created October 5, 2018
 
 \item Requirement number : NF10\\
-The product should be made available on a reliable site. Currently Github. \\
-Rationale: The product is expected to be in high demand prior and during enrollment dates. As it is a standalone product, we do not have to consider server crashes. However we do have to consider the host. \\
+The application should be made available on a reliable site. Currently Github. \\
+Rationale: The application is expected to be in high demand prior and during enrollment dates. As it is a standalone product, we do not have to consider server crashes. However, we do have to consider the host. \\
 Priority: High\\
 History: Created October 5, 2018
 
@@ -233,7 +232,7 @@ History: Created October 5, 2018
 \subsection{Maintainability and Support Requirements}
 \begin{itemize}
 \item Requirement number : NF11\\
-The programming language used will be currently supported and supported on multiple operating systems.\\
+The programming language used will be currently supported on multiple operating systems.\\
 Rationale: The application can be easily modified and maintained if needed.\\
 Fit Criterion: The programming language is supported on Windows and Linux.\\
 Priority: Low\\
@@ -245,7 +244,7 @@ Fit Criterion: The source code can be accessed by the public.\\
 Priority: Low\\
 History: Created October 5, 2018
 \item Requirement number : NF13\\
-Email address will be listed.\\
+A user's email address will be listed.\\
 Rationale: For support, feedback, and inquiries.\\ 
 Fit Criterion: Current developers can be contacted by the public.\\
 Priority: Low\\
@@ -277,7 +276,7 @@ History: Created October 5, 2018
 \item Requirement number : NF16\\
 The application shall abide to all relevant laws, regulations, and standards  pertaining to privacy and intellectual property.\\
 Rationale: To ensure the legality of the application.\\
-Fit Criterion:  The application shall be verified by relevant standard-keepers to certify that the application adheres to relevant standards. Additionally, legal consultants will be sought to ensure the application abides to laws and regulations. \\
+Fit Criterion:  The application shall be verified by relevant standard-keepers to certify that the application adheres to relevant standards.  \\
 Priority: Low\\
 History: Created October 5, 2018
 
