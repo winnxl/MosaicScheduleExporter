@@ -1,3 +1,6 @@
 .aux
 *.gz
 .idea/
+
+*.dat
+client_secrets.json
