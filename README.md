@@ -1,4 +1,4 @@
-# Project Name
+# Project Name Group 12
 
 Team Name: 0C
 
