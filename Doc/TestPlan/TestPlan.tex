@@ -12,17 +12,17 @@
 }
 \usepackage[round]{natbib}
 
-\title{SE 3XA3: Test Plan\\Title of Project}
+\title{SE 3XA3: Test Plan\\MAC Schedule Importer}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 12, Team 0C
+		\\ Cassandra Nicolak, nicolace
+		\\ Michelle Leung, leungm16
+		\\ Winnie Liang, liangw15
 }
 
 \date{\today}
 
-\input{../Comments}
+%\input{../Comments}
 
 \begin{document}
 
@@ -38,8 +38,8 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+2018-10-25 & 1.0 & Rough Draft\\
+2018-10-26 & 1.1 & Final Draft\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -48,14 +48,15 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+%This document ...
 
 \section{General Information}
 
 \subsection{Purpose}
+The purpose of the test plan is to build confidence in the implementation correctness for the project. 
 
 \subsection{Scope}
-
+The scope of the test plan is to provide a basic testing platform for the correctness and functionality of the software. The test plan includes a description of the testing procedures, tools and test cases that will be implemented to verify and validate the software for this project.
 \subsection{Acronyms, Abbreviations, and Symbols}
 	
 \begin{table}[hbp]
@@ -79,52 +80,60 @@ Abbreviation2 & Definition2\\
 \toprule
 \textbf{Term} & \textbf{Definition}\\
 \midrule
-Term1 & Definition1\\
-Term2 & Definition2\\
+Mosaic & McMaster University's online administrative information system.\\
+MacID & A McMaster University student's login account.\\
+%Term3 & Definition3\\
 \bottomrule
 \end{tabularx}
 
 \end{table}	
 
 \subsection{Overview of Document}
-
+This application will be a reimplementation of the open source Chrome extension UMD Google Calendar Schedule Importer. The reimplementation will be modified to allow students from McMaster University to export their class schedule from Mosaic and import it into their Google Calendar.
 \section{Plan}
 	
 \subsection{Software Description}
+The software will parse Mosaic for a user's schedule and then export it to an array. This array will then be used to import their schedule into their Google calendar. The implementation will be completed in Python 3.6.
 
 \subsection{Test Team}
-
+The members of Team 0C are Cassandra Nicolak, Michelle Leung and Winnie Liang and are the test team for this project.
 \subsection{Automated Testing Approach}
 
 \subsection{Testing Tools}
+The testing tools that will be used are PyTest and Pycharm. PyTest will be used to automate unit testing and Pycharm will be used for coverage checking and debugging.
 
 \subsection{Testing Schedule}
-		
-See Gantt Chart at the following url ...
+See Gantt Chart at the following url: \color{blue}
+\href{https://gitlab.cas.mcmaster.ca/liangw15/3XA3Project/blob/master/ProjectSchedule/Group12_Gantt03.pdf}{ Group12-Gantt03}
+
+\color{black}
 
 \section{System Test Description}
 	
 \subsection{Tests for Functional Requirements}
 
-\subsubsection{Area of Testing1}
+\subsubsection{Testing for User Input}
 		
-\paragraph{Title for Test}
+\paragraph{File Explorer}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{Test: FUI-01\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic, Manual
 					
-Initial State: 
+Initial State:  File explorer that is used to select the html file of the schedule.
 					
-Input: 
+Input: Valid URL or absolute file path.
+
 					
-Output: 
+Output: The specified location of the html file will be saved at the URL required for the parsing component of the software.
+
 					
-How test will be performed: 
+How test will be performed: The function that acquires the URL input from the user will check if the XPATHs are present.
+
 					
-\item{test-id2\\}
+\item{testid2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
 					
@@ -138,9 +147,76 @@ How test will be performed:
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Testing for Exporting from Mosaic}
 
-...
+\paragraph{Parsing}
+
+\begin{enumerate}
+
+\item{testid1\\}
+
+Type: Functional, Dynamic, Manual, Static etc.
+					
+Initial State: 
+					
+Input: 
+					
+Output: 
+					
+How test will be performed: 
+
+\item{testid2\\}
+
+Type: Functional, Dynamic, Manual, Static etc.
+					
+Initial State: 
+					
+Input: 
+					
+Output: 
+					
+How test will be performed: 
+\end{enumerate}
+
+\subsubsection{Testing for Importing to Google Calendar}
+
+\paragraph{Input Configuration}
+
+\begin{enumerate}
+
+\item{testid1\\}
+
+Type: Functional, Dynamic, Manual, Static etc.
+					
+Initial State: 
+					
+Input: 
+					
+Output: 
+					
+How test will be performed: 
+\end{enumerate}
+
+
+\subsubsection{Testing for Google API Handling}
+
+\paragraph{Title of Test}
+
+\begin{enumerate}
+
+\item{testid1\\}
+
+Type: Functional, Dynamic, Manual, Static etc.
+					
+Initial State: 
+					
+Input: 
+					
+Output: 
+					
+How test will be performed: 
+\end{enumerate}
+
 
 \subsection{Tests for Nonfunctional Requirements}
 
@@ -150,7 +226,7 @@ How test will be performed:
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{testid1\\}
 
 Type: 
 					
@@ -162,7 +238,7 @@ Output/Result:
 					
 How test will be performed: 
 					
-\item{test-id2\\}
+\item{testid2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
 					
@@ -184,13 +260,13 @@ How test will be performed:
 
 \section{Tests for Proof of Concept}
 
-\subsection{Area of Testing1}
+\subsection{Parser}
 		
 \paragraph{Title for Test}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{testid1\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
 					
@@ -202,7 +278,7 @@ Output:
 					
 How test will be performed: 
 					
-\item{test-id2\\}
+\item{testid2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
 					
@@ -216,17 +292,56 @@ How test will be performed:
 
 \end{enumerate}
 
-\subsection{Area of Testing2}
+\subsection{Link to Google Calendar API}
 
-...
+\paragraph{Authentication and Authorization Test}
 
-	
+\begin{enumerate}
+
+\item{Test: PAAT-01\\}
+
+Type: Functional, Manual
+					
+Initial State: The client is not connected to their Google account. 
+					
+Input: Run function.
+					
+Output: Access to a user's account.
+					
+How test will be performed: Run function for authentication and authorization. 
+User follows instructions. 
+User will receive text confirming authentication and authorization.
+\end{enumerate}
+
+\paragraph{Information Retrieval and Upload Test}
+\begin{enumerate}
+
+\item{Test: PIRUT-01\\}
+
+Type: Functional
+					
+Initial State:
+					
+Input: 
+Output: 
+					
+How test will be performed:
+
+\end{enumerate}
 \section{Comparison to Existing Implementation}	
 				
 \section{Unit Testing Plan}
-		
+Test cases will run on different operating systems, including Windows, and Linux.	
 \subsection{Unit testing of internal functions}
-		
+Every internal function will be tested with the following cases, where applicable: 
+
+\begin{enumerate}
+\item A case where the function takes input it is expected to handle. 
+\item All edge cases.
+\item Cases for all run-time errors and exceptions. (Whitebox)
+\item If the function receives input from a user, a case where it does not receive the expected input.
+\end{enumerate}
+	
 \subsection{Unit testing of output files}		
 
 \bibliographystyle{plainnat}
@@ -245,7 +360,15 @@ The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
 
 \subsection{Usability Survey Questions?}
+\begin{enumerate}
+\item How easy were the instructions to follow?
 
+\item Were you confused at how to use the tool? If so, where and why?
+
+\item Are there any other feature that you would like to see?
+
+\end{enumerate}
 This is a section that would be appropriate for some teams.
 
+\end{document}
 \end{document}
