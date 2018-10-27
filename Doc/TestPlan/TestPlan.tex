@@ -66,8 +66,9 @@ The scope of the test plan is to provide a basic testing platform for the correc
 \toprule
 \textbf{Abbreviation} & \textbf{Definition} \\
 \midrule
-Abbreviation1 & Definition1\\
-Abbreviation2 & Definition2\\
+CSV & Comma-separated values file\\
+URL & Uniform Resource Locator/web address\\
+Google API & Google’s Application Programming Interface\\
 \bottomrule
 \end{tabularx}
 
@@ -82,6 +83,11 @@ Abbreviation2 & Definition2\\
 \midrule
 Mosaic & McMaster University's online administrative information system.\\
 MacID & A McMaster University student's login account.\\
+Scrapy & A Web scraping Python library.\\
+Crawler & Web crawler/spider that collects information from an html webpage.\\
+XPATH Selector & Uses path expressions to select nodes/node-sets in an XML document. \\
+Google Calendar & Google’s online free calendar connected to a gmail account.\\
+Notepad ++ & Text editor.\\
 %Term3 & Definition3\\
 \bottomrule
 \end{tabularx}
@@ -184,7 +190,31 @@ How test will be performed:
 
 \begin{enumerate}
 
-\item{testid1\\}
+\item{CV-01\\}
+
+Type: Functional, Dynamic, Manual, Static etc.
+					
+Initial State: 
+					
+Input: 
+					
+Output: 
+					
+How test will be performed: 
+
+\item{CV-02\\}
+
+Type: Functional, Dynamic, Manual, Static etc.
+					
+Initial State: 
+					
+Input: 
+					
+Output: 
+					
+How test will be performed: 
+
+\item{CV-03\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
 					
@@ -200,29 +230,88 @@ How test will be performed:
 
 \subsubsection{Testing for Google API Handling}
 
-\paragraph{Title of Test}
+\paragraph{Authentication and Authorization Test}
+Must show that the class is able to connect to a user's Google account.
+\begin{enumerate}
+
+\item{Test: GC-0\\}
+
+Type: Functional, Manual
+					
+Initial State: The client is not connected to their Google account. 
+					
+Input: Run function.
+					
+Output: Access to a user's account.
+					
+How test will be performed: Run function for authentication and authorization. 
+User follows instructions. 
+User will receive text confirming authentication and authorization.
+\end{enumerate}
+
+\paragraph{Information Retrieval and Upload Test}
+
+Must show that the class for retrieving and exporting data to a Google calendar is able to do so for:
+- Getting calendars
+- Getting events in calendars
+- Creating events in calendars
+- Removing events in calendars
 
 \begin{enumerate}
 
-\item{testid1\\}
+\item{Test: GC-01\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic
 					
-Initial State: 
+Initial State: Calendars are present in Account
 					
-Input: 
+Input: None
+Output: List of Calendars
 					
-Output: 
+How test will be performed: Run function. Check that a list of dictionaries; calendar ids with their title are returned.
+
+\item{Test: GC-02\\}
+
+Type: Functional, Dynamic
 					
-How test will be performed: 
+Initial State: Events are in specified calendar
+					
+Input: Calendar Id
+Output: List of events
+					
+How test will be performed: How test will be performed: Run function. Check that a list of dictionaries; events ids and their properties are returned.
+
+\item{Test: GC-03\\}
+
+Type: Functional, Dynamic
+					
+Initial State:List of calendar events are saved
+					
+Input: Calendar Id, Event to be inserted.
+Output: New list of events
+					
+How test will be performed: How test will be performed: Save current list of events from calendar, insert event into that calendar, get list of events from calendar, compare the new list to the old list to check that the event is inserted. 
+
+\item{Test: GC-04\\}
+
+Type: Functional, Dynamic
+					
+Initial State: List of calendar events are saved.
+
+					
+Input: Calendar Id, event to be deleted. 
+Output: New list of events.
+					
+How test will be performed: Save current list of events from calendar, delete event from that calendar, get list of events from calendar, compare the new list to the old list to check that the event has been deleted.
+
 \end{enumerate}
 
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\subsubsection{Area of Testing1}
+\subsubsection{Look and Feel}
 		
-\paragraph{Title for Test}
+\paragraph{Accessibility}
 
 \begin{enumerate}
 
@@ -237,7 +326,7 @@ Input/Condition:
 Output/Result: 
 					
 How test will be performed: 
-					
+		
 \item{testid2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
@@ -252,11 +341,125 @@ How test will be performed:
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Usability}
 
-...
+\begin{enumerate}
+
+\item{testid1\\}
+
+Type: 
+					
+Initial State: 
+					
+Input/Condition: 
+					
+Output/Result: 
+					
+How test will be performed: 
+
+\end{enumerate}
+
+\subsubsection{Performance}
+
+\begin{enumerate}
+
+\item{testid1\\}
+
+Type: 
+					
+Initial State: 
+					
+Input/Condition: 
+					
+Output/Result: 
+					
+How test will be performed: 
+
+\end{enumerate}
+
+\subsubsection{Maintainability}
+
+\begin{enumerate}
+
+\item{testid1\\}
+
+Type: 
+					
+Initial State: 
+					
+Input/Condition: 
+					
+Output/Result: 
+					
+How test will be performed: 
+
+\end{enumerate}
+
+\subsubsection{Security}
+
+\begin{enumerate}
+
+\item{testid1\\}
+
+Type: 
+					
+Initial State: 
+					
+Input/Condition: 
+					
+Output/Result: 
+					
+How test will be performed: 
+
+\end{enumerate}
 
 \subsection{Traceability Between Test Cases and Requirements}
+
+\subsubsection{Functional Requirements}
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{Requirement #} & \textbf{Description/Summary} &
+\textbf{Test ID(s)}\\
+\midrule
+FR01 & Notify user if unable to access Mosaic. & TESTID\\
+FR02 & Notify user of information that will be imported into Google Calendar prior to proceeding. & \\
+FR03 & Multiple uses from user. &\\
+FR04 & Simple GUI & \\
+FR05 & UI has ‘Help’ option. & \\
+FR06 & Show user changes to existing Google Calendar prior to changing it. & \\
+FR07 & Ask for conﬁrmation to conﬁrm that the listed changes are correct & \\
+FR08 & Display a preview of the user’s timetable before importing. & \\
+FR09 & Request permission to access user’s personal information in their Mosaic and Google account. & \\
+FR10 & Have an option that allows a user to exit. & \\
+\bottomrule
+\end{tabularx}
+
+\subsubsection{Non-Functional Requirements}
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{Requirement #} & \textbf{Fir Criterion/Summary} &
+\textbf{Test ID(s)}\\
+\midrule
+NF01 & All information will be visible and not be dependant on colour.  & \\
+NF02 & Perform the import in less than ﬁve steps. & \\
+NF03 & Easy to use. & \\
+NF04 & Application is easy to install. & \\
+NF05 & All information should be at a basic English reading level.  & \\
+NF06 & Status indicators. & \\
+NF07 & Prompts to guide users step by step. & \\
+NF08 & Run and use the application on a desktop computer or laptop.  & \\
+NF09 & Respond to a user’s input in a reasonable amount of time (0.5 seconds). & \\
+NF10 & Available on reliable site. & \\
+NF11 & The programming language is supported on Windows and Linux.  & \\
+NF12 & The source code can be accessed by the public.  & \\
+NF13 & Current developers can be contacted by the public.  & \\
+NF14 & The application will not have the ability to store user data. & \\
+NF15 & Inoffensive display. & \\
+NF16 & Adheres to relevant standards and laws. & \\
+NF17 & Able to run the application with no harm to their health and safety.  & \\
+
+\bottomrule
+\end{tabularx}
 
 \section{Tests for Proof of Concept}
 
@@ -295,10 +498,10 @@ How test will be performed:
 \subsection{Link to Google Calendar API}
 
 \paragraph{Authentication and Authorization Test}
-
+Must show that the class is able to connect to a user's Google account.
 \begin{enumerate}
 
-\item{Test: PAAT-01\\}
+\item{Test: GC-0\\}
 
 Type: Functional, Manual
 					
@@ -314,22 +517,72 @@ User will receive text confirming authentication and authorization.
 \end{enumerate}
 
 \paragraph{Information Retrieval and Upload Test}
+Must show that the class for retrieving and exporting data to a Google calendar is able to do so for:
+- Getting calendars
+- Getting events in calendars
+- Creating events in calendars
+- Removing events in calendars
+
 \begin{enumerate}
 
-\item{Test: PIRUT-01\\}
+\item{Test: GC-01\\}
 
-Type: Functional
+Type: Functional, Dynamic
 					
-Initial State:
+Initial State: Calendars are present in Account
 					
-Input: 
-Output: 
+Input: None
+Output: List of Calendars
 					
-How test will be performed:
+How test will be performed: Run function. Check that a list of dictionaries; calendar ids with their title are returned.
+
+\item{Test: GC-02\\}
+
+Type: Functional, Dynamic
+					
+Initial State: Events are in specified calendar
+					
+Input: Calendar Id
+Output: List of events
+					
+How test will be performed: How test will be performed: Run function. Check that a list of dictionaries; events ids and their properties are returned.
+
+\item{Test: GC-03\\}
+
+Type: Functional, Dynamic
+					
+Initial State:List of calendar events are saved
+					
+Input: Calendar Id, Event to be inserted.
+Output: New list of events
+					
+How test will be performed: How test will be performed: Save current list of events from calendar, insert event into that calendar, get list of events from calendar, compare the new list to the old list to check that the event is inserted. 
+
+\item{Test: GC-04\\}
+
+Type: Functional, Dynamic
+					
+Initial State: List of calendar events are saved.
+
+					
+Input: Calendar Id, event to be deleted. 
+Output: New list of events.
+					
+How test will be performed: Save current list of events from calendar, delete event from that calendar, get list of events from calendar, compare the new list to the old list to check that the event has been deleted.
 
 \end{enumerate}
+
+
 \section{Comparison to Existing Implementation}	
-				
+- Both parse an html webpage for information.
+
+- Original uses JavaScript,Reimplementation uses Python 3.
+
+- Different Universities
+
+- Web Browser vs Desktop
+
+
 \section{Unit Testing Plan}
 Test cases will run on different operating systems, including Windows, and Linux.	
 \subsection{Unit testing of internal functions}
