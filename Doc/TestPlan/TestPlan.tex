@@ -53,7 +53,7 @@
 \section{General Information}
 
 \subsection{Purpose}
-The purpose of the test plan is to build confidence in the implementation correctness for the project. 
+The purpose of the test plan is to build confidence in the correctness of the implementation for the project. 
 
 \subsection{Scope}
 The scope of the test plan is to provide a basic testing platform for the correctness and functionality of the software. The test plan includes a description of the testing procedures, tools and test cases that will be implemented to verify and validate the software for this project.
@@ -73,10 +73,9 @@ Google API & Google’s Application Programming Interface\\
 \end{tabularx}
 
 \end{table}
-
+%\newpage
 \begin{table}[!htbp]
 \caption{\textbf{Table of Definitions}} \label{Table}
-
 \begin{tabularx}{\textwidth}{p{3cm}X}
 \toprule
 \textbf{Term} & \textbf{Definition}\\
@@ -94,6 +93,7 @@ Notepad ++ & Text editor.\\
 
 \end{table}	
 
+\newpage
 \subsection{Overview of Document}
 This application will be a reimplementation of the open source Chrome extension UMD Google Calendar Schedule Importer. The reimplementation will be modified to allow students from McMaster University to export their class schedule from Mosaic and import it into their Google Calendar.
 \section{Plan}
@@ -102,7 +102,7 @@ This application will be a reimplementation of the open source Chrome extension 
 The software will parse Mosaic for a user's schedule and then export it to an array. This array will then be used to import their schedule into their Google calendar. The implementation will be completed in Python 3.6.
 
 \subsection{Test Team}
-The members of Team 0C are Cassandra Nicolak, Michelle Leung and Winnie Liang and are the test team for this project.
+The members of Team 0C are Cassandra Nicolak, Michelle Leung and Winnie Liang are the test team for this project.
 \subsection{Automated Testing Approach}
 
 \subsection{Testing Tools}
@@ -139,17 +139,17 @@ Output: The specified location of the html file will be saved at the URL require
 How test will be performed: The function that acquires the URL input from the user will check if the XPATHs are present.
 
 					
-\item{testid2\\}
+\item{Test: FUI-02\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic
 					
-Initial State: 
+Initial State:  File explorer that is used to select the html file of the schedule.
 					
-Input: 
+Input: Valid URL or absolute file path.
 					
-Output: 
+Output: Error message that will direct the user to the correct URL.
 					
-How test will be performed: 
+How test will be performed: Automated test suite will be used to check if error message is thrown correctly.
 
 \end{enumerate}
 
@@ -159,29 +159,42 @@ How test will be performed:
 
 \begin{enumerate}
 
-\item{testid1\\}
+\item{Test: FEX-01\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic
 					
-Initial State: 
+Initial State: Parsing an html document.
 					
-Input: 
+Input: Absolute file path.
 					
-Output: 
+Output: Successful execution of crawler.
 					
-How test will be performed: 
+How test will be performed: Automated test cases will be used to handle exceptions associated with incorrect paths.
 
-\item{testid2\\}
+\item{Test: FEX-02\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic
 					
-Initial State: 
+Initial State: Parsing an html document.
 					
-Input: 
+Input: Correct XPATH selectors.
 					
-Output: 
+Output: XPATH values assigned to yield variables.
 					
-How test will be performed: 
+How test will be performed: Automated test cases will be used to determine if variables are assigned the correct value.
+
+\item{Test: FEX-03\\}
+
+Type: Functional, Dynamic
+					
+Initial State: Assigning parsed information to an array.
+					
+Input: Array containing parsed information
+					
+Output: Array with parsed information to be passed to another function.
+					
+How test will be performed: Automated test cases will be used to determine if the array is being passed correctly.
+
 \end{enumerate}
 
 \subsubsection{Testing for Importing to Google Calendar}
@@ -214,7 +227,7 @@ Input: From Parser
 Output: Title for Event
 					
 How test will be performed: 
-Data from parser will be input for a function that creates the title of the event. 
+Data from the parser will be the input for a function that creates the title of the event. 
 The output of the function will be compared to the expected output.
 
 \item{CV-03\\}
@@ -228,7 +241,7 @@ Input: From Parser
 Output: Description for Event
 					
 How test will be performed: 
-Data from parser will be input for a function that creates the description of the event. 
+Data from the parser will be the input for a function that creates the description of the event. 
 The output of the function will be compared to the expected output.
 \end{enumerate}
 
@@ -236,10 +249,10 @@ The output of the function will be compared to the expected output.
 \subsubsection{Testing for Google API Handling}
 
 \paragraph{Authentication and Authorization Test}
-Must show that the class is able to connect to a user's Google account.
+The test must show that the class is able to connect to a user's Google account.
 \begin{enumerate}
 
-\item{Test: GC-0\\}
+\item{Test: GC-01\\}
 
 Type: Functional, Manual
 					
@@ -249,22 +262,23 @@ Input: Run function.
 					
 Output: Access to a user's account.
 					
-How test will be performed: Run function for authentication and authorization. 
-User follows instructions. 
-User will receive text confirming authentication and authorization.
+How test will be performed: The function will run for authentication and authorization. 
+Next, the user will follow the given instructions and the user will receive text confirming authentication and authorization.
 \end{enumerate}
 
 \paragraph{Information Retrieval and Upload Test}
 
-Must show that the class for retrieving and exporting data to a Google calendar is able to do so for:
-- Getting calendars
-- Getting events in calendars
-- Creating events in calendars
-- Removing events in calendars
+The test must show that the class for retrieving and exporting data to a Google calendar is able to do so for:
+\begin{enumerate}
+    \item Getting calendars.
+    \item Getting events in calendars.
+    \item Creating events in calendars.
+    \item Removing events in calendars.
+\end{enumerate}
 
 \begin{enumerate}
 
-\item{Test: GC-01\\}
+\item{Test: GC-02\\}
 
 Type: Functional, Dynamic
 					
@@ -273,9 +287,9 @@ Initial State: Calendars are present in Account
 Input: None
 Output: List of Calendars
 					
-How test will be performed: Run function. Check that a list of dictionaries; calendar ids with their title are returned.
+How test will be performed: The test will run the function and check that a list of dictionaries and calendar ids with their titles are returned.
 
-\item{Test: GC-02\\}
+\item{Test: GC-03\\}
 
 Type: Functional, Dynamic
 					
@@ -284,20 +298,20 @@ Initial State: Events are in specified calendar
 Input: Calendar Id
 Output: List of events
 					
-How test will be performed: How test will be performed: Run function. Check that a list of dictionaries; events ids and their properties are returned.
+How test will be performed:  The test will run the function and check that a list of dictionaries, events ids and their properties are returned.
 
-\item{Test: GC-03\\}
+\item{Test: GC-04\\}
 
 Type: Functional, Dynamic
 					
-Initial State:List of calendar events are saved
+Initial State: List of calendar events are saved
 					
 Input: Calendar Id, Event to be inserted.
 Output: New list of events
 					
-How test will be performed: How test will be performed: Save current list of events from calendar, insert event into that calendar, get list of events from calendar, compare the new list to the old list to check that the event is inserted. 
+How test will be performed: The test will save a current list of events from calendar, insert event into that calendar, get list of events from calendar, and finally compare the new list to the old list to check that the event is inserted. 
 
-\item{Test: GC-04\\}
+\item{Test: GC-05\\}
 
 Type: Functional, Dynamic
 					
@@ -307,7 +321,7 @@ Initial State: List of calendar events are saved.
 Input: Calendar Id, event to be deleted. 
 Output: New list of events.
 					
-How test will be performed: Save current list of events from calendar, delete event from that calendar, get list of events from calendar, compare the new list to the old list to check that the event has been deleted.
+How test will be performed: The test will save the current list of events from calendar, delete event from that calendar, get list of events from calendar, and compare the new list to the old list to check that the event has been deleted.
 
 \end{enumerate}
 
@@ -320,37 +334,25 @@ How test will be performed: Save current list of events from calendar, delete ev
 
 \begin{enumerate}
 
-\item{testid1\\}
+\item{AC-01\\}
 
-Type: 
+Type: Dynamic
 					
-Initial State: 
+Initial State: None
 					
-Input/Condition: 
+Input/Condition: Valid URL or absolute file path.
 					
-Output/Result: 
+Output/Result: Mosaic schedule in Google Calendar.
 					
-How test will be performed: 
-		
-\item{testid2\\}
-
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
-
+How test will be performed: The software will be tested on various browsers and operating systems to ensure that the software is accessible to users with different operating systems and browsers. This includes Google Chrome, Internet Explorer, Mozilla FireFox, as well as Windows and Linux.
+	
 \end{enumerate}
 
 \subsubsection{Usability}
 
 \begin{enumerate}
 
-\item{US-00\\}
+\item{US-01\\}
 
 Type: Manual
 					
@@ -368,7 +370,7 @@ How test will be performed: Users will be asked to use the software and be given
 
 \begin{enumerate}
 
-\item{PF-00\\}
+\item{PF-01\\}
 
 Type: Manual
 					
@@ -379,7 +381,6 @@ Input/Condition: None
 Output/Result: User response
 					
 How test will be performed: 
-
 Software will be manually tested and judged to see if the response time is reasonable. 
 
 \end{enumerate}
@@ -388,17 +389,17 @@ Software will be manually tested and judged to see if the response time is reaso
 
 \begin{enumerate}
 
-\item{testid1\\}
+\item{MN-01\\}
 
-Type: 
+Type: Static, Manual
 					
-Initial State: 
+Initial State: None
 					
-Input/Condition: 
+Input/Condition: None
 					
-Output/Result: 
+Output/Result: None
 					
-How test will be performed: 
+How test will be performed: Code inspections will be conducted for the software. Additionally, the time taken to diagnose and fix problems, as well as making enhancements and adaptions to the software will be measured to ensure maintainability of the software.
 
 \end{enumerate}
 
@@ -406,17 +407,17 @@ How test will be performed:
 
 \begin{enumerate}
 
-\item{testid1\\}
+\item{SC-01\\}
 
-Type: 
+Type: Manual, Static
 					
-Initial State: 
+Initial State: None
 					
-Input/Condition: 
+Input/Condition: None
 					
-Output/Result: 
+Output/Result: Qualitative Risk Assessment Table, Impact Matrix and Effectiveness Matrix.
 					
-How test will be performed: 
+How test will be performed: Risk assessments and Defect Detection Preventation (DDP) techniques will be used to identify and assess possible risks and provide optimal countermeasures.
 
 \end{enumerate}
 
@@ -424,39 +425,39 @@ How test will be performed:
 
 \subsubsection{Functional Requirements}
 \begin{tabular}{ |p{3cm}|p{8cm}|p{2cm}| }
-\hline Requirement #  &Description/Summary& Test ID(s) \\
+\hline Requirement \#  &Description/Summary& Test ID(s) \\
 \toprule
-FR01 & Notify user if unable to access Mosaic. & \\
+FR01 & Notify user if unable to access the Mosaic schedule. & FUI-02 \\
 FR02 & Notify user of information that will be imported into Google Calendar prior to proceeding. & \\
 FR03 & Multiple uses from user. &\\
 FR04 & Simple GUI & \\
 FR05 & UI has ‘Help’ option. & \\
 FR06 & Show user changes to existing Google Calendar prior to changing it. & \\
-FR07 & Ask for conﬁrmation to conﬁrm that the listed changes are correct & \\
+FR07 & Ask for confirmation to confirm that the listed changes are correct. & \\
 FR08 & Display a preview of the user’s timetable before importing. & \\
-FR09 & Request permission to access user’s personal information in their Mosaic and Google account. & GC-00\\
+FR09 & Request permission to access user’s personal information in their Mosaic and Google account. & GC-01\\
 FR10 & Have an option that allows a user to exit. & \\
 \bottomrule
 \end{tabular}
-
+\caption{**Note that the functional requirements that have yet to be traced are in development.}
 \subsubsection{Non-Functional Requirements}
 
 \begin{tabular}{ |p{3cm}|p{8cm}|p{2cm}| }
-\hline Requirement #  & Fit-Criterion/Summary & Test ID(s) \\
+\hline Requirement \#  & Fit-Criterion/Summary & Test ID(s) \\
 \toprule
 NF01 & All information will be visible and not be dependant on colour.  & \\
-NF02 & Perform the import in less than ﬁve steps. & \\
-NF03 & Easy to use. & \\
+NF02 & Perform the import in less than five steps. & \\
+NF03 & Easy to use. & US-01 \\
 NF04 & Application is easy to install. & \\
-NF05 & All information should be at a basic English reading level.  & \\
+NF05 & All information should be at a basic English reading level.  & LF-01 \\
 NF06 & Status indicators. & \\
 NF07 & Prompts to guide users step by step. & \\
 NF08 & Run and use the application on a desktop computer or laptop.  & \\
 NF09 & Respond to a user’s input in a reasonable amount of time (0.5 seconds). & \\
 NF10 & Available on reliable site. & \\
-NF11 & The programming language is supported on Windows and Linux.  & \\
+NF11 & The programming language is supported on Windows and Linux.  & AC-01\\
 NF12 & The source code can be accessed by the public.  & \\
-NF13 & Current developers can be contacted by the public.  & \\
+NF13 & Current developers can be contacted by the public.  & MN-01 \\
 NF14 & The application will not have the ability to store user data. & \\
 NF15 & Inoffensive display. & \\
 NF16 & Adheres to relevant standards and laws. & \\
@@ -464,38 +465,66 @@ NF17 & Able to run the application with no harm to their health and safety.  & \
 
 \bottomrule
 \end{tabular}
-
+\caption{**Note that the non-functional requirements that have yet to be traced are in development.}
 \section{Tests for Proof of Concept}
 
 \subsection{Parser}
 		
-\paragraph{Title for Test}
+\paragraph{Scrapy Library}
 
 \begin{enumerate}
 
-\item{testid1\\}
+\item{Test: POCP-01\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic, Manual
 					
-Initial State: 
+Initial State: Parsing an html document.
 					
-Input: 
+Input: Absolute file path.
 					
-Output: 
+Output: Successful execution of crawler.
 					
-How test will be performed: 
-					
-\item{testid2\\}
+How test will be performed: Visually check to see if a yield is printed in the Scrapy shell.
 
-Type: Functional, Dynamic, Manual, Static etc.
 					
-Initial State: 
+\item{POCP-02\\}
+
+Type: Functional, Dynamic, Manual
 					
-Input: 
+Initial State: Parsing an html document.
 					
-Output: 
+Input: Correct XPATH selectors.
 					
-How test will be performed: 
+Output: XPATH values assigned to yield variables.
+					
+How test will be performed: Visually check to see if the correct values are assigned per line.
+
+
+\item{POCP-03\\}
+
+Type: Functional, Dynamic, Manual
+					
+Initial State: Exporting parsing contents.
+					
+Input: Yield containing an XPATH value.
+					
+Output: A csv file.
+					
+How test will be performed: Visually check if a csv file is created and contains data.
+
+\item{POCP-04\\}
+
+Type: Functional, Dynamic, Manual
+					
+Initial State: Exporting parsing contents.
+					
+Input: Yield containing schedule information.
+					
+Output: A csv file of the yield.
+					
+How test will be performed: Visually check if the yield matches the csv file's contents.
+
+
 
 \end{enumerate}
 
@@ -505,7 +534,7 @@ How test will be performed:
 Must show that the class is able to connect to a user's Google account.
 \begin{enumerate}
 
-\item{Test: GC-00\\}
+\item{Test: GC-01\\}
 
 Type: Functional, Manual
 					
@@ -529,7 +558,7 @@ Must show that the class for retrieving and exporting data to a Google calendar 
 
 \begin{enumerate}
 
-\item{Test: GC-01\\}
+\item{Test: GC-02\\}
 
 Type: Functional, Dynamic
 					
@@ -540,7 +569,7 @@ Output: List of Calendars
 					
 How test will be performed: Run function. Check that a list of dictionaries; calendar ids with their title are returned.
 
-\item{Test: GC-02\\}
+\item{Test: GC-03\\}
 
 Type: Functional, Dynamic
 					
@@ -549,9 +578,9 @@ Initial State: Events are in specified calendar
 Input: Calendar Id
 Output: List of events
 					
-How test will be performed: How test will be performed: Run function. Check that a list of dictionaries; events ids and their properties are returned.
+How test will be performed: Run function. Check that a list of dictionaries; events ids and their properties are returned.
 
-\item{Test: GC-03\\}
+\item{Test: GC-04\\}
 
 Type: Functional, Dynamic
 					
@@ -560,9 +589,9 @@ Initial State:List of calendar events are saved
 Input: Calendar Id, Event to be inserted.
 Output: New list of events
 					
-How test will be performed: How test will be performed: Save current list of events from calendar, insert event into that calendar, get list of events from calendar, compare the new list to the old list to check that the event is inserted. 
+How test will be performed: Save current list of events from calendar, insert event into that calendar, get list of events from calendar, compare the new list to the old list to check that the event is inserted. 
 
-\item{Test: GC-04\\}
+\item{Test: GC-05\\}
 
 Type: Functional, Dynamic
 					
@@ -578,13 +607,7 @@ How test will be performed: Save current list of events from calendar, delete ev
 
 
 \section{Comparison to Existing Implementation}	
-- Both parse an html webpage for information.
-
-- Original uses JavaScript,Reimplementation uses Python 3.
-
-- Different Universities
-
-- Web Browser vs Desktop
+Both implementations perform the task of parsing an html document that contains a user's schedule information and then imports that information into a Google calendar. Both implementations are intended for different Universities. The existing implementation is written in JavaScript, whereas the re-implementation is written in Python 3. Another difference is that since the existing implementation is written in JavaScript, it is run as a Chrome extension through a web browser. The re-implementation will be executed as a Desktop application.
 
 
 \section{Unit Testing Plan}
@@ -600,21 +623,17 @@ Every internal function will be tested with the following cases, where applicabl
 \end{enumerate}
 	
 \subsection{Unit testing of output files}		
-
-\bibliographystyle{plainnat}
-
-\bibliography{SRS}
+Due to the user privacy constraint, no output files will be saved locally on a user's machine.
+However, the output of the software will be live on a user's Google calendar. The correctness of the output will be tested by getting calendar data of a sample event from a Google calendar and compared it to what it should be. 
 
 \newpage
 
 \section{Appendix}
 
-This is where you can place additional information.
+More will be added to this section in the next revision of this document.
 
 \subsection{Symbolic Parameters}
-
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+Currently not applicable at this time.
 
 \subsection{Usability Survey Questions?}
 \begin{enumerate}
@@ -625,7 +644,5 @@ Their values are defined in this section for easy maintenance.
 \item Are there any other feature that you would like to see?
 
 \end{enumerate}
-This is a section that would be appropriate for some teams.
-
 \end{document}
 \end{document}
