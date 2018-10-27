@@ -191,40 +191,45 @@ How test will be performed:
 \begin{enumerate}
 
 \item{CV-01\\}
-
-Type: Functional, Dynamic, Manual, Static etc.
+Test Time Format
+Type: Functional, Dynamic
 					
-Initial State: 
+Initial State: None
 					
-Input: 
+Input: Time from CSV
 					
-Output: 
+Output: Time formatted according to RFC3339
 					
 How test will be performed: 
+Time from the format that the parser outputs will be inputted into a function that converts it to RFC3339 format. The output of the function will be compared to the expected output. 
 
 \item{CV-02\\}
-
-Type: Functional, Dynamic, Manual, Static etc.
+Test Title Format
+Type: Functional, Dynamic
 					
-Initial State: 
+Initial State: None
 					
-Input: 
+Input: From Parser
 					
-Output: 
+Output: Title for Event
 					
 How test will be performed: 
+Data from parser will be input for a function that creates the title of the event. 
+The output of the function will be compared to the expected output.
 
 \item{CV-03\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic
 					
-Initial State: 
+Initial State: None
 					
-Input: 
+Input: From Parser
 					
-Output: 
+Output: Description for Event
 					
 How test will be performed: 
+Data from parser will be input for a function that creates the description of the event. 
+The output of the function will be compared to the expected output.
 \end{enumerate}
 
 
@@ -345,17 +350,17 @@ How test will be performed:
 
 \begin{enumerate}
 
-\item{testid1\\}
+\item{US-00\\}
 
-Type: 
+Type: Manual
 					
-Initial State: 
+Initial State: None
 					
-Input/Condition: 
+Input/Condition: None
 					
-Output/Result: 
+Output/Result: User Survey Response
 					
-How test will be performed: 
+How test will be performed: Users will be asked to use the software and be given a survey asking about their experience. 
 
 \end{enumerate}
 
@@ -363,17 +368,19 @@ How test will be performed:
 
 \begin{enumerate}
 
-\item{testid1\\}
+\item{PF-00\\}
 
-Type: 
+Type: Manual
 					
-Initial State: 
+Initial State: None
 					
-Input/Condition: 
+Input/Condition: None
 					
-Output/Result: 
+Output/Result: User response
 					
 How test will be performed: 
+
+Software will be manually tested and judged to see if the response time is reasonable. 
 
 \end{enumerate}
 
@@ -416,12 +423,10 @@ How test will be performed:
 \subsection{Traceability Between Test Cases and Requirements}
 
 \subsubsection{Functional Requirements}
-\begin{tabularx}{\textwidth}{p{3cm}X}
+\begin{tabular}{ |p{3cm}|p{8cm}|p{2cm}| }
+\hline Requirement #  &Description/Summary& Test ID(s) \\
 \toprule
-\textbf{Requirement #} & \textbf{Description/Summary} &
-\textbf{Test ID(s)}\\
-\midrule
-FR01 & Notify user if unable to access Mosaic. & TESTID\\
+FR01 & Notify user if unable to access Mosaic. & \\
 FR02 & Notify user of information that will be imported into Google Calendar prior to proceeding. & \\
 FR03 & Multiple uses from user. &\\
 FR04 & Simple GUI & \\
@@ -429,17 +434,16 @@ FR05 & UI has ‘Help’ option. & \\
 FR06 & Show user changes to existing Google Calendar prior to changing it. & \\
 FR07 & Ask for conﬁrmation to conﬁrm that the listed changes are correct & \\
 FR08 & Display a preview of the user’s timetable before importing. & \\
-FR09 & Request permission to access user’s personal information in their Mosaic and Google account. & \\
+FR09 & Request permission to access user’s personal information in their Mosaic and Google account. & GC-00\\
 FR10 & Have an option that allows a user to exit. & \\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 
 \subsubsection{Non-Functional Requirements}
-\begin{tabularx}{\textwidth}{p{3cm}X}
+
+\begin{tabular}{ |p{3cm}|p{8cm}|p{2cm}| }
+\hline Requirement #  & Fit-Criterion/Summary & Test ID(s) \\
 \toprule
-\textbf{Requirement #} & \textbf{Fir Criterion/Summary} &
-\textbf{Test ID(s)}\\
-\midrule
 NF01 & All information will be visible and not be dependant on colour.  & \\
 NF02 & Perform the import in less than ﬁve steps. & \\
 NF03 & Easy to use. & \\
@@ -459,7 +463,7 @@ NF16 & Adheres to relevant standards and laws. & \\
 NF17 & Able to run the application with no harm to their health and safety.  & \\
 
 \bottomrule
-\end{tabularx}
+\end{tabular}
 
 \section{Tests for Proof of Concept}
 
@@ -501,7 +505,7 @@ How test will be performed:
 Must show that the class is able to connect to a user's Google account.
 \begin{enumerate}
 
-\item{Test: GC-0\\}
+\item{Test: GC-00\\}
 
 Type: Functional, Manual
 					
