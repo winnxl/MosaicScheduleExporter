@@ -1,7 +1,9 @@
-# Converts parser time output to Rfc
+# Converts dates and times from parseMosaic output to Rfc formats.
 class Rfc:
     # Takes input in the form of 'YYYY/MM/DD - YYYY/MM/DD'
-    # Returns 2 outputs, start and end, in the form of 'YYYY-MM-DD'
+    # Returns 2 outputs, start, in the form of 'YYYY-MM-DD'
+    # and end, in the form of 'YYYYMMDD'
+    # Because start is for Rfc 2232 and end needs to be in Rfc 5545
     # Fixme: Offset start date. Start dates from avenue are mondays regardless of whether or not
     # Fixme: class actually starts on monday. So when inputted into google calendars, we get extra
     # Fixme: entries on monday. Need to find a way to make find the actual date of say, the first
@@ -81,9 +83,10 @@ class Rfc:
         return start_date_time, end_date_time, rrule
 
 
+# Convert parseMosaic output to Google Api inputs.
 class Converter:
-
-    # Todo: Add comments and description.
+    # Input from parseMosaic module
+    # Outputs a list of event body dictionary objects
     @staticmethod
     def convert(input):
         output = []
