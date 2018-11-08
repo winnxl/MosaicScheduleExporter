@@ -46,26 +46,24 @@ class MosaicSpider(scrapy.Spider):
 				locNo = loc + str(row)				
 
 				# use xpath selectors	
-				courseName = i.xpath('//*[@id=$val]/table/tbody/tr[1]/td/text()', val= courseNo).extract()
-				component = i.xpath('//*[@id=$val]/text()', val= compNo).extract()
-				schedule = i.xpath('//*[@id=$val]/text()', val= schedNo).extract()
-				location = i.xpath('//*[@id=$val]/text()', val= locNo).extract()	
-
+				courseName = i.xpath('//*[@id=$val]/table/tbody/tr[1]/td/text()', val= courseNo).extract()[0]
+				component = i.xpath('//*[@id=$val]/text()', val= compNo).extract()[0]
+				schedule = i.xpath('//*[@id=$val]/text()', val= schedNo).extract()[0]
+				location = i.xpath('//*[@id=$val]/text()', val= locNo).extract()[0]
 
 				# conditionals				
-				if str(component) == "['Lecture']":		# check if lecture
+				if str(component) == str("Lecture"):		# check if lecture
 					if not firstLecFound:				# if it's the first lecture, set flag and continue
 						firstLecFound = True
 					else:
 						break							# if it's the second time a lecture is found, break the inner loop
 
-				if str(component) != "['\\xa0']":		# account for multiple rows for a component
+				print ("******TEST: " + str(component))
+				if str(component) != str("\xa0"):		# account for multiple rows for a component
 					repeatComponent = component
 				else:
 					component = repeatComponent
-
-				if len(str(component)) < 3:				# breaks if no value is returned
-					break					
+			
 
 
 				# adds to data list
