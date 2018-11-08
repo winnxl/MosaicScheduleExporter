@@ -40,6 +40,7 @@ class MosaicSpider(scrapy.Spider):
 
 			count = count + 1 				# count for headers
 
+			# use xpath selector for status check
 			status = i.xpath('//*[@id=$val]/text()', val= statusNo).extract()[0]
 			
 			# only parse courses that have an 'Enrolled' status.
