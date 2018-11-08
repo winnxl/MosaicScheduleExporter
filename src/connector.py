@@ -5,21 +5,25 @@ from googleapiclient import sample_tools
 from socket import gaierror
 from httplib2 import ServerNotFoundError
 
-class CalUpload:
+class Connector:
     # Testing Constants
+    # Todo: Remove me in Final or move to a test file
     # t_cal_id = "mcmaster.ca_omu726vqd553uub9ebi2mho1ho@group.calendar.google.com"
     t_params1 = {
         "summary": "Event 1",
+        'location': 'ITB 236',
         "start": "2018-10-10T15:00:00-04:00",
         "end": "2018-10-10T16:00:00-04:00"
     }
     t_params2 = {
         "summary": "Event 2",
+        'location': 'ITB 236',
         "start": "2018-10-10T15:00:00-04:00",
         "end": "2018-10-10T16:00:00-04:00"
     }
     t_body1 = {
         'summary': t_params1["summary"],
+        'location': t_params1["location"],
         'start': {
             'dateTime': t_params1["start"],
         },
@@ -29,6 +33,7 @@ class CalUpload:
     }
     t_body2 = {
         'summary': t_params2["summary"],
+        'location': t_params2["location"],
         'start': {
             'dateTime': t_params2["start"],
         },
