@@ -3,14 +3,14 @@ import subprocess as sp
 
 # url variable
 fileUrl = 'http://c.nicolak.ca/3XA3/My%20Class%20Schedule.html'
-#fileUrl = 'file:///C:/workspace/My%20Class%20Schedule.html'
+
 #fileUrl = 'file:///C:/Users/Nicolak/Desktop/My%20Class%20Schedule.html'
 
 
 # return parsed list of tuples
 ret = pm.runMe(fileUrl)
 
-sp.call('cls', shell = True)   # clears the console
+#sp.call('cls', shell = True)   # clears the console
 print(ret)
 
 
