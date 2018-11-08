@@ -6,45 +6,7 @@ from socket import gaierror
 from httplib2 import ServerNotFoundError
 
 class Connector:
-    # Testing Constants
-    # Todo: Remove me in Final or move to a test file
-    # t_cal_id = "mcmaster.ca_omu726vqd553uub9ebi2mho1ho@group.calendar.google.com"
-    t_params1 = {
-        "summary": "Event 1",
-        'location': 'ITB 236',
-        "start": "2018-10-10T15:00:00-04:00",
-        "end": "2018-10-10T16:00:00-04:00"
-    }
-    t_params2 = {
-        "summary": "Event 2",
-        'location': 'ITB 236',
-        "start": "2018-10-10T15:00:00-04:00",
-        "end": "2018-10-10T16:00:00-04:00"
-    }
-    t_body1 = {
-        'summary': t_params1["summary"],
-        'location': t_params1["location"],
-        'start': {
-            'dateTime': t_params1["start"],
-        },
-        'end': {
-            'dateTime': t_params1["end"],
-        },
-    }
-    t_body2 = {
-        'summary': t_params2["summary"],
-        'location': t_params2["location"],
-        'start': {
-            'dateTime': t_params2["start"],
-        },
-        'end': {
-            'dateTime': t_params2["end"],
-        },
-    }
-    t_bodies = [t_body1, t_body2]
-
-    # def __init__(self, bodies):    # Todo: Put me in Final
-    def __init__(self, bodies=t_bodies):
+    def __init__(self, bodies):
         self.service = None
         self.cal_id = None
         self.bodies = bodies
@@ -167,3 +129,41 @@ class Connector:
         except:
             print("Push to schedule failed")
 
+    # Pass in a calendar ID
+    # Prints all the events in that calendar.
+    # def events_in_cal(self, cal_id):
+    #     global service
+    #     try:
+    #         page_token = None
+    #         while True:
+    #             calendar_list = self.service.events().list(calendarId=cal_id, pageToken=page_token).execute()
+    #             for event_list_entry in calendar_list['items']:
+    #                 print(event_list_entry)              # All fields for each calendar
+    #                 # print(event_list_entry['summary'])   # Cal title
+    #                 # print(event_list_entry['id'])        # ID Of Cal - Used to get the Cal
+    #             page_token = calendar_list.get('nextPageToken')
+    #             if not page_token:
+    #                 break
+    #
+    #     except client.AccessTokenRefreshError:
+    #         print('The credentials have been revoked or expired, please re-run'
+    #               'the application to re-authorize.')
+
+    #Get Calendars
+    # def get_cals(self):
+    #     try:
+    #         page_token = None
+    #         while True:
+    #             calendar_list = self.service.calendarList().list(
+    #                 pageToken=page_token).execute()
+    #             for calendar_list_entry in calendar_list['items']:
+    #                 # print(calendar_list_entry)              # All fields for each calendar
+    #                 print(calendar_list_entry['summary'])   # Cal title
+    #                 print(calendar_list_entry['id'])        # ID Of Cal - Used to get the Cal
+    #             page_token = calendar_list.get('nextPageToken')
+    #             if not page_token:
+    #                 break
+    #
+    #     except client.AccessTokenRefreshError:
+    #         print('The credentials have been revoked or expired, please re-run'
+    #               'the application to re-authorize.')
