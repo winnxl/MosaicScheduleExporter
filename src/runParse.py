@@ -1,5 +1,6 @@
 import parseMosaic as pm
 import subprocess as sp
+import os
 
 # url variable
 fileUrl = 'http://c.nicolak.ca/3XA3/My%20Class%20Schedule.html'
@@ -14,9 +15,10 @@ ret = pm.runMe(fileUrl)
 print(ret)
 
 
-
-
-
+# for testing, write results
+with open ("testresults.txt","w")as fp:
+   for line in ret:
+       fp.write(str(line)+"\n")
 
 
 
