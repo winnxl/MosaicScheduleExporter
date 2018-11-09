@@ -1,20 +1,28 @@
-#-*- coding: utf-8 -*-
-import subprocess as sp
+## @file parseMosaic.py
+#  @author Cassandra Nicolak, Winnie Liang, Michelle Lueng
+#  @brief macID: nicolace, x, x
+#  Student #: 000971847, x, x
+## @date 11/8/2018
 
-# uses scrapy library
+## @brief Imported packages and libraries. 
+#  @details Imports the scrapy and subprocess libraries.
+import subprocess as sp
 import scrapy
 from scrapy.crawler import CrawlerProcess
 from scrapy.selector import Selector
 from scrapy.http import HtmlResponse
 
-# GLOBAL VARIABLES
+## @brief Gloabal Variables -----------?
 dataList = list()						# datalist to be passed
 
 # MAIN CLASS
+## @brief A scrapy spider that crawls through an html document.
 class MosaicSpider(scrapy.Spider):
 	name = "mosaic"
 
-
+    ## @brief MosaicSpider parse def?
+    #  @details Parses an html document using xpath selectors.
+    #  @param response todo
 	def parse(self, response):	
 
 		# selector variables
@@ -88,16 +96,15 @@ class MosaicSpider(scrapy.Spider):
 					#	'location': location,							
 					#}
 
-	def close(self):
-		self.outfile.close()
-		print("-----Check to see if this is closed-----")
-
 process = CrawlerProcess({
 	'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
 })
 
 
-# called from runParse.py
+## @brief A def that allows other modules to start the crawling process.
+#  @details Allows other modules to start the crawling process.
+#  @param passed_url a single url to be added to the start_url list that contains only one item.
+#  @return Returns a copy of the global list, dataList. This contains the parsed data.
 def runMe(passed_url):							# accepts the URL to parse
 	sp.call('cls',shell=True)					# clears console
 

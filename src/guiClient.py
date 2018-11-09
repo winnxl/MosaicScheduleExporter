@@ -16,7 +16,7 @@ pip install PyInstaller
 
 
 ******************************************************************************
-Development Notes: (the todos)
+Development Notes: (status)
 ******************************************************************************
 
 Right now most components don't work. The browse button works, 
@@ -50,25 +50,53 @@ pyinstaller -wF guiClient.py
 
 # libraries
 import PySimpleGUI as sg
-import parseMosaic as pm    
+import parseMosaic as pm
+import connector
+import converter  
 
-# url variable
+# initialization
 fileUrl = 'http://c.nicolak.ca/3XA3/My%20Class%20Schedule.html'
-
 #fileUrl = 'file:///C:/Users/Nicolak/Desktop/My%20Class%20Schedule.html'
 
+fetchFLG = False
+fetchedList = []
 
-# The callback functions      
+def parseMosaic():
+    global fetchedList
+    fetchedList = pm.runMe(fileUrl)
+
+
 def fetch():
-    # return parsed list of tuples      
-    ret = pm.runMe(fileUrl)  
-    return str(ret)
- 
+    global fetchFLG
+    global fetchedList
+    if not fetchFLG:
+        fetchFLG = True
+        parseMosaic()
+        return str(fetchedList)
+    else:
+        return 'Error: Please restart the application and try again. Only one Fetch can be performed per session.'
+
+
+
 def login():      
-    print('Not working.') 
+    c = connector.Connector(converter.Converter.convert(fetch()))
+    c.login()
+    return True
 
 def importToCal():      
-    print('Not working.')  
+    print('Not working.')
+    return "IMPORT: " + str(fetchedList)  
+
+
+
+
+#input("press key to push test schedule...")
+#c.push_to_schedule()
+#input("press key to remove and logout...")
+#c.remove_new_cal()
+
+
+
 
 
 sg.ChangeLookAndFeel('White')      
@@ -87,11 +115,10 @@ layout = [
     [sg.Text('Choose A File', size=(15, 1), auto_size_text=False, justification='right'),      
         sg.InputText('..\My Class Schedule.html'), sg.FileBrowse()],      
     [sg.Text(''  * 80)],          
-    [sg.Button('Fetch Schedule'), sg.Text('Status: ')],
-    [sg.Text('_'  * 97)],
+    [sg.Button('Fetch Schedule')],
     [sg.Text(''  * 80)],   
     [sg.Text('Please check if the below information is correct. If so, login to your Google account.')],                
-    [sg.Multiline(default_text='Schedule information will appear here.', size=(95, 10), key='scheduleInfo')],      
+    [sg.Multiline(default_text='Schedule information will appear here.', size=(95, 10), key='tbxSchedule')],      
     [sg.Text(''  * 80)],
     [sg.Text('_'  * 97)],      
     [sg.Text(''  * 80)],
@@ -128,12 +155,14 @@ while True:
     (event, value) = window.Read()      
     if event == 'EXIT'  or event is None:      
         break # exit button clicked      
-    if event == 'Fetch Schedule':      
-        window.FindElement('scheduleInfo').Update(fetch())    
-    elif event == 'Login':      
-        break # exit button clicked      
+    if event == 'Fetch Schedule': 
+        window.FindElement('tbxSchedule').Update(str(fetch()))
+    
+    elif event == 'Login':    
+        window.FindElement('tbxSchedule').Update('dunno')
+
     elif event == 'Import':      
-        break # exit button clicked 
+        window.FindElement('tbxSchedule').Update(importToCal())
 
 
 '''
