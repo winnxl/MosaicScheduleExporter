@@ -1,20 +1,28 @@
-#-*- coding: utf-8 -*-
-import subprocess as sp
+## @file parseMosaic.py
+#  @author Cassandra Nicolak, Winnie Liang, Michelle Lueng
+#  @brief macID: nicolace, x, x
+#  Student #: 000971847, x, x
+## @date 11/8/2018
 
-# uses scrapy library
+## @brief Imported packages and libraries. 
+#  @details Imports the scrapy and subprocess libraries.
+import subprocess as sp
 import scrapy
 from scrapy.crawler import CrawlerProcess
 from scrapy.selector import Selector
 from scrapy.http import HtmlResponse
 
-# GLOBAL VARIABLES
+# State Variables
 dataList = list()						# datalist to be passed
 
-# MAIN CLASS
+
+## @brief A spider class that Scrapy uses to scrape information from a website. This class must also subclass scrapy.Spider.
 class MosaicSpider(scrapy.Spider):
 	name = "mosaic"
 
-
+    ## @brief A method that will be called to handle the response downloaded for each of the requests made. 
+    #  @details The method parses the response, extracting the scraped data as dicts.
+    #  @param response an instance of TextResponse that holds the page content and has further helpful methods to handle it.
 	def parse(self, response):	
 
 		# selector variables
@@ -74,30 +82,22 @@ class MosaicSpider(scrapy.Spider):
 					else:
 						component = repeatComponent
 				
-
-
 					# adds to data list
 					dataList.append((courseName, component, schedule, location, dates))
 					
 					row = row + 1 							# count for content rows
 
-					#yield {	
-					#	'course': courseName,
-					#	'component': component,
-					#	'schedule': schedule,
-					#	'location': location,							
-					#}
 
-	def close(self):
-		self.outfile.close()
-		print("-----Check to see if this is closed-----")
-
+# allows for executing scrapy spiders outside of the scrapy shell.
 process = CrawlerProcess({
 	'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
 })
 
 
-# called from runParse.py
+## @brief A def that allows other modules to start the crawling process.
+#  @details Allows other modules to start the crawling process.
+#  @param passed_url a single url to be added to the start_url list that contains only one item.
+#  @return Returns a copy of the global list, dataList. This contains the parsed data.
 def runMe(passed_url):							# accepts the URL to parse
 	sp.call('cls',shell=True)					# clears console
 
