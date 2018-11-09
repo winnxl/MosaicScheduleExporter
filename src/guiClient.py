@@ -44,6 +44,7 @@ import webbrowser
 # State Variables
 fetchFLG = False
 fetchedList = []
+googleConn = None
 
 
 
@@ -62,7 +63,6 @@ def convertURL(userInput):
 #  @details This method uses the local module parseMosic's runMe() function. This method will only be executed once per session.
 #  due to the functionalty of twisted.internet's reactor which the scrapy library depends on.
 #  @param url An file url.
-
 def parseMosaic(url):
     global fetchedList
     fetchedList = pm.runMe(url)
@@ -86,15 +86,6 @@ def printSched(fetchList):
     return userSched
 
 
-## @brief ...
-#  @details ...
-#  @param x ...
-#  @return x ...
-def check_perms():
-    if True:
-        print ('good to go')
-
-
 # ## @brief Primary function for Fetch button.
 #  @details Uses two global variables fetchFLG and fetchedList. This is because parseMosaic()
 #  cannot be executed twice in one session due to the limitations with the scrapy library.
@@ -112,26 +103,38 @@ def fetch(url):
         return 'Error: Please restart the application and try again. Only one Fetch can be performed per session.  \n\n\n' + printSched(fetchedList)
 
 
+# ## @brief Creates a connector object and sets it to the global variable: 'c'.
+#  @details Converts the parseMosaic output to Google Api inputs.
+def conn():
+    global googleConn
+    googleConn = connector.Connector(converter.Converter.convert(fetchedList))
+
+
 # ## @brief Primary function for Login button.
-#  @details ...
-#  @param x ...
-#  @return x ...
+#  @details Authorizes, authenticates, and logs a user into their google account. Checks if there is a service.
+#  @return c.check_perms() Returns True if there is a service. Returns false if there is not service.
 def login():
-    c = connector.Connector(converter.Converter.convert(fetchedList))      
-    return c.login()
+    global googleConn
+    googleConn.login()
+    return googleConn.check_perms()
+
+
+
+# ## @brief Logs the user out their google account if the application is closes.
+#  @details Deletes the access key file.
+def logout():
+    global googleConn
+    googleConn.logout()
+    print('Logged out.')
+
 
 
 # ## @brief Primary function for Import button.
-#  @details ...
-#  @param x ...
-#  @return x ...
-def push_to_schedule():
-    c = connector.Connector(converter.Converter.convert(fetchedList))
-    c.push_to_schedule()
-    c.remove_new_cal()     
-    print('Not working.')
-    if True:
-        print ('good to go') 
+#  @details Adds a Google calendar.
+#  @return googleConn.push_to_schedule() Returns True if the import is successful. Returns False if the import is unsuccessful.
+def pushSchedule():
+    global googleConn
+    return googleConn.push_to_schedule()
 
 
 # gui colour
@@ -184,7 +187,8 @@ window = sg.Window('Mosaic Google Calendar Importer', default_element_size=(40, 
 while True:      
     (event, value) = window.Read()
   
-    if event == 'Exit' or event is None:      
+    if event == 'Exit' or event is None:
+        logout()
         break # exit application
 
     # window buttons 
@@ -192,10 +196,12 @@ while True:
         window.FindElement('tbxSchedule').Update(str(fetch(convertURL(value['txtBrowse']))))
 
     elif event == 'Login':
-        window.FindElement('tbxLogin').Update(login())           
+        conn()
+        window.FindElement('tbxLogin').Update(str(login()))           
   
     elif event == 'Import':
-        window.FindElement('tbxImport').Update('Not implemented yet.')    
+        window.FindElement('tbxImport').Update( str(pushSchedule()) )    
+
 
     # menu buttons
 
@@ -215,7 +221,6 @@ while True:
                         '4. Right-click within the browser and select [Save as...]', ' ',
                         '5. Make sure the [Save as type:] says [Webpage, Complete] and not [Webpage, HTML Only].', ' ',
                         '6. Click [Save] to save your file to your computer.', ' ', 
-                        #size=(80, None) 
                         )    
     elif event == 'Fetching your schedule':
         sg.Popup(                    
@@ -223,23 +228,21 @@ while True:
                         '1. In the application, select your saved file using the [Browse] button.', ' ',
                         '2. Click [Fetch Schedule].', 'Please note: At this time, you can only fetch your schedule once.', 'You must close and re-open the application to fetch a different schedule.', ' ',
                         '3. If successful, you should see your schedule appear in the large textbox.', 'Make sure to confirm this information prior to proceeding.', ' ', 
-                        size=(80, None)
                         ) 
     elif event == 'Logging into your google account':
-        sg.PopupScrolled(                 
+        sg.Popup(                 
                         'Logging into your google account:', ' ',                      
                         '1. ', ' ',
                         '2. ', ' ',
                         '3. ', ' ',
-                        size=(80, None)
                         )
     elif event == 'Importing your schedule':
-        sg.PopupScrolled(                 
+        sg.Popup(                 
                         'Importing your schedule:', ' ',                      
                         '1. ', ' ',
                         '2. ', ' ',
                         '3. ', ' ',
-                        size=(80, None)
+
                         )
 
     # Help
@@ -272,8 +275,6 @@ sg.PopupAutoClose('PopupAutoClose')  - Same as PopupTimed
 ******************************************************************************
 Development Notes: (status)
 ******************************************************************************
-
-- Need to implement Login and Import button functionality.
 
 - Error checking must be added to account for incorrect filename inputs.
   Also, Fetch Schedule should perhaps produce a warning message if pressed
