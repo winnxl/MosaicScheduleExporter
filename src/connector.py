@@ -16,6 +16,8 @@ class Connector:
         try:
             self.service, flags = sample_tools.init(sys.argv, 'calendar', 'v3', __doc__,
                                            __file__, scope='https://www.googleapis.com/auth/calendar')
+            print(self.service)
+            print(flags)
             return
         except ServerNotFoundError:
             print('Unable to connect. Retry when you have internet access.')
@@ -28,9 +30,13 @@ class Connector:
         os.remove("calendar.dat")
         return
 
-    # Todo: Check Authorization
+    # Checks if there is service.
+    # Returns True or False
     def check_perms(self):
-        return
+        if self.service is None:
+            return False
+        else:
+            return True
 
     # Create New Calendar
     # Params: name = Name of calendar as it is displayed in Google Calendars
