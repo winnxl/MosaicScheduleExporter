@@ -9,7 +9,8 @@ Documentation: https://pysimplegui.readthedocs.io/
 ******************************************************************************
 cmds to install:
 ******************************************************************************
-pip install python-tk
+conda install -c anaconda tk
+
 pip install --upgrade PySimpleGUI
 
 pip install Scrapy
@@ -29,13 +30,14 @@ pip install PyInstaller
 
 
 ## @brief Imported packages and libraries. 
-#  @details Imports the PySimpleGUI which is dependent on Tkinter and urllib. 
+#  @details Imports the PySimpleGUI (which is dependent on Tkinter), webbrowser and urllib. 
 #  Also imports local modules parseMosaic, connector, and converter.
 import PySimpleGUI as sg
 import parseMosaic as pm
 import connector
 import converter  
 import urllib 
+import webbrowser
 
 
 
@@ -133,18 +135,19 @@ def push_to_schedule():
 
 
 # gui colour
-sg.ChangeLookAndFeel('White')      
+sg.ChangeLookAndFeel('Reddit')
 
 
 # menu
-menu_def = [['File', ['Open Mosaic', 'Exit']],         
-            ['Help', ['Schedule File', 'User Manual', 'Developers']]]      
+menu_def = [['File', ['Open Timetable', 'Exit']],
+            ['How to use', ['Obtaining your schedule', 'Fetching your schedule', 'Logging into your google account', 'Importing your schedule']],         
+            ['Help', ['Full User Manual', 'About...']]]      
 
 
 # gui layout
 layout = [      
     [sg.Menu(menu_def, tearoff=True)],      
-    [sg.Text('Obtaining your class schedule... (user info/guide goes here)', size=(80, 2), justification='center', font=("Helvetica", 10), relief=sg.RELIEF_RIDGE)],       
+    [sg.Text('Welcome to the Mosaic Schedule Importer application. Please use the [How to use] menu for instructions.', size=(80, 2), justification='center', font=("Helvetica", 10), relief=sg.RELIEF_RIDGE)],       
     [sg.Text(''  * 80)],      
     [sg.Text('Select the file of your saved schedule:', size=(30, 1), auto_size_text=True, justification='right'),      
         sg.InputText('..\My Class Schedule.html', key='txtBrowse'), sg.FileBrowse()],      
@@ -179,10 +182,13 @@ window = sg.Window('Mosaic Google Calendar Importer', default_element_size=(40, 
 
 # For button events. Makes sure the application doesn't close once a button is pressed.
 while True:      
-    (event, value) = window.Read()      
+    (event, value) = window.Read()
+  
     if event == 'Exit' or event is None:      
-        break # exit button clicked      
-    if event == 'Fetch Schedule':  
+        break # exit application
+
+    # window buttons 
+    elif event == 'Fetch Schedule':  
         window.FindElement('tbxSchedule').Update(str(fetch(convertURL(value['txtBrowse']))))
 
     elif event == 'Login':
@@ -190,6 +196,58 @@ while True:
   
     elif event == 'Import':
         window.FindElement('tbxImport').Update('Not implemented yet.')    
+
+    # menu buttons
+
+    # File
+    elif event == 'Open Timetable':
+        url = 'https://csprd.mcmaster.ca/psc/prcsprd/EMPLOYEE/HRMS_LS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL?Page=SSR_SSENRL_LIST&Action=A'
+        webbrowser.open(url)
+
+
+    # How to use
+    elif event == 'Obtaining your schedule':
+        sg.Popup(
+                        'Obtaining your schedule file:', ' ',      
+                        '1. Click [Open Timetable] from the menu under [File].', ' ',
+                        '2. This will open-up your browser and ask you to login to Mosaic.', ' ',                  
+                        '3. After logging in, select your school term and click [Continue].', ' ',
+                        '4. Right-click within the browser and select [Save as...]', ' ',
+                        '5. Make sure the [Save as type:] says [Webpage, Complete] and not [Webpage, HTML Only].', ' ',
+                        '6. Click [Save] to save your file to your computer.', ' ', 
+                        #size=(80, None) 
+                        )    
+    elif event == 'Fetching your schedule':
+        sg.Popup(                    
+                        'Fetching your schedule:', ' ',                      
+                        '1. In the application, select your saved file using the [Browse] button.', ' ',
+                        '2. Click [Fetch Schedule].', 'Please note: At this time, you can only fetch your schedule once.', 'You must close and re-open the application to fetch a different schedule.', ' ',
+                        '3. If successful, you should see your schedule appear in the large textbox.', 'Make sure to confirm this information prior to proceeding.', ' ', 
+                        size=(80, None)
+                        ) 
+    elif event == 'Logging into your google account':
+        sg.PopupScrolled(                 
+                        'Logging into your google account:', ' ',                      
+                        '1. ', ' ',
+                        '2. ', ' ',
+                        '3. ', ' ',
+                        size=(80, None)
+                        )
+    elif event == 'Importing your schedule':
+        sg.PopupScrolled(                 
+                        'Importing your schedule:', ' ',                      
+                        '1. ', ' ',
+                        '2. ', ' ',
+                        '3. ', ' ',
+                        size=(80, None)
+                        )
+
+    # Help
+    elif event == 'Full User Manual':
+        sg.Popup('Button not implemented yet. May open a pdf')   
+
+    elif event == 'About...':
+        sg.Popup('todo: Developed by: Cassandra Nicolak, Winnie Liang and Michelle Lueng.', 'github link: ...')                           
 
 
 
@@ -201,13 +259,19 @@ sg.Popup('Title',
             'The results of the window.',      
             'The button clicked was "{}"'.format(event),      
             'The values are', values)    
-            
+
+sg.Popup('Popup')  - Shows OK button    
+sg.PopupOk('PopupOk')  - Shows OK button    
+sg.PopupYesNo('PopupYesNo')  - Shows Yes and No buttons    
+sg.PopupCancel('PopupCancel')  - Shows Cancelled button    
+sg.PopupOKCancel('PopupOKCancel')  - Shows OK and Cancel buttons    
+sg.PopupError('PopupError')  - Shows red error button    
+sg.PopupTimed('PopupTimed')  - Automatically closes    
+sg.PopupAutoClose('PopupAutoClose')  - Same as PopupTimed           
 
 ******************************************************************************
 Development Notes: (status)
 ******************************************************************************
-
-- Most buttons in the menu close the application by default. This is expected.
 
 - Need to implement Login and Import button functionality.
 
