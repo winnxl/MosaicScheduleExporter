@@ -12,17 +12,17 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.selector import Selector
 from scrapy.http import HtmlResponse
 
-## @brief Gloabal Variables -----------?
+# State Variables
 dataList = list()						# datalist to be passed
 
-# MAIN CLASS
-## @brief A scrapy spider that crawls through an html document.
+
+## @brief A spider class that Scrapy uses to scrape information from a website. This class must also subclass scrapy.Spider.
 class MosaicSpider(scrapy.Spider):
 	name = "mosaic"
 
-    ## @brief MosaicSpider parse def?
-    #  @details Parses an html document using xpath selectors.
-    #  @param response todo
+    ## @brief A method that will be called to handle the response downloaded for each of the requests made. 
+    #  @details The method parses the response, extracting the scraped data as dicts.
+    #  @param response an instance of TextResponse that holds the page content and has further helpful methods to handle it.
 	def parse(self, response):	
 
 		# selector variables
@@ -82,20 +82,13 @@ class MosaicSpider(scrapy.Spider):
 					else:
 						component = repeatComponent
 				
-
-
 					# adds to data list
 					dataList.append((courseName, component, schedule, location, dates))
 					
 					row = row + 1 							# count for content rows
 
-					#yield {	
-					#	'course': courseName,
-					#	'component': component,
-					#	'schedule': schedule,
-					#	'location': location,							
-					#}
 
+# allows for executing scrapy spiders outside of the scrapy shell.
 process = CrawlerProcess({
 	'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
 })
