@@ -1,3 +1,8 @@
+## @file connector.py
+#  @author Cassandra Nicolak, Winnie Liang, Michelle Leung
+#  @brief Connects to Google Calendars
+## @date 11/8/2018
+
 import sys
 import os
 from oauth2client import client
@@ -5,13 +10,15 @@ from googleapiclient import sample_tools
 from socket import gaierror
 from httplib2 import ServerNotFoundError
 
+## @brief Connects to Google Calendars
 class Connector:
     def __init__(self, bodies):
         self.service = None
         self.cal_id = None
         self.bodies = bodies
 
-    # Account Login, Authorize and Authenticate
+    ## @brief Account Login, Authorize and Authenticate
+    # @return None if login fails.
     def login(self):
         try:
             self.service, flags = sample_tools.init(sys.argv, 'calendar', 'v3', __doc__,
@@ -23,23 +30,23 @@ class Connector:
             print('Unable to connect. Retry when you have internet access.')
             return None
 
-    # Account Logout
-    # Deletes access key file
+    ## @brief Account Logout
+    # @details Deletes access key file, sets self.service to None
     def logout(self):
         self.service = None
         os.remove("calendar.dat")
         return
 
-    # Checks if there is service.
-    # Returns True or False
+    ## @brief Checks if there is service.
+    # @return Returns True if permissions granted, False otherwise
     def check_perms(self):
         if self.service is None:
             return False
         else:
             return True
 
-    # Create New Calendar
-    # Params: name = Name of calendar as it is displayed in Google Calendars
+    ## @brief Create New Calendar
+    # @params name = Name of calendar as it is displayed in Google Calendars
     # Sets: cal_id to new calendar Id
     def create_cal(self, name="Mac Schedule"):
         try:
@@ -56,8 +63,7 @@ class Connector:
             print('Unable to connect. Retry when you have internet access.')
             return None
 
-    # Insert Event to Calendar
-    # Params: cal_id = Calendar Id of newly created calendar, bodies = array of event bodies (dicts)
+    ## @brief Insert Event to Calendar
     def insert_events(self):
         try:
             for body in self.bodies:
@@ -72,7 +78,7 @@ class Connector:
             print('Unable to connect. Retry when you have internet access.')
             return None
 
-    # Get # of Events in Calendar
+    ## @brief Get # of Events in Calendar
     def get_num_events(self):
         try:
             event_list = self.service.events().list(calendarId=self.cal_id).execute()
@@ -88,15 +94,15 @@ class Connector:
 
         #return None
 
-    # Checks if events were successfully uploaded to google calendars.
-    # Compares number of elements in bodies to number of events in new calendar.
-    # Returns: True if successful, False otherwise
+    ## @brief Checks if events were successfully uploaded to google calendars.
+    # @details Compares number of elements in bodies to number of events in new calendar.
+    # @return True if successful, False otherwise
     def check_insertion(self):
         return len(self.bodies) == self.get_num_events()
 
-    # For the case where push to schedule was unsuccessful.
-    # Remove the newly created cal
-    # Returns: True if removal was successful. False Otherwise.
+    ## @brief Remove the newly created cal
+    # @details For the case where push to schedule was unsuccessful.
+    # @return True if removal was successful. False Otherwise.
     def remove_new_cal(self):
         try:
             removed = False
@@ -113,10 +119,8 @@ class Connector:
             print('Unable to connect. Retry when you have internet access.')
             return None
 
-    # Wrapper create_cal, insert_events, check_insertion.
-    # status var monitors if exceptions have occurred.
-    # If so, it stops and tries to remove the calendar if it has been created.
-    # Returns true if all good.
+    ## @brief Wrapper for create_cal, insert_events, check_insertion.
+    # @return True if all good.
     def push_to_schedule(self):
         try:
             status = self.create_cal()

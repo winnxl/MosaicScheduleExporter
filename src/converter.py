@@ -1,8 +1,14 @@
-# Converts dates and times from parseMosaic output to Rfc formats.
+## @file converter.py
+#  @author Cassandra Nicolak, Winnie Liang, Michelle Leung
+#  @brief Converts parseMosaic input to Google Api inputs.
+## @date 11/8/2018
+
+## @brief Converts dates and times from parseMosaic output to Rfc formats.
 class Rfc:
-    # Takes input in the form of 'YYYY/MM/DD - YYYY/MM/DD'
-    # Returns 2 outputs, start, in the form of 'YYYY-MM-DD'
-    # and end, in the form of 'YYYYMMDD'
+    ## @brief Converts date from 'YYYY/MM/DD - YYYY/MM/DD' to 'YYYY-MM-DD'
+    # @param Takes input in the form of 'YYYY/MM/DD - YYYY/MM/DD'
+    # @return Returns 2 outputs, start, in the form of 'YYYY-MM-DD'
+    # @return and end, in the form of 'YYYYMMDD'
     # Because start is for Rfc 2232 and end needs to be in Rfc 5545
     # Fixme: Offset start date. Start dates from avenue are mondays regardless of whether or not
     # Fixme: class actually starts on monday. So when inputted into google calendars, we get extra
@@ -15,8 +21,9 @@ class Rfc:
         end = ''.join(end.split('/'))
         return start, end
 
-    # Takes a 12-hour time input in the form of for example, '2:30PM'
-    # Returns military time
+    ## @brief Converts 12-hour to 24-hour time
+    # @param Takes a 12-hour time input in the form of for example, '2:30PM'
+    # @return Returns military time
     @staticmethod
     def to_military(input):
         mil = None
@@ -37,8 +44,9 @@ class Rfc:
             mil = hr + ":" + min
         return mil
 
-    # Takes a string containing weekdays ex. "MoTuWeThFr"
-    # Returns capitalized string with commas between the weekdays: "MO,TU,WE,TH,FR"
+    ## @brief Converts a string like "MoTuWeThFr" to "MO,TU,WE,TH,FR"
+    # @param Takes a string containing weekdays ex. "MoTuWeThFr"
+    # @return Returns capitalized string with commas between the weekdays: "MO,TU,WE,TH,FR"
     @staticmethod
     def extract_weekdays(input):
         weekdays = ""
@@ -64,8 +72,9 @@ class Rfc:
             weekdays += "FR"
         return weekdays
 
-    # Takes 2 inputs, a date string '2019/01/07 - 2019/04/09' and a time string 'We 2:30PM - 3:20PM'
-    # Returns a start and end dateTime in RFC 2232 format, and a rrule in Rfc 5545 format
+    ## @brief Converts date and time strings to Rfc 2232 and 5545 format
+    # @param Takes 2 inputs, a date string '2019/01/07 - 2019/04/09' and a time string 'We 2:30PM - 3:20PM'
+    # @return Returns a start and end dateTime in RFC 2232 format, and a rrule in Rfc 5545 format
     # Todo deal with daylight savings
     @staticmethod
     def rfc_output(date_str, time_str):
@@ -83,10 +92,11 @@ class Rfc:
         return start_date_time, end_date_time, rrule
 
 
-# Convert parseMosaic output to Google Api inputs.
+## @brief Convert parseMosaic output to Google Api inputs.
 class Converter:
-    # Input from parseMosaic module
-    # Outputs a list of event body dictionary objects
+    ## @brief Convert parseMosaic output to Google Api inputs.
+    # @param Input from parseMosaic module
+    # @return Outputs a list of event body dictionary objects
     @staticmethod
     def convert(input):
         output = []
