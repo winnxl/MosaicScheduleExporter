@@ -1,0 +1,382 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+
+\newcounter{acnum}
+\newcommand{\actheacnum}{AC\theacnum}
+\newcommand{\acref}[1]{AC\ref{#1}}
+
+\newcounter{ucnum}
+\newcommand{\uctheucnum}{UC\theucnum}
+\newcommand{\uref}[1]{UC\ref{#1}}
+
+\newcounter{mnum}
+\newcommand{\mthemnum}{M\themnum}
+\newcommand{\mref}[1]{M\ref{#1}}
+
+\title{SE 3XA3: Module Internal Specification\\MAC Schedule Importer}
+
+\author{Team 12, 0C
+		\\ Cassandra Nicolak, nicolace
+		\\ Michelle Leung, leungm16
+		\\ Winnie Liang, liangw15
+}
+
+\date{\today}
+
+%\input{../../Comments}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\begin{table}[bp]
+\caption{\bf Revision History}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+2018-11-07 & 1.0 & Rough Draft\\
+Date 2 & 1.1 & Notes\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\pagenumbering{arabic}
+
+\section{Introduction}
+\hspace{5mm} The purpose of this module internal specification document is to provide a complete description of the specifications to design the MAC Schedule Importer. The project is a  redesign ofthe open-source Chrome extension, UMD Google Calendar Schedule Importer, which imports the class schedule for students at the University of Maryland into Google Calendar. The reimplementation will be modified to allow students from McMaster University to import their schedules from Mosaic through a Desktop application.
+
+\section{Module Hierarchy} \label{SecMH}
+
+This section provides an overview of the module design. Modules are summarized
+in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
+below, which are leaves in the hierarchy tree, are the modules that will
+actually be implemented.
+
+%\begin{description}
+%\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding %Module
+%\item ...
+%\end{description}
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+\toprule
+\textbf{Level 1} & \textbf{Level 2}\\
+\midrule
+
+{Hardware-Hiding Module} & ~ \\
+\midrule
+
+\multirow{3}{0.3\textwidth}{Behaviour-Hiding Module} & converter\\
+& connector\\
+& guiClient\\
+\midrule
+
+%{Software Decision Module} & ~ \\
+\multirow{1}{0.3\textwidth}{Software Decision Module} & parseMosaic\\
+%& ?\\
+%& ?\\
+\bottomrule
+
+\end{tabular}
+\caption{Module Hierarchy}
+\label{TblMH}
+\end{table}
+\newpage
+
+\section{MIS of ParseMosaic} \label{SecM2}
+\subsection{Uses}
+scrapy, subprocess
+\subsection{Interface Syntax}
+\subsubsection{Exported Access Programs}
+\begin{tabular}[pos]{|c|c|c|c|}
+	\hline
+	\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ \hline
+	parse & response: TextResponse & dataList: list of string tuples & -\\ \hline %!! What's the type for response?
+	%close & - & GUI & -\\ \hline
+	runMe & passed\_url: url (str) & GUI & -\\ \hline
+			
+\end{tabular}\\
+$*$Note: Exceptions are still in development.
+
+\subsection{Interface Semantics}
+\subsubsection{State Variables}
+dataList : list of string tuples
+\subsubsection{Environmental Variables}
+process : CrawlerSpiderProcess() from the Scrapy Library %process? name?
+\subsubsection{State Invariant}
+$0 \le |$dataList$|$
+\subsubsection{Assumptions}
+parse() is called before runMe().
+\subsubsection{Access Program Semantics}
+parse(response)
+\begin{itemize}
+    \item transition: dataList $:= $ modify dataList so that it uses the Scrapy library to parse data from \emph{response} and stores a list of string tuples with the tuple containing (course name, component, schedule, location, dates) of each course.
+    \item exception : None
+\end{itemize}
+runMe()
+\begin{itemize}
+    \item output $:= $ dataList 
+    \item exception: None
+\end{itemize}
+
+\section{MIS of Converter} \label{SecM1}
+\subsection{Uses}
+parseMosaic
+
+\subsection{Interface Syntax}
+\subsubsection{Exported Access Programs}
+\begin{tabular}[pos]{|c|c|c|c|}
+	\hline
+	\textbf{Name}& \textbf{In} &  \textbf{Out} & \textbf{Exceptions} \\ \hline
+	extract\_date & input: str & start: str, end: str & -\\
+	\hline
+	to\_military & input: str & mil: str & -\\
+	\hline
+	extract\_weekdays & input: str & weekdays: str & - \\
+	\hline 
+	rfc\_output & date\_str, time\_str: str & start\_date\_time, end\_date\_time: str & - \\
+	\hline 
+	convert & input: list of string tuples & output: list of dictionaries & - \\
+	\hline 
+\end{tabular}
+*Note: Exceptions are still in development.
+\subsection{Interface Semantics}
+\subsubsection{State Variables}
+None
+%fileUrl: str - The url of the user's Mosaic schedule.\\
+%ret: list of tuples of str - The information parsed from Mosaic.
+\subsubsection{Environmental Variables}
+None
+\subsubsection{State Invariant}
+None
+\subsubsection{Assumptions}
+None, unless stated in the access program.
+\subsubsection{Access Program Semantics}
+extract\_date(input)
+\begin{itemize}
+    \item output: start $:= (\exists i | i \in input \land input[i] = $'-' : $ start = input[0..i-1]) $ 
+    \item output: end $:= $
+    $(\exists i | i \in input \land input[i] = $'-' : $ end = input[i+1..|input|]) $
+    \item exception: None
+\end{itemize}
+to\_military(input)
+\begin{itemize}
+    \item output: mil := returns a string of  the military time given a 12-hour time input string.
+    \item exception: None
+\end{itemize}
+extract\_weeekdays(input)
+\begin{itemize}
+    \item output: weekdays := given a string containing weekdays, ex. "MoTWeThFr", it returns a string with capitalized string with commas between the weekdays, ex."MO,TU,WE,TH,FR" 
+    \item exception: None
+\end{itemize}
+rfc\_output(date\_str, time\_str)
+\begin{itemize}
+    \item output: a start and end dateTime in RFC 2232 format, and a rrule in Rfc 5545 format
+    \item exception: None
+\end{itemize}
+convert(input)
+\begin{itemize}
+    \item output: a list of dictionaries containing calendar event parameters
+    \item exception: None
+\end{itemize}
+
+\section{MIS of Connector} \label{SecM3}
+\subsubsection{Uses}
+sys, os, googleapiclient, socket, oauth2client, httplib2
+\subsection{Interface Syntax}
+\subsubsection{Exported Access Programs}
+\begin{tabular}[pos]{|c|c|c|c|}
+	\hline
+	\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ \hline
+	login & - & GUI & ServerNotFoundError\\ \hline
+	logout & - & GUI & -\\ \hline 
+	check\_perms & - & bool & -\\ \hline
+	create\_cal & name: str & Google Calendars & AccessTokenRefreshError, ServerNotFound Error, gaierror, ConnectionResetError \\ \hline
+	insert\_events & - & True, None & AccessTokenRefreshError, ServerNotFound Error, gaierror, ConnectionResetError\\ \hline
+	get\_num\_events & - & $|$event\_list$|$: int & AccessTokenRefreshError, ServerNotFound Error, gaierror, ConnectionResetError \\ \hline
+	check\_insertion & - & bool & - \\ \hline
+	remove\_new\_cal & - & bool & AccessTokenRefreshError, ServerNotFound Error, gaierror, ConnectionResetError\\ \hline
+	push\_to\_schedule & - & bool & -\\ \hline
+	
+\end{tabular}
+
+\subsection{Interface Semantics}
+\subsubsection{State Variables}
+service: Object\\
+cal\_id: string \\
+bodies: dictionary \\
+\subsubsection{Environmental Variables}
+None
+\subsubsection{Assumptions}
+None, unless noted in the access programs
+\subsubsection{Access Program Semantics}
+login 
+\begin{itemize}
+    \item transition: service $:=$ Object
+    \item exception: None
+\end{itemize}
+logout
+\begin{itemize}
+    \item transition: service $:=$ None
+    \item exception: None
+\end{itemize}
+check\_perms
+\begin{itemize}
+    \item output: Bool, true if permissions were granted, False otherwise.
+    \item exception: None
+\end{itemize}
+create\_cal
+\begin{itemize}
+    \item transition: cal\_id $:=$ new calendar id
+    \item exception: client.AccessTokenRefreshError, when access token fails to refresh.
+    \item exception: gaierror, internet fails
+    \item exception: ConnectionResetError, internet fails
+    \item exception: ServerNotFoundError, internet fails
+\end{itemize}
+insert\_events
+\begin{itemize}
+    \item output: inserts event into google calendar
+    \item exception: client.AccessTokenRefreshError, when access token fails to refresh.
+    \item exception: gaierror, internet fails
+    \item exception: ConnectionResetError, internet fails
+    \item exception: ServerNotFoundError, internet fails
+\end{itemize}
+get\_num\_events
+\begin{itemize}
+    \item output: number of events in calendar: cal\_id
+    \item exception: client.AccessTokenRefreshError, when access token fails to refresh.
+    \item exception: gaierror, internet fails
+    \item exception: ConnectionResetError, internet fails
+    \item exception: ServerNotFoundError, internet fails
+\end{itemize}
+check\_insertion
+\begin{itemize}
+    \item output: True if number of events in Google calendars matches the number of event parameters sent to Google. False otherwise
+\end{itemize}
+remove\_new\_cal
+\begin{itemize}
+    \item output: removal of calendar: cal\_id
+    \item exception: client.AccessTokenRefreshError, when access token fails to refresh. 
+    \item exception: gaierror, internet fails
+    \item exception: ConnectionResetError, internet fails
+    \item exception: ServerNotFoundError, internet fails
+\end{itemize}
+push\_to\_schedule
+\begin{itemize}
+    \item output: Pushes events to Google calendars. Returns True if successful. False otherwise.
+\end{itemize}
+
+\section{MIS of guiClient} \label{SecM4}
+\subsubsection{Uses}
+PySimpleGUI, parseMosaic, connector, converter, urllib, webbrowser
+
+
+\subsection{Interface Syntax}
+\subsubsection{Exported Access Programs}
+\begin{tabular}[pos]{|c|c|c|c|}
+	\hline
+	\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ \hline
+    convertURL & str & str & - \\ \hline		
+	parseMosaic & str & fetchedList: list of tuple of str & -\\ \hline
+    printSched & fetchedList: list of tuple of str & str & - \\ \hline		
+	fetch & str & str & - \\ \hline
+	conn & - & Object & - \\ \hline	
+	login & - & bool & - \\ \hline
+	logout & - & - & - \\ \hline	
+    pushSchedule & - & bool & - \\ \hline	
+			
+\end{tabular}
+
+\subsection{Interface Semantics}
+\subsubsection{State Variables}
+fetchFLG: bool\\
+fetchedList: list of string tuples\\
+googleConn: None
+\subsubsection{Environmental Variables}
+layout: list of lists of type GUI\\
+window: GUI\\
+menu\_def: list of lists of str
+\subsubsection{State Invariant}
+$|$fetchedList$| \ge 0$
+\subsubsection{Assumptions}
+None, unless stated by the access programs.
+\subsubsection{Access Program Semantics}
+convertURL(userInput) 
+\begin{itemize}
+    \item output: userURL $:=$ given a url from a path name (str), it returns the absolute file path (str).
+    \item exception: None
+\end{itemize}
+parseMosaic(url)
+\begin{itemize}
+    \item output: url:= Parses the html document from \emph{url} and displays the \emph{url} on the GUI.
+    \item exception: None
+\end{itemize}
+printSched(fetchList)
+\begin{itemize}
+    \item output: out:= Converts fetchList into the following format of str: "Course, Type, When, Location, Start/End Dates"
+\end{itemize}
+fetch(url)
+\begin{itemize}
+    \item output: out:= Parses url using parseMosaic() function and returns the schedule using printSched().
+    \item exception: None
+\end{itemize}
+conn()
+\begin{itemize}
+    \item transition: Converts the output of parseMosaic to Google API inputs.
+    \item exception: None
+\end{itemize}
+login()
+\begin{itemize}
+    \item output: out:= Creates a link to google's api service when the user logs into their Google account. Returns true if there is a service, otherwise false.
+    \item exception: None
+\end{itemize}
+logout()
+\begin{itemize}
+    \item transition: deletes access key to user's account. 
+    \item exception: None
+\end{itemize}
+pushSchedule()
+\begin{itemize}
+    \item output: out:= Uploads event items to a Google Calendar. Returns true if the import is successful and false otherwise.
+\end{itemize}
+
+
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+%\caption{Use hierarchy among modules}
+%\label{FigUH}
+%\end{figure}
+
+%\section*{References}
+
+\bibliographystyle {plainnat}
+\bibliography {MG}
+
+\end{document}
+\\

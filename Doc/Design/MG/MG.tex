@@ -29,17 +29,17 @@
 \newcommand{\mthemnum}{M\themnum}
 \newcommand{\mref}[1]{M\ref{#1}}
 
-\title{SE 3XA3: Software Requirements Specification\\Title of Project}
+\title{SE 3XA3: Module Internal Specification\\MAC Schedule Importer}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 12, 0C
+		\\ Cassandra Nicolak, nicolace
+		\\ Michelle Leung, leungm16
+		\\ Winnie Liang, liangw15
 }
 
 \date{\today}
 
-\input{../../Comments}
+%\input{../../Comments}
 
 \begin{document}
 
@@ -66,108 +66,83 @@ Date 2 & 1.1 & Notes\\
 \pagenumbering{arabic}
 
 \section{Introduction}
+\subsection{General Overview and Introduction}
+This document provides a complete description of the module guide for the MAC Schedule Importer, a desktop application that imports the user's Mosaic schedule into their Google calendar.\\
 
-Decomposing a system into modules is a commonly accepted approach to developing
-software.  A module is a work assignment for a programmer or programming
-team~\citep{ParnasEtAl1984}.  We advocate a decomposition
-based on the principle of information hiding~\citep{Parnas1972a}.  This
-principle supports design for change, because the ``secrets'' that each module
-hides represent likely future changes.  Design for change is valuable in SC,
-where modifications are frequent, especially during initial development as the
-solution space is explored.  
-
-Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
-\begin{itemize}
-\item System details that are likely to change independently should be the
-  secrets of separate modules.
-\item Each data structure is used in only one module.
-\item Any other program that requires information stored in a module's data
-  structures must obtain it by calling access programs belonging to that module.
-\end{itemize}
-
-After completing the first stage of the design, the Software Requirements
-Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
-specifies the modular structure of the system and is intended to allow both
-designers and maintainers to easily identify the parts of the software.  The
-potential readers of this document are as follows:
+The intended audience of this document includes the following: 
 
 \begin{itemize}
-\item New project members: This document can be a guide for a new project member
-  to easily understand the overall structure and quickly find the
-  relevant modules they are searching for.
-\item Maintainers: The hierarchical structure of the module guide improves the
-  maintainers' understanding when they need to make changes to the system. It is
-  important for a maintainer to update the relevant sections of the document
-  after changes have been made.
-\item Designers: Once the module guide has been written, it can be used to
-  check for consistency, feasibility and flexibility. Designers can verify the
-  system in various ways, such as consistency among modules, feasibility of the
-  decomposition, and flexibility of the design.
+\item Software Development/Design teams, including Team 0C: This document provides a method for designers and developers to
+  check for the feasibility, correctness and consistency of their program. 
+\item New team members and third party software development teams: This document can be a reference guide which enables developers that are unfamiliar with the project to easily comprehend the general system design and structure. 
+\item Maintainers: The document can be used to locate specific modules for maintenance and the described module decomposition in the module guide allows a better understanding of the system when changes are made. %It is important for a maintainer to update the relevant sections of the document after changes have been made.
 \end{itemize}
 
-The rest of the document is organized as follows. Section
-\ref{SecChange} lists the anticipated and unlikely changes of the software
-requirements. Section \ref{SecMH} summarizes the module decomposition that
-was constructed according to the likely changes. Section \ref{SecConnection}
+The module guide document is organized as follows:\\
+\begin{itemize}
+\item Section \ref{SecChange} lists the anticipated and unlikely changes of the software
+requirements.
+\item Section \ref{SecMH} summarizes the module decomposition that
+was constructed according to the likely changes.
+\item  Section \ref{SecConnection}
 specifies the connections between the software requirements and the
-modules. Section \ref{SecMD} gives a detailed description of the
-modules. Section \ref{SecTM} includes two traceability matrices. One checks
+modules.
+\item Section \ref{SecMD} gives a detailed description of the
+modules.
+\item  Section \ref{SecTM} includes two traceability matrices. One checks
 the completeness of the design against the requirements provided in the SRS. The
-other shows the relation between anticipated changes and the modules. Section
+other shows the relation between anticipated changes and the modules.
+\item Section
 \ref{SecUse} describes the use relation between modules.
+\end{itemize}
+
+\subsection{Motivation and Design Choices}
+For large software system designs, the decomposition into smaller components, such as modules and sub-modules, is a necessity for organization and structure. Moreover, modular decomposition enables future modifications to various system components without altering majority of the system. Hence, Team 0C followed the 'design for change' pattern for the MAC Schedule Importer project. For example: 
+\begin{itemize}
+    \item Components of the system that are anticipated to change are encapsulated into 'secrets'.
+    \item Each module contains one secret.
+    \item Other members of the system that requires data from a module can only acquire the information through public access methods that are defined in that module.
+\end{itemize}
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
-This section lists possible changes to the system. According to the likeliness
-of the change, the possible changes are classified into two
-categories. Anticipated changes are listed in Section \ref{SecAchange}, and
-unlikely changes are listed in Section \ref{SecUchange}.
-
 \subsection{Anticipated Changes} \label{SecAchange}
-
-Anticipated changes are the source of the information that is to be hidden
-inside the modules. Ideally, changing one of the anticipated changes will only
-require changing the one module that hides the associated decision. The approach
-adapted here is called design for
-change.
+Design for change was incorporated into the software design for MAC Schedule Importer.   The anticipated changes, which will ideally change only the secrets hidden in modules without affecting the whole project, are listed below.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acParser}:] The format of Mosaic schedule.
+\item[\refstepcounter{acnum} \actheacnum \label{acOS}:] The operating systems which the software interfaces.
+\item[\refstepcounter{acnum} \actheacnum \label{achardware}:] The hardware on which the software is running.
+\item[\refstepcounter{acnum} \actheacnum \label{acScrapy}:] The syntax and functions of Scrapy.
+\item[\refstepcounter{acnum} \actheacnum \label{acGoogle}:] The Google Calendar layout.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
 
-The module design should be as general as possible. However, a general system is
-more complex. Sometimes this complexity is not necessary. Fixing some design
-decisions at the system architecture stage can simplify the software design. If
-these decision should later need to be changed, then many parts of the design
-will potentially need to be modified. Hence, it is not intended that these
-decisions will be changed.
+The following design decisions are not intended to change as modifications to these decisions lead to multiple subsequent changes to the whole system.
 
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+  (Input: File, Output: Screen).
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
   a source of input data external to the software.
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucParse}:] The parsing algorithm.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucGoal}:] The main purpose of the program - To import a Mosaic schedule into Google Calendar.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
-
-This section provides an overview of the module design. Modules are summarized
-in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
-below, which are leaves in the hierarchy tree, are the modules that will
-actually be implemented.
+The module hierarchy is an overview of the general structure and design for the module. In Table \ref{TblMH}, the modules are shown in a hierarchy decomposition according to their respective secrets. 
+The models below are the 'leaves' of the hierarchy tree and will be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] *Hardware-Hiding Module
+\item [\refstepcounter{mnum} \mthemnum \label{mpM}:] parseMosaic Module
+\item [\refstepcounter{mnum} \mthemnum \label{mcv}:] convertor Module
+\item [\refstepcounter{mnum} \mthemnum \label{mcn}:] connect Module
+\item [\refstepcounter{mnum} \mthemnum \label{mgc}:] guiClient Module
 \end{description}
 
+*Note: The Hardware-Hiding Module is not implemented for this software-based project. Inclusion of this module is for formality purposes.
 
 \begin{table}[h!]
 \centering
@@ -179,19 +154,15 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{3}{0.3\textwidth}{Behaviour-Hiding Module} & convertor\\
+& connector\\
+& guiClient\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+%{Software Decision Module} & ~ \\
+\multirow{1}{0.3\textwidth}{Software Decision Module} & parseMosaic\\
+%& guiClient\\
+%& ?\\
 \bottomrule
 
 \end{tabular}
@@ -201,77 +172,77 @@ actually be implemented.
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
 
-The design of the system is intended to satisfy the requirements developed in
-the SRS. In this stage, the system is decomposed into modules. The connection
-between requirements and modules is listed in Table \ref{TblRT}.
+The design of the MAC Schedule Importer is designed to satisfy the requirements developed in
+the SRS document. During this stage, the system is decomposed into modules. The connection
+between requirements and modules is listed in Table \ref{TblRT}. It is recommended to read Section \ref{SecMH} and Section \ref{SecMD} before reading Section \ref{SecTM}.\\
+
+%The guiClient module is the user interface of the MAC Schedule Importer. The module satisfies the requirement of interacting with the user to display notifications of the inability to access the Mosaic schedule or Google calendar. Additionally, it satisfies the requirements of the authorization of accessing the user's Mosaic schedule and Google account as well as verifying the changes made to the user's Google Calendar before proceeding. Also, the guiClient module meets the requirements of tracking the importing process, a simple user interface and help option provided to guide the user through the navigation of the system.\\
+
+%The connector module returns the results and displays the user's Mosaic schedule in their Google Calendar. It satisfies the requirement of importing the user's Mosaic schedule into Google Calendar. As well, it ensures that the security requirement that the application shall not store or upload user information is satisfied as the module discards the information once the user finishes using the system.\\
+
+%The parseMosaic module retrieves the information from the user's Mosaic schedule and passes the data to the converter. The module sa
+
 
 \section{Module Decomposition} \label{SecMD}
 
-Modules are decomposed according to the principle of ``information hiding''
-proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
-decomposition is a brief statement of the design decision hidden by the
-module. The \emph{Services} field specifies \emph{what} the module will do
-without documenting \emph{how} to do it. For each module, a suggestion for the
-implementing software is given under the \emph{Implemented By} title. If the
-entry is \emph{OS}, this means that the module is provided by the operating
-system or by standard programming language libraries.  Also indicate if the
-module will be implemented specifically for the software.
+The modules of MAC Schedule Importer are decomposed according to the principle of ``information hiding''
+proposed by David Parnas. Each module is comprised of \emph{Secrets}, \emph{Service}, and \emph{Implemented by}.  The \emph{Secrets} in a module is a noun. It is a statement of the hidden design decision for the module. The \emph{services} specifies what the module will accomplish without specifying what methods the module will use to accomplish it. The  \emph{Implemented By} title is a tentative idea for the implementing software of each module.
+ %If the entry is \emph{OS}, this means that the module is provided by the operating system or by standard programming language libraries.  %Also indicate if the module will be implemented specifically for the software.
 
-Only the leaf modules in the
-hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means
-that the module is not a leaf and will not have to be implemented. Whether or
-not this module is implemented depends on the programming language
-selected.
+%Only the leaf modules in the hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means that the module is not a leaf and will not have to be implemented. Whether or not this module is implemented depends on the programming language selected.
 
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
+\item[Secrets:]The algorithm and data structure that are used to implement the virtual hardware.
 \item[Services:]Serves as a virtual hardware used by the rest of the
   system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
+  software so that the system can use it to display outputs or to accept inputs.
 \item[Implemented By:] OS
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
+\iffalse
 \begin{description}
 \item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
+\item[Services:]This includes programs that provide externally visible behaviour of
   the system as specified in the software requirements specification (SRS)
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
 \item[Implemented By:] --
 \end{description}
+\fi 
 
-\subsubsection{Input Format Module (\mref{mInput})}
-
+\subsubsection{Input Format Module (\mref{mcv})}
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
+\item[Services:] It converts the retrieved input data into the data structure used by the output module.
+\item[Implemented By:] convertor
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Output Module (\mref{mcn})}
+\begin{description}
+\item[Secrets:]The format and structure of the output data.
+\item[Services:] It converts the data into the output format and displays the results.
+\item[Implemented By:] connecter
+\end{description}
 
+\subsubsection{User Interface Module (\mref{mgc})}
+\begin{description}
+\item[Secrets:]The format and structure of user interface.
+\item[Services:]It interacts with the user to retrieve the user's Google account and Mosaic schedule file.
+\item[Implemented By:] guiClient
+\end{description}
 
 \subsection{Software Decision Module}
-
+\subsubsection{Retrieve Input Module (\mref{mpM})}
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+\item[Secrets:]The method to retrieve the input data.
+\item[Services:]It obtains the input data and passes the information to the input format module to convert the data into a usable format.
+\item[Implemented By:] parseMosaic
 \end{description}
-
-\subsubsection{Etc.}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -286,17 +257,33 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+FR01 & \mref{mpM}, \mref{mgc} \\ %, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
+FR02 & \mref{mgc}\\
+FR03 & \mref{mcn}, \mref{mgc} \\
+FR04 & \mref{mgc}\\
+FR05 & \mref{mgc}\\
+FR06 & \mref{mgc} \\
+FR07 & \mref{mgc}\\
+FR08 & \mref{mgc}\\
+FR09 & \mref{mcn}, \mref{mgc}\\
+FR10 & \mref{mgc}\\
+NF01 & \mref{mgc}\\
+NF02 & \mref{mgc}\\
+NF03 & \mref{mgc}\\
+NF04 & \mref{mgc}\\
+NF05 & \mref{mgc}\\
+NF06 & \mref{mgc} \\
+NF07 & \mref{mgc}\\
+NF08 & \mref{mgc} \\
+NF09 & \mref{mpM}, \mref{mcv}, \mref{mcn}, \mref{mgc} \\
+NF10 & \\
+NF11 & \mref{mpM}, \mref{mcv}, \mref{mcn}, \mref{mgc} \\
+NF12 & \\
+NF13 & \mref{mgc}\\
+NF14 & \mref{mpM}, \mref{mcv}, \mref{mgc} \\
+NF15 & \mref{mgc}\\
+NF16 & \mref{mpM}, \mref{mcv}, \mref{mcn}, \mref{mgc} \\
+NF17 & \mref{mpM}, \mref{mcv}, \mref{mcn}, \mref{mgc} \\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -309,18 +296,11 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acParser} & \mref{mpM}\\
+\acref{acOS} & \mref{mgc}\\
+\acref{achardware} & \mref{mgc}\\
+\acref{acScrapy} & \mref{mpM}\\
+\acref{acGoogle} & \mref{mcn}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -329,23 +309,19 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
-In this section, the uses hierarchy between modules is
-provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
-correct execution of B may be necessary for A to complete the task described in
-its specification. That is, A {\em uses} B if there exist situations in which
-the correct functioning of A depends upon the availability of a correct
-implementation of B.  Figure \ref{FigUH} illustrates the use relation between
-the modules. It can be seen that the graph is a directed acyclic graph
-(DAG). Each level of the hierarchy offers a testable and usable subset of the
-system, and modules in the higher level of the hierarchy are essentially simpler
-because they use modules from the lower levels.
-
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{uh.jpg}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
+
+\section{Schedule}
+Please refer to the link to find the current Gantt Chart:
+\color{blue}
+\href{https://gitlab.cas.mcmaster.ca/liangw15/3XA3Project/blob/working/ProjectSchedule/Group12_Gantt03.pdf}{ Gantt03}
+
+\color{black}
 
 %\section*{References}
 
