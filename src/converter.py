@@ -3,24 +3,49 @@
 #  @brief Converts parseMosaic input to Google Api inputs.
 ## @date 11/8/2018
 
+import datetime
+
 ## @brief Converts dates and times from parseMosaic output to Rfc formats.
 class Rfc:
+
+    ## @brief Offsets a date to the next weekday occurrance
+    # @param date is a datetime.date(year, month, day) object.
+    # @param target_weekday is the numerical representation of the weekdays,
+    # monday = 0, ... , friday = 4
+    # @returns list of strings containing [year, month, day]
+    @staticmethod
+    def offset_date(date, target_weekday):
+        min_offset = 7  # Minimum Offset. Actual maximum should be 6. So if you return a result with min offset = 7, somethings wrong.
+
+        for weekday in target_weekday:
+            offset = weekday - date.weekday()
+
+            if offset < 0:
+                offset += 7
+
+            if offset < min_offset:
+                min_offset = offset
+
+        new = date + datetime.timedelta(min_offset)
+
+        return [str(new.year), str(new.month), str(new.day)]
+
     ## @brief Converts date from 'YYYY/MM/DD - YYYY/MM/DD' to 'YYYY-MM-DD'
+    # Also offsets start day to the next occurring weekday ex. "next occuring tuesday"
     # @param Takes input in the form of 'YYYY/MM/DD - YYYY/MM/DD'
     # @return Returns 2 outputs, start, in the form of 'YYYY-MM-DD'
     # @return and end, in the form of 'YYYYMMDD'
     # Because start is for Rfc 2232 and end needs to be in Rfc 5545
-    # Fixme: Offset start date. Start dates from avenue are mondays regardless of whether or not
-    # Fixme: class actually starts on monday. So when inputted into google calendars, we get extra
-    # Fixme: entries on monday. Need to find a way to make find the actual date of say, the first
-    # Fixme: wednesday after Jan. 6th.
     @staticmethod
-    def extract_date(input):
+    def extract_date(input, weekday_num):
         start, _, end = input.split()
-        # For 2018/09/04 formats
 
+        # For 2018/09/04 formats
         if len(start.split('/')[0]) == 4:
-            start = '-'.join(start.split('/'))
+            start = start.split('/')
+            d = datetime.date(int(start[0]), int(start[1]), int(start[2]))
+            start = Rfc.offset_date(d, weekday_num)
+            start = '-'.join(start)
             end = ''.join(end.split('/'))
         # For 04/09/2018 formats
         else:
@@ -28,6 +53,7 @@ class Rfc:
             start = '-'.join([year, month, day])
             day, month, year = end.split('/')
             end = ''.join([year, month, day])
+        print(start)
         return start, end
 
     ## @brief Converts 12-hour to 24-hour time
@@ -63,27 +89,33 @@ class Rfc:
     @staticmethod
     def extract_weekdays(input):
         weekdays = ""
+        num = []
         if "Mo" in input:
             if weekdays != "":
                 weekdays += ","
             weekdays += "MO"
+            num.append(0)
         if "Tu" in input:
             if weekdays != "":
                 weekdays += ","
             weekdays += "TU"
+            num.append(1)
         if "We" in input:
             if weekdays != "":
                 weekdays += ","
             weekdays += "WE"
+            num.append(2)
         if "Th" in input:
             if weekdays != "":
                 weekdays += ","
             weekdays += "TH"
+            num.append(3)
         if "Fr" in input:
             if weekdays != "":
                 weekdays += ","
             weekdays += "FR"
-        return weekdays
+            num.append(4)
+        return weekdays, num
 
     ## @brief Converts date and time strings to Rfc 2232 and 5545 format
     # @param Takes 2 inputs, a date string '2019/01/07 - 2019/04/09' and a time string 'We 2:30PM - 3:20PM'
@@ -92,16 +124,14 @@ class Rfc:
     @staticmethod
     def rfc_output(date_str, time_str):
         # Extract and Process Strings
-        date_start, date_end = Rfc.extract_date(date_str)
         weekdays, time_start, _, time_end = time_str.split()
+        weekday_str, weekday_num = Rfc.extract_weekdays(weekdays)
+        date_start, date_end = Rfc.extract_date(date_str, weekday_num)
 
         # Merge Strings
-        # Fixme: -4:00 is fine after ~mar.10, when DST starts.
-        # Fixme: -5:00 is fine before, when there is no DST.
-        print(date_start)
         start_date_time = date_start + "T" + Rfc.to_military(time_start) + ":00"    # RFC 2232 dateTime
         end_date_time = date_start + "T" + Rfc.to_military(time_end) + ":00"         # RFC 2232 dateTime
-        rrule = "RRULE:FREQ=WEEKLY;UNTIL=" + date_end + "T045959Z;BYDAY=" + Rfc.extract_weekdays(weekdays)  # RFC 5545 recurrence RRULE
+        rrule = "RRULE:FREQ=WEEKLY;UNTIL=" + date_end + "T045959Z;BYDAY=" + weekday_str  # RFC 5545 recurrence RRULE
 
         return start_date_time, end_date_time, rrule
 
