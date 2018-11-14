@@ -17,8 +17,17 @@ class Rfc:
     @staticmethod
     def extract_date(input):
         start, _, end = input.split()
-        start = '-'.join(start.split('/'))
-        end = ''.join(end.split('/'))
+        # For 2018/09/04 formats
+
+        if len(start.split('/')[0]) == 4:
+            start = '-'.join(start.split('/'))
+            end = ''.join(end.split('/'))
+        # For 04/09/2018 formats
+        else:
+            day, month, year = start.split('/')
+            start = '-'.join([year, month, day])
+            day, month, year = end.split('/')
+            end = ''.join([year, month, day])
         return start, end
 
     ## @brief Converts 12-hour to 24-hour time
@@ -34,6 +43,7 @@ class Rfc:
             if hr == 12:
                 hr = "00"
             mil = str(hr) + ":" + min
+            return mil
         elif "PM" in input:
             mil = input.split("PM")[0]
             hr, min = mil.split(":")
@@ -42,7 +52,10 @@ class Rfc:
                 hr += 12
             hr = str(hr)
             mil = hr + ":" + min
-        return mil
+            return mil
+        else:
+            return input
+
 
     ## @brief Converts a string like "MoTuWeThFr" to "MO,TU,WE,TH,FR"
     # @param Takes a string containing weekdays ex. "MoTuWeThFr"
@@ -85,8 +98,9 @@ class Rfc:
         # Merge Strings
         # Fixme: -4:00 is fine after ~mar.10, when DST starts.
         # Fixme: -5:00 is fine before, when there is no DST.
-        start_date_time = date_start + "T" + Rfc.to_military(time_start) + ":00-04:00"    # RFC 2232 dateTime
-        end_date_time = date_start + "T" + Rfc.to_military(time_end) + ":00-04:00"         # RFC 2232 dateTime
+        print(date_start)
+        start_date_time = date_start + "T" + Rfc.to_military(time_start) + ":00"    # RFC 2232 dateTime
+        end_date_time = date_start + "T" + Rfc.to_military(time_end) + ":00"         # RFC 2232 dateTime
         rrule = "RRULE:FREQ=WEEKLY;UNTIL=" + date_end + "T045959Z;BYDAY=" + Rfc.extract_weekdays(weekdays)  # RFC 5545 recurrence RRULE
 
         return start_date_time, end_date_time, rrule
