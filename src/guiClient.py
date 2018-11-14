@@ -25,7 +25,6 @@ pip install PyInstaller
 ## @file parseMosaic.py
 #  @author Cassandra Nicolak, Winnie Liang, Michelle Lueng
 #  @brief macID: nicolace, x, x
-#  Student #: 000971847, x, x
 ## @date 11/9/2018
 
 
@@ -142,7 +141,7 @@ sg.ChangeLookAndFeel('Reddit')
 
 
 # menu
-menu_def = [['File', ['Open Timetable', 'Exit']],
+menu_def = [['File', ['Open Timetable', 'Open Calendar', 'Exit']],
             ['How to use', ['Obtaining your schedule', 'Fetching your schedule', 'Logging into your google account', 'Importing your schedule']],         
             ['Help', ['Full User Manual', 'About...']]]      
 
@@ -196,11 +195,19 @@ while True:
         window.FindElement('tbxSchedule').Update(str(fetch(convertURL(value['txtBrowse']))))
 
     elif event == 'Login':
-        conn()
-        window.FindElement('tbxLogin').Update(str(login()))           
+        conn() # open a new connection
+        if login() == True:
+            window.FindElement('tbxLogin').Update(str("Login successful. You are now ready to Import. \n\nPlease note: this may take up to 30 seconds depending on your connection speed."))
+        else:
+            window.FindElement('tbxLogin').Update(str("Login unsuccessful. Please try again."))
+         
   
     elif event == 'Import':
-        window.FindElement('tbxImport').Update( str(pushSchedule()) )    
+        if pushSchedule() == True:
+            window.FindElement('tbxImport').Update(str("Import successful."))
+        else:
+            window.FindElement('tbxImport').Update(str("Import unsuccessful."))
+
 
 
     # menu buttons
@@ -209,6 +216,11 @@ while True:
     elif event == 'Open Timetable':
         url = 'https://csprd.mcmaster.ca/psc/prcsprd/EMPLOYEE/HRMS_LS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL?Page=SSR_SSENRL_LIST&Action=A'
         webbrowser.open(url)
+
+    elif event == 'Open Calendar':
+        url = 'https://calendar.google.com/calendar/'
+        webbrowser.open(url)
+
 
 
     # How to use
@@ -227,30 +239,32 @@ while True:
                         'Fetching your schedule:', ' ',                      
                         '1. In the application, select your saved file using the [Browse] button.', ' ',
                         '2. Click [Fetch Schedule].', 'Please note: At this time, you can only fetch your schedule once.', 'You must close and re-open the application to fetch a different schedule.', ' ',
-                        '3. If successful, you should see your schedule appear in the large textbox.', 'Make sure to confirm this information prior to proceeding.', ' ', 
+                        '3. If successful, you should see your schedule appear in the large textbox.', 'Make sure to confirm this information is correct prior to proceeding.', ' ', 
                         ) 
     elif event == 'Logging into your google account':
         sg.Popup(                 
                         'Logging into your google account:', ' ',                      
-                        '1. ', ' ',
-                        '2. ', ' ',
-                        '3. ', ' ',
+                        '1. After fetching your schedule and visually confirming that the information is correct,', ' ', ' click the [Login] button in the Mosaic Google Calendar Importer application.', ' ',
+                        '2. You will be prompted to give permission through your browser.', ' ',
+                        '3. After successfully logging into Google,', ' you should see the message in your Browser: ', '"The authentication flow has completed."', ' ',
+                        '4. Switch back to the Mosaic Google Calendar Importer application and you should see the message: "Login successful. You are now ready to Import."',  ' ',
                         )
     elif event == 'Importing your schedule':
         sg.Popup(                 
                         'Importing your schedule:', ' ',                      
-                        '1. ', ' ',
-                        '2. ', ' ',
-                        '3. ', ' ',
-
+                        '1. Click the [Import] button.', ' ',
+                        '2. Once you see the message: "Import successful.", your calendar will have added a new Calendar named: "Mac Schedule".', ' ',
+                        '3. Click [Open Calendar] from the menu under [File] to see your calendar.', ' ',
                         )
 
     # Help
     elif event == 'Full User Manual':
-        sg.Popup('Button not implemented yet. May open a pdf')   
+         url = 'http://c.nicolak.ca/3XA3/User_Manual.pdf'
+         webbrowser.open(url)       
+        #sg.Popup('Button not implemented yet. May open a pdf')   
 
     elif event == 'About...':
-        sg.Popup('todo: Developed by: Cassandra Nicolak, Winnie Liang and Michelle Lueng.', 'github link: ...')                           
+        sg.Popup('Developers:', 'Cassandra Nicolak, Winnie Liang and Michelle Lueng.', 'GitLab: https://gitlab.cas.mcmaster.ca/liangw15/3XA3Project')                           
 
 
 
@@ -280,15 +294,8 @@ Development Notes: (status)
   Also, Fetch Schedule should perhaps produce a warning message if pressed
   before browsing for a url.
 
-- More doxygen comments need to be added.
 
------------------------------------------------------------------------------
-Convert from python to exe:
-PyInstaller and Py2Exe is not cooperating with the scrapy library.
-Also, we need to account for the many modules used.
-
-cmd:
-pyinstaller -wF guiClient.py
+The authentication flow has completed.
 
 ******************************************************************************
 

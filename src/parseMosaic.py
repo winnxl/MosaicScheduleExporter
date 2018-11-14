@@ -1,7 +1,6 @@
 ## @file parseMosaic.py
 #  @author Cassandra Nicolak, Winnie Liang, Michelle Lueng
 #  @brief macID: nicolace, x, x
-#  Student #: 000971847, x, x
 ## @date 11/8/2018
 
 ## @brief Imported packages and libraries. 
