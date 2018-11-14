@@ -3,9 +3,11 @@ import subprocess as sp
 import os
 
 # url variable
-fileUrl = 'http://c.nicolak.ca/3XA3/My%20Class%20Schedule.html'
+#fileUrl = 'http://c.nicolak.ca/3XA3/My%20Class%20Schedule.html'
 
-#fileUrl = 'file:///C:/Users/Nicolak/Desktop/My%20Class%20Schedule.html'
+fileUrl = 'file:///C:/Users/Nicolak/Desktop/mcs/mcs.html'
+
+
 
 
 # return parsed list of tuples

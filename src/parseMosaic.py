@@ -52,40 +52,41 @@ class MosaicSpider(scrapy.Spider):
 			status = i.xpath('//*[@id=$val]/text()', val= statusNo).extract()[0]
 			
 			# only parse courses that have an 'Enrolled' status.
-			if str(status) == str("Enrolled"):
 
-				# loops through content rows
-				for j in range(0, 10):			#todo: this value may need to be set to 35
 
-					# val
-					compNo = comp + str(row)
-					schedNo = sched + str(row)
-					locNo = loc + str(row)
-					dateRangeNo = dateRange + str(row)
+			# loops through content rows
+			for j in range(0, 10):			#todo: this value may need to be set to 35
 
-					# use xpath selectors	
-					courseName = i.xpath('//*[@id=$val]/table/tbody/tr[1]/td/text()', val= courseNo).extract()[0]
-					component = i.xpath('//*[@id=$val]/text()', val= compNo).extract()[0]
-					schedule = i.xpath('//*[@id=$val]/text()', val= schedNo).extract()[0]
-					location = i.xpath('//*[@id=$val]/text()', val= locNo).extract()[0]
-					dates = i.xpath('//*[@id=$val]/text()', val= dateRangeNo).extract()[0]
+				# val
+				compNo = comp + str(row)
+				schedNo = sched + str(row)
+				locNo = loc + str(row)
+				dateRangeNo = dateRange + str(row)
 
-					# conditionals				
-					if str(component) == str("Lecture"):		# check if lecture
-						if not firstLecFound:				# if it's the first lecture, set flag and continue
-							firstLecFound = True
-						else:
-							break							# if it's the second time a lecture is found, break the inner loop
+				# use xpath selectors	
+				courseName = i.xpath('//*[@id=$val]/table/tbody/tr[1]/td/text()', val= courseNo).extract()[0]
+				component = i.xpath('//*[@id=$val]/text()', val= compNo).extract()[0]
+				schedule = i.xpath('//*[@id=$val]/text()', val= schedNo).extract()[0]
+				location = i.xpath('//*[@id=$val]/text()', val= locNo).extract()[0]
+				dates = i.xpath('//*[@id=$val]/text()', val= dateRangeNo).extract()[0]
 
-					if str(component) != str("\xa0"):		# account for multiple rows for a component
-						repeatComponent = component
+				# conditionals				
+				if str(component) == str("Lecture"):		# check if lecture
+					if not firstLecFound:				# if it's the first lecture, set flag and continue
+						firstLecFound = True
 					else:
-						component = repeatComponent
+						break							# if it's the second time a lecture is found, break the inner loop
+
+				if str(component) != str("\xa0"):		# account for multiple rows for a component
+					repeatComponent = component
+				else:
+					component = repeatComponent
 				
+				if str(status) == str("Enrolled"):
 					# adds to data list
 					dataList.append((courseName, component, schedule, location, dates))
-					
-					row = row + 1 							# count for content rows
+				
+				row = row + 1 							# count for content rows
 
 
 # allows for executing scrapy spiders outside of the scrapy shell.
