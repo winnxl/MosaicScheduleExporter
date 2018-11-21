@@ -48,9 +48,12 @@ class Rfc:
             start = '-'.join(start)
             end = ''.join(end.split('/'))
         # For 04/09/2018 formats
+        # Fixme: Offset Case for this
         else:
             day, month, year = start.split('/')
-            start = '-'.join([year, month, day])
+            d = datetime.date(int(year), int(month), int(day))
+            start = Rfc.offset_date(d, weekday_num)
+            start = '-'.join(start)
             day, month, year = end.split('/')
             end = ''.join([year, month, day])
         print(start)
