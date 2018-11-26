@@ -99,7 +99,7 @@ def fetch(url):
         parseMosaic(url)
         return printSched(fetchedList)
     else:
-        return 'Error: Please restart the application and try again. Only one Fetch can be performed per session.  \n\n\n' + printSched(fetchedList)
+        return 'Error: Please restart the application and try again. Only one Fetch can be performed per session.  \n\nCurrent list that ready to be imported: \n\n' + printSched(fetchedList)
 
 
 # ## @brief Creates a connector object and sets it to the global variable: 'c'.
@@ -191,8 +191,15 @@ while True:
         break # exit application
 
     # window buttons 
-    elif event == 'Fetch Schedule':  
-        window.FindElement('tbxSchedule').Update(str(fetch(convertURL(value['txtBrowse']))))
+    elif event == 'Fetch Schedule':    
+        if (fetchFLG == False):
+            if (sg.PopupYesNo('Warning:', 'You can only Fetch once per session.', ' ', 'Have you selected your schedule with the Browse button first?', ' ') == "Yes"):
+                window.FindElement('tbxSchedule').Update(str(fetch(convertURL(value['txtBrowse']))))
+            else:
+                window.FindElement('tbxSchedule').Update("Click the browse button above to find your schedule file.")
+        else:
+            window.FindElement('tbxSchedule').Update(str(fetch(convertURL(value['txtBrowse']))))
+  
 
     elif event == 'Login':
         conn() # open a new connection
@@ -203,10 +210,14 @@ while True:
          
   
     elif event == 'Import':
-        if pushSchedule() == True:
-            window.FindElement('tbxImport').Update(str("Import successful."))
-        else:
-            window.FindElement('tbxImport').Update(str("Import unsuccessful."))
+        try:
+            if pushSchedule() == True:
+                window.FindElement('tbxImport').Update(str("Import successful."))
+            else:
+                window.FindElement('tbxImport').Update(str("Import unsuccessful."))
+        except AttributeError:
+                window.FindElement('tbxImport').Update(str("Unable to import. Make sure you are logged in first."))           
+
 
 
 
