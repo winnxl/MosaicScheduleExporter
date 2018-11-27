@@ -23,8 +23,8 @@ pip install PyInstaller
 '''
 
 ## @file parseMosaic.py
-#  @author Cassandra Nicolak, Winnie Liang, Michelle Lueng
-#  @brief macID: nicolace, x, x
+#  @author Cassandra Nicolak, Winnie Liang, Michelle Leung
+#  @brief macID: nicolace, liangw15, leungm16
 ## @date 11/9/2018
 
 
@@ -97,7 +97,7 @@ def fetch(url):
     if not fetchFLG:
         fetchFLG = True
         parseMosaic(url)
-        return printSched(fetchedList)
+        return 'Extracted schedule information: \n\n' + printSched(fetchedList)
     else:
         return 'Error: Please restart the application and try again. Only one Fetch can be performed per session.  \n\nCurrent list that ready to be imported: \n\n' + printSched(fetchedList)
 
@@ -123,8 +123,14 @@ def login():
 #  @details Deletes the access key file.
 def logout():
     global googleConn
-    googleConn.logout()
-    print('Logged out.')
+    try:
+        googleConn.logout()
+        print('Logged out.')
+    except AttributeError:
+        print("User wasn't logged in")
+
+
+
 
 
 
@@ -275,28 +281,11 @@ while True:
         #sg.Popup('Button not implemented yet. May open a pdf')   
 
     elif event == 'About...':
-        sg.Popup('Developers:', 'Cassandra Nicolak, Winnie Liang and Michelle Lueng.', 'GitLab: https://gitlab.cas.mcmaster.ca/liangw15/3XA3Project')                           
+        sg.Popup('Developers:', 'Cassandra Nicolak, Winnie Liang and Michelle Leung.', 'GitLab: https://gitlab.cas.mcmaster.ca/liangw15/3XA3Project')                           
 
 
 
 '''
-******************************************************************************
-Unused Code:
-******************************************************************************
-sg.Popup('Title',      
-            'The results of the window.',      
-            'The button clicked was "{}"'.format(event),      
-            'The values are', values)    
-
-sg.Popup('Popup')  - Shows OK button    
-sg.PopupOk('PopupOk')  - Shows OK button    
-sg.PopupYesNo('PopupYesNo')  - Shows Yes and No buttons    
-sg.PopupCancel('PopupCancel')  - Shows Cancelled button    
-sg.PopupOKCancel('PopupOKCancel')  - Shows OK and Cancel buttons    
-sg.PopupError('PopupError')  - Shows red error button    
-sg.PopupTimed('PopupTimed')  - Automatically closes    
-sg.PopupAutoClose('PopupAutoClose')  - Same as PopupTimed           
-
 ******************************************************************************
 Development Notes: (status)
 ******************************************************************************
