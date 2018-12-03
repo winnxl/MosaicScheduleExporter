@@ -22,7 +22,7 @@ pip install PyInstaller
 ******************************************************************************
 '''
 
-## @file parseMosaic.py
+## @file parse_mosaic.py
 #  @author Cassandra Nicolak, Winnie Liang, Michelle Leung
 #  @brief macID: nicolace, liangw15, leungm16
 ## @date 11/9/2018
@@ -30,7 +30,7 @@ pip install PyInstaller
 
 ## @brief Imported packages and libraries. 
 #  @details Imports the PySimpleGUI (which is dependent on Tkinter), webbrowser and urllib. 
-#  Also imports local modules parseMosaic, connector, and converter.
+#  Also imports local modules parse_mosaic, connector, and converter.
 import PySimpleGUI as sg
 import parseMosaic as pm
 import connector
@@ -40,106 +40,167 @@ import webbrowser
 
 
 
-# State Variables
-fetchFLG = False
-fetchedList = []
-googleConn = None
+# Global Variables
+_fetch_flg = False
+_fetched_list = []
+_google_conn = None
 
 
 
 ## @brief A method that converts a url from a path name to an absolute file path.
-#  @details parseMosaic() requires a specific url format. This method uses the urllib library to convert it.
-#  @param userInput A file path name.
-#  @return userURL An file url.
-def convertURL(userInput):
-    pathname = userInput
+#  @details parse_mosaic() requires a specific url format. This method uses the urllib library to convert it.
+#  @param user_input A file path name.
+#  @return user_url An file url.
+def convert_url(user_input):
+    pathname = user_input
     url = urllib.request.pathname2url(pathname)
-    userURL = urllib.parse.urljoin('file:///C:/', url)
-    return userURL
+    user_url = urllib.parse.urljoin('file:///C:/', url)
+    return user_url
 
 
 ## @brief Parses a locally saved html document.
 #  @details This method uses the local module parseMosic's runMe() function. This method will only be executed once per session.
 #  due to the functionalty of twisted.internet's reactor which the scrapy library depends on.
 #  @param url An file url.
-def parseMosaic(url):
-    global fetchedList
-    fetchedList = pm.runMe(url)
+def parse_mosaic(url):
+    global _fetched_list
+    _fetched_list = pm.run_me(url)
     print(url)
 
 
 ## @brief Formats the visual output for the schedule textbox.
-#  @details This method converts the fetchedList into a more readable format for the user.
-#  @param fetchList A list containing tuples (a,b,c,d,e).
-#  @return userSched A large string of the converted list.
-def printSched(fetchList):
-    userSched = ''
+#  @details This method converts the _fetched_list into a more readable format for the user.
+#  @param fetch_list A list containing tuples (a,b,c,d,e).
+#  @return user_sched A large string of the converted list.
+def print_sched(fetch_list):
+    user_sched = ''
 
-    for course, component, times, location, startend in fetchList:
-        userSched += ('Course: ' + str(course) + '\n'
+    for course, component, times, location, startend in fetch_list:
+        user_sched += ('Course: ' + str(course) + '\n'
         'Type: ' + str(component) + '\n'
         'When: ' + str(times) + '\n'
         'Location: ' + str(location) + '\n'
         'Start/End Dates: ' + str(startend) + '\n\n'
         )
-    return userSched
+    return user_sched
+
+
+
+# ## @brief Primary function for Import button.
+#  @details Adds a Google calendar.
+#  @return _google_conn.push_to_schedule() Returns True if the import is successful. Returns False if the import is unsuccessful.
+def push_schedule():
+    global _google_conn
+    return _google_conn.push_to_schedule()
+
 
 
 # ## @brief Primary function for Fetch button.
-#  @details Uses two global variables fetchFLG and fetchedList. This is because parseMosaic()
+#  @details Uses two global variables _fetch_flg and _fetched_list. This is because parse_mosaic()
 #  cannot be executed twice in one session due to the limitations with the scrapy library.
 #  @param url The input url needed to parse a locally saved html file.
-#  @return printSched(fetchedList) If True, updates tbxSchedule with a properly formatted string.
+#  @return print_sched(_fetched_list) If True, updates tbxSchedule with a properly formatted string.
 #  If False, updates tbxSchedule with an error message and a properly formatted string.
 def fetch(url):
-    global fetchFLG
-    global fetchedList
-    if not fetchFLG:
-        fetchFLG = True
-        parseMosaic(url)
-        return 'Extracted schedule information: \n\n' + printSched(fetchedList)
+    global _fetch_flg
+    global _fetched_list
+    if not _fetch_flg:
+        set_fetch()
+        parse_mosaic(url)
+        return 'Extracted schedule information: \n\n' + print_sched(_fetched_list)
     else:
-        return 'Error: Please restart the application and try again. Only one Fetch can be performed per session.  \n\nCurrent list that ready to be imported: \n\n' + printSched(fetchedList)
+        return 'Error: Please restart the application and try again. Only one Fetch can be performed per session.  \n\nCurrent list that ready to be imported: \n\n' + print_sched(_fetched_list)
+
+
+def set_fetch():
+    global _fetch_flg
+    _fetch_flg = True
 
 
 # ## @brief Creates a connector object and sets it to the global variable: 'c'.
-#  @details Converts the parseMosaic output to Google Api inputs.
+#  @details Converts the parse_mosaic output to Google Api inputs.
 def conn():
-    global googleConn
-    googleConn = connector.Connector(converter.Converter.convert(fetchedList))
+    global _google_conn
+    _google_conn = connector.Connector(converter.Converter.convert(_fetched_list))
 
 
-# ## @brief Primary function for Login button.
+# ## @brief Logs a user intot heir Google account.
 #  @details Authorizes, authenticates, and logs a user into their google account. Checks if there is a service.
 #  @return c.check_perms() Returns True if there is a service. Returns false if there is not service.
 def login():
-    global googleConn
-    googleConn.login()
-    return googleConn.check_perms()
+    global _google_conn
+    _google_conn.login()
+    return _google_conn.check_perms()
 
 
 
 # ## @brief Logs the user out their google account if the application is closes.
 #  @details Deletes the access key file.
 def logout():
-    global googleConn
+    global _google_conn
     try:
-        googleConn.logout()
+        _google_conn.logout()
         print('Logged out.')
     except AttributeError:
-        print("User wasn't logged in")
+        print("User wasn't logged in.")
+
+
+# ## @brief Primary function for Fetch button.
+#  @details If the _fetch_flg is false, a popup window is activated. If the user selects Yes, the fetch() method 
+#  is activated, otherwise it updates tbxSchedule with no_sched_msg. If the _fetch_flg is true, the fetch method 
+#  is activated. When _fetch_flg is true, it prevents the popup from appearing after a user has selected 'Yes'.
+def fetch_button():
+    no_sched_msg = "Click the browse button above to find your schedule file."        
+    if (_fetch_flg == False):
+        if (fetch_popup() == True):
+            window.FindElement('tbxSchedule').Update(str(fetch(convert_url(value['txtBrowse']))))
+        else:
+            window.FindElement('tbxSchedule').Update(no_sched_msg)
+    else:
+        window.FindElement('tbxSchedule').Update(str(fetch(convert_url(value['txtBrowse']))))
+
+
+# ## @brief Handles popup button event.
+#  @details Executes a PopupYesNo for the user.
+#  @return True The user selects 'Yes'.
+#  @return False The user selects 'No'.
+def fetch_popup():
+    popup_var = sg.PopupYesNo('Warning:', 'You can only Fetch once per session.', ' ', 'Have you selected your schedule with the Browse button first?', ' ')
+    if (popup_var == "Yes"):
+        return True
+    else:
+        return False
 
 
 
+# ## @brief Primary function for Login button.
+#  @details Opens a new connection. If the returned value of login() is true, update tbxLogin with success_msg, 
+#  otherwise update tbxLogin with unsuccess_msg.
+def login_button():
+    success_msg = "Login successful. You are now ready to Import. \n\nPlease note: this may take up to 30 seconds depending on your connection speed."
+    unsuccess_msg = "Login unsuccessful. Please try again."
+    conn() # open a new connection
+    if login() == True:
+        window.FindElement('tbxLogin').Update(success_msg)
+    else:
+        window.FindElement('tbxLogin').Update(unsuccess_msg)
 
 
 
 # ## @brief Primary function for Import button.
-#  @details Adds a Google calendar.
-#  @return googleConn.push_to_schedule() Returns True if the import is successful. Returns False if the import is unsuccessful.
-def pushSchedule():
-    global googleConn
-    return googleConn.push_to_schedule()
+#  @details If the returned value of push_schedule() is true, update tbxImport with success_msg, otherwise update
+#  tbxImport with unsuccess_msg. Catch exception AttributeError and update tbxImport with error_msg.
+def import_button():
+    success_msg = "Import successful."
+    unsuccess_msg = "Import unsuccessful."
+    error_msg = "Unable to import. Make sure you are logged in first."
+    try:
+        if push_schedule() == True:
+            window.FindElement('tbxImport').Update(success_msg)
+        else:
+            window.FindElement('tbxImport').Update(unsuccess_msg)
+    except AttributeError:
+            window.FindElement('tbxImport').Update(error_msg)      
 
 
 # gui colour
@@ -194,35 +255,22 @@ while True:
   
     if event == 'Exit' or event is None:
         logout()
+        print ("Exit application.")  
         break # exit application
 
     # window buttons 
-    elif event == 'Fetch Schedule':    
-        if (fetchFLG == False):
-            if (sg.PopupYesNo('Warning:', 'You can only Fetch once per session.', ' ', 'Have you selected your schedule with the Browse button first?', ' ') == "Yes"):
-                window.FindElement('tbxSchedule').Update(str(fetch(convertURL(value['txtBrowse']))))
-            else:
-                window.FindElement('tbxSchedule').Update("Click the browse button above to find your schedule file.")
-        else:
-            window.FindElement('tbxSchedule').Update(str(fetch(convertURL(value['txtBrowse']))))
+    elif event == 'Fetch Schedule': 
+        fetch_button()
+        print ("Fetch button pressed.")
   
 
     elif event == 'Login':
-        conn() # open a new connection
-        if login() == True:
-            window.FindElement('tbxLogin').Update(str("Login successful. You are now ready to Import. \n\nPlease note: this may take up to 30 seconds depending on your connection speed."))
-        else:
-            window.FindElement('tbxLogin').Update(str("Login unsuccessful. Please try again."))
-         
+        login_button()
+        print ("Login button pressed.")       
   
     elif event == 'Import':
-        try:
-            if pushSchedule() == True:
-                window.FindElement('tbxImport').Update(str("Import successful."))
-            else:
-                window.FindElement('tbxImport').Update(str("Import unsuccessful."))
-        except AttributeError:
-                window.FindElement('tbxImport').Update(str("Unable to import. Make sure you are logged in first."))           
+        import_button()
+        print ("Import button pressed.")        
 
 
 
@@ -237,7 +285,6 @@ while True:
     elif event == 'Open Calendar':
         url = 'https://calendar.google.com/calendar/'
         webbrowser.open(url)
-
 
 
     # How to use
