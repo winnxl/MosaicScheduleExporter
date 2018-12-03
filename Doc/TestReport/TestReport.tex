@@ -12,17 +12,17 @@
 }
 \usepackage[round]{natbib}
 
-\title{SE 3XA3: Test Report\\Title of Project}
+\title{SE 3XA3: Test Report\\MAC Schedule Importer}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 12, Team 0C
+		\\ Cassandra Nicolak, nicolace
+		\\ Michelle Leung, leungm16
+		\\ Winnie Liang, liangw15
 }
 
 \date{\today}
 
-\input{../Comments}
+%\input{../Comments}
 
 \begin{document}
 
@@ -38,8 +38,8 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+12/02/18 & 1.0 & Revision 0\\
+12/03/18 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -51,13 +51,56 @@ Date 2 & 1.1 & Notes\\
 This document ...
 
 \section{Functional Requirements Evaluation}
-
+	Description of Tests: The purpose of these tests is to ensure that the user is able to use the software according to the requirements in the Specifications Documentation. These tests will include: . \\ \\
+	
+	Test Name: FRT-1 \\
+	
+	Results: The user is able to ... \\ \\
+	
+	Test Name: FRT-2 \\
+	
+	Results: The user is able to ... \\ \\
+	
+	Test Name: FRT-3 \\
+	
+	Results: The user is able to ... \\ \\
+	
+	Test Name: FRT-4 \\
+	
+	Results: The user is able to ... \\ \\
 \section{Nonfunctional Requirements Evaluation}
 
 \subsection{Usability}
+
+	\subsubsection{GUI Testing}
+	
+	Description of Tests: Usability of the Graphical User Interface (GUI) was tested by a small test group of three McMaster students who are not in a technical-related field of study. This will allow for the most basic knowledge of our intended users. After the participants were finished with testing the application, each participant filled out a feedback form that evaluated the system on its usability.\\
+	\\
+	Test Name: NFT-1\\
+	Results: All participants were able to successfully complete the task of ... .\\
+	\\		
+	Test Name: NFT-x\\
+	Results: All participants were able to successfully complete the task of installing the program...
+
 		
 \subsection{Performance}
-
+	\subsubsection{Title todo1}
+	Description of Tests: Desc.\\
+	\\
+	Test Name: NFT-x\\
+	Results: Desc.
+	
+	
+	\subsubsection{Title todo2}
+	
+	Description of Tests: Desc.\\
+	\\
+	Test Name: NFT-x\\
+	Results: Desc. \\
+	\\
+	Test Name: NFT-x\\
+	Results: Desc.
+	
 \subsection{etc.}
 	
 \section{Comparison to Existing Implementation}	
@@ -65,17 +108,208 @@ This document ...
 This section will not be appropriate for every project.
 
 \section{Unit Testing}
+	\subsection{GUI Testing}
+	
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				
+				\hline
+				
+				\textbf{Test Name} & AMT-1
+				\\ 
+				\hline
+				\textbf{Initial State} & stuff \\ 
+				\hline
+				\textbf{Input} & stuff  \\ 
+				\hline 
+				\textbf{Expected Output} & The requested action is ... \\ 
+				\hline
+				
+			\end{tabularx}
+			\caption{Test for AMT-1}
+			\label{Table}
+		\end{table}
+
+
+	\subsection{Parse Testing}
+	
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				
+				\hline
+				
+				\textbf{Test Name} & AMT-2
+				\\ 
+				\hline
+				\textbf{Initial State} & stuff \\ 
+				\hline
+				\textbf{Input} & stuff  \\ 
+				\hline 
+				\textbf{Expected Output} & The requested action is ...d \\ 
+				\hline
+				
+			\end{tabularx}
+			\caption{Test for AMT-2}
+			\label{Table}
+		\end{table}
+
+
+	\subsection{Connector Testing}
+	
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				
+				\hline
+				
+				\textbf{Test Name} & AMT-3
+				\\ 
+				\hline
+				\textbf{Initial State} & stuff \\ 
+				\hline
+				\textbf{Input} & stuff  \\ 
+				\hline 
+				\textbf{Expected Output} & The requested action is ...d \\ 
+				\hline
+				
+			\end{tabularx}
+			\caption{Test for AMT-3}
+			\label{Table}
+		\end{table}
+
+
+	\subsection{Converter Testing}
+	
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				
+				\hline
+				
+				\textbf{Test Name} & AMT-4
+				\\ 
+				\hline
+				\textbf{Initial State} & stuff \\ 
+				\hline
+				\textbf{Input} & stuff  \\ 
+				\hline 
+				\textbf{Expected Output} & The requested action is ...d \\ 
+				\hline
+				
+			\end{tabularx}
+			\caption{Test for AMT-4}
+			\label{Table}
+		\end{table}
 
 \section{Changes Due to Testing}
+	\subsection{GUI Testing}
+	After conducting usability test on the GUI, it was decided that some methods were to become more modular. Click events only call a function and do nothing else.
+	\subsection{Parse Testing}
+  There have been no changes to the methods of testing as a result of completed tests. 
+	\subsection{Connector Testing}
+  There have been no changes to the methods of testing as a result of completed tests. 
+	\subsection{Converter Testing}
+  There have been no changes to the methods of testing as a result of completed tests. 
 
 \section{Automated Testing}
+	\subsection{GUI Testing}
+		Not Applicable
+	\subsection{Parse Testing}
+		Description of tests: For automated testing of the output, xxxx 
+	\subsection{Connector Testing}
+		todo
+	\subsection{Converter Testing}
+        todo
 		
 \section{Trace to Requirements}
+		\begin{table}[!htbp]
+			\begin{tabular}{ll}
+				\toprule
+				Test & Requirements \\
+				\midrule
+				\multicolumn{2}{c}{Functional Requirements Testing} \\
+				\midrule
+				FRT-1 & FRx \\
+				FRT-2 & FRx \\
+				FRT-3 & FRx \\
+				FRT-4 & FRx \\
+				\midrule
+				\multicolumn{2}{c}{Non-functional Requirements Testing} \\
+				\midrule
+				NFT-1 & NFx, NFx \\
+				NFT-2 & NFx, NFx \\
+
+				\midrule
+				\multicolumn{2}{c}{Automated Testing} \\
+				\midrule
+				AMT-1 & FRx, FRx\\
+				AMT-2 & FRx, FRx\\
+				AMT-3 & FRx, FRx\\
+
+				\bottomrule
+			\end{tabular}
+			\caption{Trace Between Tests and Requirements}
+			% Colour for the rulings in tables:
+			\makeatletter
+			\def\rulecolor#1#{\CT@arc{#1}}
+			\def\CT@arc#1#2{%
+				\ifdim\baselineskip=\z@\noalign\fi
+				{\gdef\CT@arc@{\color#1{#2}}}}
+			\let\CT@arc@\relax
+			\rulecolor{black!50}
+			\makeatother
+			\label{Table}
+		\end{table}
+		
+		\FloatBarrier
+	
+	\newpage
+
 		
 \section{Trace to Modules}		
+\begin{table}[!htbp]
+	\begin{tabular}{ll}
+		\toprule
+		Test & Modules \\
+		\midrule
+		\multicolumn{2}{c}{Functional Requirements Testing} \\
+		\midrule
+		FRT-1 & Mx \\
+		FRT-2 & Mx \\
+		FRT-3 & Mx \\
+		FRT-4 & Mx \\
+		\midrule
+		\multicolumn{2}{c}{Non-functional Requirements Testing} \\
+		\midrule
+		NFT-1 &  Mx \\
+		NFT-2 &  Mx \\
+		\midrule
+		\multicolumn{2}{c}{Automated Testing} \\
+		\midrule
+		AMT-1 & Mx\\
+		AMT-2 & Mx\\
+		AMT-3 & Mx\\
+		\bottomrule
+	\end{tabular}
+	\caption{Trace Between Tests and Modules}
+	% Colour for the rulings in tables:
+	\makeatletter
+	\def\rulecolor#1#{\CT@arc{#1}}
+	\def\CT@arc#1#2{%
+		\ifdim\baselineskip=\z@\noalign\fi
+		{\gdef\CT@arc@{\color#1{#2}}}}
+	\let\CT@arc@\relax
+	\rulecolor{black!50}
+	\makeatother
+	\label{Table}
+\end{table}
 
+\FloatBarrier
 \section{Code Coverage Metrics}
-
+	The 0C team has managed to produce approximately xx percent code coverage through our tests. This number is based off the fact that all of the modules have been covered in testing. Please refer to the trace to modules section to see how all of our modules have been covered.
+	
 \bibliographystyle{plainnat}
 
 \bibliography{SRS}
