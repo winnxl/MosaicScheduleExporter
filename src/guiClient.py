@@ -24,7 +24,7 @@ pip install PyInstaller
 
 ## @file parse_mosaic.py
 #  @author Cassandra Nicolak, Winnie Liang, Michelle Leung
-#  @brief macID: nicolace, liangw15, leungm16
+#  @brief User Interface.
 ## @date 11/9/2018
 
 
@@ -64,8 +64,18 @@ def convert_url(user_input):
 #  @param url An file url.
 def parse_mosaic(url):
     global _fetched_list
-    _fetched_list = pm.run_me(url)
+    set_list(pm.run_me(url))
     print(url)
+
+
+
+## @brief Sets the variable _fetched_list.
+#  @details This method takes in a list and sets it to the global variable _fetched_list.
+#  @param parsed_list A list.
+def set_list(parsed_list):
+    global _fetched_list
+    _fetched_list = parsed_list
+
 
 
 ## @brief Formats the visual output for the schedule textbox.
@@ -105,16 +115,12 @@ def fetch(url):
     global _fetch_flg
     global _fetched_list
     if not _fetch_flg:
-        set_fetch()
+        _fetch_flg = True
         parse_mosaic(url)
         return 'Extracted schedule information: \n\n' + print_sched(_fetched_list)
     else:
         return 'Error: Please restart the application and try again. Only one Fetch can be performed per session.  \n\nCurrent list that ready to be imported: \n\n' + print_sched(_fetched_list)
 
-
-def set_fetch():
-    global _fetch_flg
-    _fetch_flg = True
 
 
 # ## @brief Creates a connector object and sets it to the global variable: 'c'.
@@ -122,6 +128,7 @@ def set_fetch():
 def conn():
     global _google_conn
     _google_conn = connector.Connector(converter.Converter.convert(_fetched_list))
+
 
 
 # ## @brief Logs a user intot heir Google account.
@@ -141,8 +148,10 @@ def logout():
     try:
         _google_conn.logout()
         print('Logged out.')
+        return True
     except AttributeError:
         print("User wasn't logged in.")
+        return False
 
 
 # ## @brief Primary function for Fetch button.
@@ -203,132 +212,134 @@ def import_button():
             window.FindElement('tbxImport').Update(error_msg)      
 
 
-# gui colour
-sg.ChangeLookAndFeel('Reddit')
+# Main method
+if __name__ == '__main__':
+    # gui colour
+    sg.ChangeLookAndFeel('Reddit')
 
 
-# menu
-menu_def = [['File', ['Open Timetable', 'Open Calendar', 'Exit']],
-            ['How to use', ['Obtaining your schedule', 'Fetching your schedule', 'Logging into your google account', 'Importing your schedule']],         
-            ['Help', ['Full User Manual', 'About...']]]      
+    # menu
+    menu_def = [['File', ['Open Timetable', 'Open Calendar', 'Exit']],
+                ['How to use', ['Obtaining your schedule', 'Fetching your schedule', 'Logging into your google account', 'Importing your schedule']],         
+                ['Help', ['Full User Manual', 'About...']]]      
 
 
-# gui layout
-layout = [      
-    [sg.Menu(menu_def, tearoff=True)],      
-    [sg.Text('Welcome to the Mosaic Schedule Importer application. Please use the [How to use] menu for instructions.', size=(80, 2), justification='center', font=("Helvetica", 10), relief=sg.RELIEF_RIDGE)],       
-    [sg.Text(''  * 80)],      
-    [sg.Text('Select the file of your saved schedule:', size=(30, 1), auto_size_text=True, justification='right'),      
-        sg.InputText('..\My Class Schedule.html', key='txtBrowse'), sg.FileBrowse()],      
-    [sg.Text(''  * 80)],           
-    [sg.Text('Please check if the below information is correct. If so, click "Login" to login to your Google account.')],                
-    [sg.Multiline(default_text='Schedule information will appear here.', size=(95, 10), key='tbxSchedule')],
-    [sg.Button('Fetch Schedule')],          
-    [sg.Text('_'  * 97)],      
-    [sg.Text(''  * 80)],
-    [sg.Frame('Google Authentication', [ 
-        [sg.Text('After you click Login, your default browser will open')],
-         [sg.Text('and you will be asked to login to your Google account.')],       
-        [sg.Text(''  * 35)],                           
-        [sg.Multiline(default_text='Not logged in.', size=(40, 3), key='tbxLogin')],
-        [sg.Button('Login')],       
-        [sg.Text(''  * 35)]
-        ]),        
-        sg.Frame('Import to Calendar',[
-            [sg.Text('Once you have successfully logged into your Google')],
-            [sg.Text('account, click Import.')],              
-            [sg.Text(''  * 35)],                                      
-            [sg.Multiline(default_text='Not ready to import.', size=(40, 3), key='tbxImport')],
-            [sg.Button('Import')],             
+    # gui layout
+    layout = [      
+        [sg.Menu(menu_def, tearoff=True)],      
+        [sg.Text('Welcome to the Mosaic Schedule Importer application. Please use the [How to use] menu for instructions.', size=(80, 2), justification='center', font=("Helvetica", 10), relief=sg.RELIEF_RIDGE)],       
+        [sg.Text(''  * 80)],      
+        [sg.Text('Select the file of your saved schedule:', size=(30, 1), auto_size_text=True, justification='right'),      
+            sg.InputText('..\My Class Schedule.html', key='txtBrowse'), sg.FileBrowse()],      
+        [sg.Text(''  * 80)],           
+        [sg.Text('Please check if the below information is correct. If so, click "Login" to login to your Google account.')],                
+        [sg.Multiline(default_text='Schedule information will appear here.', size=(95, 10), key='tbxSchedule')],
+        [sg.Button('Fetch Schedule')],          
+        [sg.Text('_'  * 97)],      
+        [sg.Text(''  * 80)],
+        [sg.Frame('Google Authentication', [ 
+            [sg.Text('After you click Login, your default browser will open')],
+            [sg.Text('and you will be asked to login to your Google account.')],       
+            [sg.Text(''  * 35)],                           
+            [sg.Multiline(default_text='Not logged in.', size=(40, 3), key='tbxLogin')],
+            [sg.Button('Login')],       
             [sg.Text(''  * 35)]
-        ])]           
-]      
+            ]),        
+            sg.Frame('Import to Calendar',[
+                [sg.Text('Once you have successfully logged into your Google')],
+                [sg.Text('account, click Import.')],              
+                [sg.Text(''  * 35)],                                      
+                [sg.Multiline(default_text='Not ready to import.', size=(40, 3), key='tbxImport')],
+                [sg.Button('Import')],             
+                [sg.Text(''  * 35)]
+            ])]           
+    ]      
 
 
-# generates the gui window
-window = sg.Window('Mosaic Google Calendar Importer', default_element_size=(40, 1), grab_anywhere=False).Layout(layout)      
+    # generates the gui window
+    window = sg.Window('Mosaic Google Calendar Importer', default_element_size=(40, 1), grab_anywhere=False).Layout(layout)      
 
 
-# For button events. Makes sure the application doesn't close once a button is pressed.
-while True:      
-    (event, value) = window.Read()
-  
-    if event == 'Exit' or event is None:
-        logout()
-        print ("Exit application.")  
-        break # exit application
+    # For button events. Makes sure the application doesn't close once a button is pressed.
+    while True:      
+        (event, value) = window.Read()
+    
+        if event == 'Exit' or event is None:
+            logout()
+            print ("Exit application.")  
+            break # exit application
 
-    # window buttons 
-    elif event == 'Fetch Schedule': 
-        fetch_button()
-        print ("Fetch button pressed.")
-  
+        # window buttons 
+        elif event == 'Fetch Schedule': 
+            fetch_button()
+            print ("Fetch button pressed.")
+    
 
-    elif event == 'Login':
-        login_button()
-        print ("Login button pressed.")       
-  
-    elif event == 'Import':
-        import_button()
-        print ("Import button pressed.")        
-
-
+        elif event == 'Login':
+            login_button()
+            print ("Login button pressed.")       
+    
+        elif event == 'Import':
+            import_button()
+            print ("Import button pressed.")        
 
 
-    # menu buttons
-
-    # File
-    elif event == 'Open Timetable':
-        url = 'https://csprd.mcmaster.ca/psc/prcsprd/EMPLOYEE/HRMS_LS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL?Page=SSR_SSENRL_LIST&Action=A'
-        webbrowser.open(url)
-
-    elif event == 'Open Calendar':
-        url = 'https://calendar.google.com/calendar/'
-        webbrowser.open(url)
 
 
-    # How to use
-    elif event == 'Obtaining your schedule':
-        sg.Popup(
-                        'Obtaining your schedule file:', ' ',      
-                        '1. Click [Open Timetable] from the menu under [File].', ' ',
-                        '2. This will open-up your browser and ask you to login to Mosaic.', ' ',                  
-                        '3. After logging in, select your school term and click [Continue].', ' ',
-                        '4. Right-click within the browser and select [Save as...]', ' ',
-                        '5. Make sure the [Save as type:] says [Webpage, Complete] and not [Webpage, HTML Only].', ' ',
-                        '6. Click [Save] to save your file to your computer.', ' ', 
-                        )    
-    elif event == 'Fetching your schedule':
-        sg.Popup(                    
-                        'Fetching your schedule:', ' ',                      
-                        '1. In the application, select your saved file using the [Browse] button.', ' ',
-                        '2. Click [Fetch Schedule].', 'Please note: At this time, you can only fetch your schedule once.', 'You must close and re-open the application to fetch a different schedule.', ' ',
-                        '3. If successful, you should see your schedule appear in the large textbox.', 'Make sure to confirm this information is correct prior to proceeding.', ' ', 
-                        ) 
-    elif event == 'Logging into your google account':
-        sg.Popup(                 
-                        'Logging into your google account:', ' ',                      
-                        '1. After fetching your schedule and visually confirming that the information is correct,', ' ', ' click the [Login] button in the Mosaic Google Calendar Importer application.', ' ',
-                        '2. You will be prompted to give permission through your browser.', ' ',
-                        '3. After successfully logging into Google,', ' you should see the message in your Browser: ', '"The authentication flow has completed."', ' ',
-                        '4. Switch back to the Mosaic Google Calendar Importer application and you should see the message: "Login successful. You are now ready to Import."',  ' ',
-                        )
-    elif event == 'Importing your schedule':
-        sg.Popup(                 
-                        'Importing your schedule:', ' ',                      
-                        '1. Click the [Import] button.', ' ',
-                        '2. Once you see the message: "Import successful.", your calendar will have added a new Calendar named: "Mac Schedule".', ' ',
-                        '3. Click [Open Calendar] from the menu under [File] to see your calendar.', ' ',
-                        )
+        # menu buttons
 
-    # Help
-    elif event == 'Full User Manual':
-         url = 'http://c.nicolak.ca/3XA3/User_Manual.pdf'
-         webbrowser.open(url)       
-        #sg.Popup('Button not implemented yet. May open a pdf')   
+        # File
+        elif event == 'Open Timetable':
+            url = 'https://csprd.mcmaster.ca/psc/prcsprd/EMPLOYEE/HRMS_LS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL?Page=SSR_SSENRL_LIST&Action=A'
+            webbrowser.open(url)
 
-    elif event == 'About...':
-        sg.Popup('Developers:', 'Cassandra Nicolak, Winnie Liang and Michelle Leung.', 'GitLab: https://gitlab.cas.mcmaster.ca/liangw15/3XA3Project')                           
+        elif event == 'Open Calendar':
+            url = 'https://calendar.google.com/calendar/'
+            webbrowser.open(url)
+
+
+        # How to use
+        elif event == 'Obtaining your schedule':
+            sg.Popup(
+                            'Obtaining your schedule file:', ' ',      
+                            '1. Click [Open Timetable] from the menu under [File].', ' ',
+                            '2. This will open-up your browser and ask you to login to Mosaic.', ' ',                  
+                            '3. After logging in, select your school term and click [Continue].', ' ',
+                            '4. Right-click within the browser and select [Save as...]', ' ',
+                            '5. Make sure the [Save as type:] says [Webpage, Complete] and not [Webpage, HTML Only].', ' ',
+                            '6. Click [Save] to save your file to your computer.', ' ', 
+                            )    
+        elif event == 'Fetching your schedule':
+            sg.Popup(                    
+                            'Fetching your schedule:', ' ',                      
+                            '1. In the application, select your saved file using the [Browse] button.', ' ',
+                            '2. Click [Fetch Schedule].', 'Please note: At this time, you can only fetch your schedule once.', 'You must close and re-open the application to fetch a different schedule.', ' ',
+                            '3. If successful, you should see your schedule appear in the large textbox.', 'Make sure to confirm this information is correct prior to proceeding.', ' ', 
+                            ) 
+        elif event == 'Logging into your google account':
+            sg.Popup(                 
+                            'Logging into your google account:', ' ',                      
+                            '1. After fetching your schedule and visually confirming that the information is correct,', ' ', ' click the [Login] button in the Mosaic Google Calendar Importer application.', ' ',
+                            '2. You will be prompted to give permission through your browser.', ' ',
+                            '3. After successfully logging into Google,', ' you should see the message in your Browser: ', '"The authentication flow has completed."', ' ',
+                            '4. Switch back to the Mosaic Google Calendar Importer application and you should see the message: "Login successful. You are now ready to Import."',  ' ',
+                            )
+        elif event == 'Importing your schedule':
+            sg.Popup(                 
+                            'Importing your schedule:', ' ',                      
+                            '1. Click the [Import] button.', ' ',
+                            '2. Once you see the message: "Import successful.", your calendar will have added a new Calendar named: "Mac Schedule".', ' ',
+                            '3. Click [Open Calendar] from the menu under [File] to see your calendar.', ' ',
+                            )
+
+        # Help
+        elif event == 'Full User Manual':
+            url = 'http://c.nicolak.ca/3XA3/User_Manual.pdf'
+            webbrowser.open(url)       
+            #sg.Popup('Button not implemented yet. May open a pdf')   
+
+        elif event == 'About...':
+            sg.Popup('Developers:', 'Cassandra Nicolak, Winnie Liang and Michelle Leung.', 'GitLab: https://gitlab.cas.mcmaster.ca/liangw15/3XA3Project')                           
 
 
 

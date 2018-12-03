@@ -1,6 +1,6 @@
 ## @file parseMosaic.py
 #  @author Cassandra Nicolak, Winnie Liang, Michelle Lueng
-#  @brief macID: nicolace, x, x
+#  @brief Uses Scrapy library to parse an HTML file.
 ## @date 11/8/2018
 
 ## @brief Imported packages and libraries. 
