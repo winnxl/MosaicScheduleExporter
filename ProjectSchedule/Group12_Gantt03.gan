@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="SE3XA3_Project_Group_12" company="McMaster University" webLink="http://" view-date="2018-09-06" view-index="0" gantt-divider-location="360" resource-divider-location="300" version="2.8.9" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="SE3XA3_Project_Group_12" company="McMaster University" webLink="http://" view-date="2018-09-09" view-index="0" gantt-divider-location="360" resource-divider-location="300" version="2.8.9" locale="en_US">
     <description/>
-    <view zooming-state="default:3" id="gantt-chart">
+    <view zooming-state="default:6" id="gantt-chart">
         <field id="tpd3" name="Name" width="178" order="0"/>
         <field id="tpd4" name="Begin date" width="82" order="1"/>
         <field id="tpd5" name="End date" width="81" order="2"/>
         <option id="color.recent"><![CDATA[#00cc00 #f4f4f4 #006633 #00cc66 #00cc33]]></option>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="202" order="0"/>
-        <field id="1" name="Default role" width="94" order="1"/>
+        <field id="0" name="Name" width="195" order="0"/>
+        <field id="1" name="Default role" width="86" order="1"/>
     </view>
     <!-- -->
     <calendars>
