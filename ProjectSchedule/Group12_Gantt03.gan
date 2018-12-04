@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="SE3XA3_Project_Group_12" company="McMaster University" webLink="http://" view-date="2018-10-18" view-index="0" gantt-divider-location="360" resource-divider-location="300" version="2.8.9" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="SE3XA3_Project_Group_12" company="McMaster University" webLink="http://" view-date="2018-09-06" view-index="0" gantt-divider-location="360" resource-divider-location="300" version="2.8.9" locale="en_US">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd3" name="Name" width="178" order="0"/>
@@ -7,8 +7,8 @@
         <option id="color.recent"><![CDATA[#00cc00 #f4f4f4 #006633 #00cc66 #00cc33]]></option>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="199" order="0"/>
-        <field id="1" name="Default role" width="82" order="1"/>
+        <field id="0" name="Name" width="202" order="0"/>
+        <field id="1" name="Default role" width="94" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -55,11 +55,11 @@
         <task id="0" name="Project Approval" color="#00cc00" meeting="false" start="2018-09-11" duration="6" complete="100" thirdDate="2018-09-18" thirdDate-constraint="0" expand="true">
             <depend id="1" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="144" name="DUE Project Approval" color="#00cc66" meeting="true" start="2018-09-18" duration="0" complete="0" thirdDate="2018-09-18" thirdDate-constraint="0" expand="true"/>
+        <task id="144" name="DUE Project Approval" color="#00cc66" meeting="true" start="2018-09-18" duration="0" complete="100" thirdDate="2018-09-18" thirdDate-constraint="0" expand="true"/>
         <task id="1" name="Problem Statement" color="#00cc33" meeting="false" start="2018-09-19" duration="3" complete="100" thirdDate="2018-09-18" thirdDate-constraint="0" expand="true">
             <depend id="7" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="148" name="DUE Problem Statement" color="#00cc66" meeting="true" start="2018-09-24" duration="0" complete="0" thirdDate="2018-09-24" thirdDate-constraint="0" expand="true"/>
+        <task id="148" name="DUE Problem Statement" color="#00cc66" meeting="true" start="2018-09-24" duration="0" complete="100" thirdDate="2018-09-24" thirdDate-constraint="0" expand="true"/>
         <task id="7" name="Development Plan" color="#00cc00" meeting="false" start="2018-09-24" duration="5" complete="100" thirdDate="2018-09-12" thirdDate-constraint="0" expand="true">
             <task id="11" name="Team Meeting Plan" color="#00cc33" meeting="false" start="2018-09-24" duration="5" complete="100" thirdDate="2018-09-12" thirdDate-constraint="0" expand="true"/>
             <task id="19" name="Team Communication Plan" color="#00cc66" meeting="false" start="2018-09-24" duration="5" complete="100" thirdDate="2018-09-26" thirdDate-constraint="0" expand="true"/>
@@ -82,25 +82,25 @@
                 <task id="195" name="Non-Functional Requirements" color="#00cc00" meeting="false" start="2018-10-01" duration="5" complete="100" thirdDate="2018-09-28" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
             </task>
         </task>
-        <task id="158" name="DUE Requirements Document" color="#00cc00" meeting="true" start="2018-10-05" duration="0" complete="0" thirdDate="2018-09-06" thirdDate-constraint="0" expand="true"/>
+        <task id="158" name="DUE Requirements Document" color="#00cc00" meeting="true" start="2018-10-05" duration="0" complete="100" thirdDate="2018-09-06" thirdDate-constraint="0" expand="true"/>
         <task id="32" name="Proof of Concept Demonstration" color="#00cc00" meeting="false" start="2018-10-09" duration="6" complete="100" thirdDate="2018-09-28" thirdDate-constraint="0" expand="true">
             <task id="198" name="Google Calendar Implementation" color="#00cc00" meeting="false" start="2018-10-09" duration="6" complete="100" thirdDate="2018-09-10" thirdDate-constraint="0" expand="true"/>
             <task id="209" name="Mosaic Parsing" color="#00cc00" meeting="false" start="2018-10-09" duration="6" complete="100" thirdDate="2018-09-10" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
             <task id="212" name="Project Schedule" color="#00cc00" meeting="false" start="2018-10-09" duration="6" complete="100" thirdDate="2018-09-10" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
         </task>
-        <task id="196" name="DUE Proof of Concept Demonstration" color="#00cc00" meeting="true" start="2018-10-16" duration="0" complete="0" thirdDate="2018-09-10" thirdDate-constraint="0" expand="true"/>
+        <task id="196" name="DUE Proof of Concept Demonstration" color="#00cc00" meeting="true" start="2018-10-16" duration="0" complete="100" thirdDate="2018-09-10" thirdDate-constraint="0" expand="true"/>
         <task id="216" name="Test Plan Rev 0" color="#00cc00" meeting="false" start="2018-10-17" duration="8" complete="100" thirdDate="2018-09-17" thirdDate-constraint="0" expand="true">
             <task id="218" name="Test Plan for Mosaic Parser" color="#00cc00" meeting="false" start="2018-10-17" duration="8" complete="100" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true"/>
             <task id="220" name="Test Plan for Google Calendar Implementation" color="#00cc00" meeting="false" start="2018-10-17" duration="8" complete="100" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
             <task id="225" name="Test Plan for Integration Testing" color="#00cc00" meeting="false" start="2018-10-17" duration="8" complete="100" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
             <task id="235" name="Project Schedule" color="#00cc00" meeting="false" start="2018-10-17" duration="8" complete="100" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
         </task>
-        <task id="237" name="Testing" color="#8cb6ce" meeting="false" start="2018-10-29" duration="28" complete="10" thirdDate="2018-09-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
-            <task id="239" name="Mosaic Parse Unit Testing" color="#8cb6ce" meeting="false" start="2018-10-29" duration="28" complete="10" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
-            <task id="241" name="Google Calendar Implementation Unit Testing" color="#8cb6ce" meeting="false" start="2018-10-29" duration="28" complete="10" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
-            <task id="243" name="Integration Testing" color="#8cb6ce" meeting="false" start="2018-10-29" duration="28" complete="10" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="237" name="Testing" color="#00cc00" meeting="false" start="2018-10-29" duration="28" complete="100" thirdDate="2018-09-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
+            <task id="239" name="Mosaic Parse Unit Testing" color="#00cc00" meeting="false" start="2018-10-29" duration="28" complete="100" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+            <task id="241" name="Google Calendar Implementation Unit Testing" color="#00cc00" meeting="false" start="2018-10-29" duration="28" complete="100" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+            <task id="243" name="Integration Testing" color="#00cc00" meeting="false" start="2018-10-29" duration="28" complete="100" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
         </task>
-        <task id="38" name="DUE Test Plan Revision 0" color="#00cc00" meeting="true" start="2018-10-26" duration="0" complete="0" thirdDate="2018-10-15" thirdDate-constraint="0" expand="true"/>
+        <task id="38" name="DUE Test Plan Revision 0" color="#00cc00" meeting="true" start="2018-10-26" duration="0" complete="100" thirdDate="2018-10-15" thirdDate-constraint="0" expand="true"/>
         <task id="65" name="Design and Document Revision 0" color="#00cc00" meeting="false" start="2018-11-05" duration="5" complete="100" thirdDate="2018-10-29" thirdDate-constraint="0" expand="true">
             <task id="248" name="MIS Rough Draft" color="#00cc00" meeting="false" start="2018-11-05" duration="3" complete="100" thirdDate="2018-09-11" thirdDate-constraint="0" expand="true"/>
             <task id="251" name="Code: Tkinter - Version 1 with Parsing" color="#00cc00" meeting="false" start="2018-11-05" duration="3" complete="100" thirdDate="2018-11-07" thirdDate-constraint="0" expand="true"/>
@@ -109,12 +109,19 @@
             <task id="267" name="MIS/MG Draft" color="#00cc00" meeting="false" start="2018-11-08" duration="1" complete="100" thirdDate="2018-09-11" thirdDate-constraint="0" expand="true"/>
             <task id="269" name="Design Doc Final Draft" color="#00cc00" meeting="false" start="2018-11-08" duration="2" complete="100" thirdDate="2018-09-11" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="270" name="DUE Design and Document Revision 0" color="#00cc00" meeting="true" start="2018-11-09" duration="0" complete="0" thirdDate="2018-10-03" thirdDate-constraint="0" expand="true"/>
-        <task id="67" name="Revision 0 Demonstration" color="#8cb6ce" meeting="false" start="2018-11-05" duration="7" complete="0" thirdDate="2018-11-05" thirdDate-constraint="0" expand="true"/>
-        <task id="68" name="Final Demonstration" color="#8cb6ce" meeting="false" start="2018-11-12" duration="13" complete="0" thirdDate="2018-11-12" thirdDate-constraint="0" expand="true"/>
-        <task id="70" name="Peer Evaluation" color="#8cb6ce" meeting="false" start="2018-11-28" duration="1" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
-        <task id="71" name="Final Documentation Revision 1" color="#8cb6ce" meeting="false" start="2018-11-20" duration="13" complete="0" thirdDate="2018-11-20" thirdDate-constraint="0" expand="true"/>
-        <task id="223" name="Mosaic Parse Unit Testing" color="#00cc00" meeting="false" start="2018-10-17" duration="8" complete="10" thirdDate="2018-10-17" thirdDate-constraint="0" expand="true"/>
+        <task id="270" name="DUE Design and Document Revision 0" color="#00cc00" meeting="true" start="2018-11-09" duration="0" complete="100" thirdDate="2018-10-03" thirdDate-constraint="0" expand="true"/>
+        <task id="67" name="Revision 0 Demonstration" color="#00cc00" meeting="false" start="2018-11-05" duration="7" complete="100" thirdDate="2018-11-05" thirdDate-constraint="0" expand="true"/>
+        <task id="271" name="Final Documentation Revision 1" color="#00cc00" meeting="false" start="2018-11-27" duration="7" complete="100" thirdDate="2018-11-12" thirdDate-constraint="0" expand="true">
+            <task id="272" name="Problem Statemnet" color="#00cc00" meeting="false" start="2018-11-27" duration="7" complete="100" thirdDate="2018-10-10" thirdDate-constraint="0" expand="true"/>
+            <task id="275" name="Development Plan" color="#00cc00" meeting="false" start="2018-11-27" duration="7" complete="100" thirdDate="2018-10-10" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+            <task id="278" name="SRS" color="#00cc00" meeting="false" start="2018-11-27" duration="7" complete="100" thirdDate="2018-10-10" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+            <task id="282" name="Test Plan" color="#00cc00" meeting="false" start="2018-11-27" duration="7" complete="100" thirdDate="2018-10-10" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+            <task id="313" name="Test Report" color="#00cc00" meeting="false" start="2018-11-27" duration="7" complete="100" thirdDate="2018-10-10" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+            <task id="315" name="Design Documents" color="#00cc00" meeting="false" start="2018-11-27" duration="7" complete="100" thirdDate="2018-10-10" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        </task>
+        <task id="285" name="DUE Final Demonstration" color="#00cc00" meeting="true" start="2018-11-12" duration="0" complete="100" thirdDate="2018-10-10" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="289" name="DUE Final Documentation Revision 1" color="#00cc00" meeting="true" start="2018-12-05" duration="0" complete="100" thirdDate="2018-11-20" thirdDate-constraint="0" expand="true"/>
+        <task id="290" name="Peer Evaluation" color="#00cc00" meeting="false" start="2018-11-27" duration="1" complete="100" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="3" name="Cassandra" function="Default:1" contacts="" phone=""/>
@@ -138,9 +145,6 @@
         <allocation task-id="38" resource-id="3" function="Default:1" responsible="true" load="25.0"/>
         <allocation task-id="65" resource-id="3" function="Default:1" responsible="true" load="20.0"/>
         <allocation task-id="67" resource-id="3" function="Default:1" responsible="true" load="20.0"/>
-        <allocation task-id="68" resource-id="3" function="Default:1" responsible="true" load="25.0"/>
-        <allocation task-id="70" resource-id="3" function="Default:1" responsible="true" load="5.0"/>
-        <allocation task-id="71" resource-id="3" function="Default:1" responsible="true" load="45.0"/>
         <allocation task-id="174" resource-id="3" function="SoftwareDevelopment:3" responsible="true" load="10.0"/>
         <allocation task-id="187" resource-id="3" function="SoftwareDevelopment:3" responsible="true" load="10.0"/>
         <allocation task-id="189" resource-id="3" function="SoftwareDevelopment:3" responsible="true" load="10.0"/>
@@ -155,6 +159,11 @@
         <allocation task-id="251" resource-id="3" function="Default:1" responsible="true" load="15.0"/>
         <allocation task-id="264" resource-id="3" function="Default:1" responsible="true" load="15.0"/>
         <allocation task-id="269" resource-id="3" function="Default:1" responsible="true" load="15.0"/>
+        <allocation task-id="282" resource-id="3" function="Default:1" responsible="true" load="10.0"/>
+        <allocation task-id="285" resource-id="3" function="Default:1" responsible="false" load="5.0"/>
+        <allocation task-id="290" resource-id="3" function="Default:1" responsible="true" load="1.0"/>
+        <allocation task-id="313" resource-id="3" function="Default:1" responsible="true" load="10.0"/>
+        <allocation task-id="315" resource-id="3" function="Default:1" responsible="true" load="10.0"/>
         <allocation task-id="0" resource-id="4" function="SoftwareDevelopment:3" responsible="true" load="30.0"/>
         <allocation task-id="1" resource-id="4" function="SoftwareDevelopment:3" responsible="true" load="30.0"/>
         <allocation task-id="4" resource-id="4" function="SoftwareDevelopment:3" responsible="true" load="5.0"/>
@@ -171,9 +180,6 @@
         <allocation task-id="38" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="25.0"/>
         <allocation task-id="65" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="20.0"/>
         <allocation task-id="67" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="20.0"/>
-        <allocation task-id="68" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="25.0"/>
-        <allocation task-id="70" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="5.0"/>
-        <allocation task-id="71" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="45.0"/>
         <allocation task-id="174" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="10.0"/>
         <allocation task-id="187" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="10.0"/>
         <allocation task-id="189" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="10.0"/>
@@ -190,6 +196,11 @@
         <allocation task-id="248" resource-id="4" function="SoftwareDevelopment:3" responsible="true" load="15.0"/>
         <allocation task-id="267" resource-id="4" function="SoftwareDevelopment:3" responsible="true" load="15.0"/>
         <allocation task-id="269" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="15.0"/>
+        <allocation task-id="272" resource-id="4" function="SoftwareDevelopment:3" responsible="true" load="5.0"/>
+        <allocation task-id="285" resource-id="4" function="SoftwareDevelopment:3" responsible="true" load="5.0"/>
+        <allocation task-id="290" resource-id="4" function="SoftwareDevelopment:3" responsible="false" load="1.0"/>
+        <allocation task-id="275" resource-id="4" function="SoftwareDevelopment:3" responsible="true" load="5.0"/>
+        <allocation task-id="278" resource-id="4" function="SoftwareDevelopment:3" responsible="true" load="10.0"/>
         <allocation task-id="4" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="5.0"/>
         <allocation task-id="30" resource-id="5" function="SoftwareDevelopment:3" responsible="false" load="20.0"/>
         <allocation task-id="19" resource-id="5" function="SoftwareDevelopment:2" responsible="true" load="5.0"/>
@@ -206,9 +217,6 @@
         <allocation task-id="38" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="25.0"/>
         <allocation task-id="65" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="20.0"/>
         <allocation task-id="67" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="20.0"/>
-        <allocation task-id="68" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="25.0"/>
-        <allocation task-id="70" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="5.0"/>
-        <allocation task-id="71" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="45.0"/>
         <allocation task-id="174" resource-id="5" function="SoftwareDevelopment:3" responsible="false" load="10.0"/>
         <allocation task-id="187" resource-id="5" function="SoftwareDevelopment:3" responsible="false" load="10.0"/>
         <allocation task-id="189" resource-id="5" function="SoftwareDevelopment:3" responsible="false" load="10.0"/>
@@ -223,6 +231,11 @@
         <allocation task-id="253" resource-id="5" function="SoftwareDevelopment:2" responsible="true" load="15.0"/>
         <allocation task-id="264" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="15.0"/>
         <allocation task-id="269" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="15.0"/>
+        <allocation task-id="285" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="5.0"/>
+        <allocation task-id="290" resource-id="5" function="SoftwareDevelopment:2" responsible="false" load="1.0"/>
+        <allocation task-id="282" resource-id="5" function="SoftwareDevelopment:4" responsible="false" load="10.0"/>
+        <allocation task-id="313" resource-id="5" function="SoftwareDevelopment:4" responsible="false" load="10.0"/>
+        <allocation task-id="315" resource-id="5" function="SoftwareDevelopment:4" responsible="false" load="10.0"/>
     </allocations>
     <vacations/>
     <previous/>
