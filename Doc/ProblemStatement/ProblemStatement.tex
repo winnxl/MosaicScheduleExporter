@@ -1,5 +1,5 @@
 \documentclass{article}
-
+\usepackage{xcolor}
 \usepackage{tabularx}
 \usepackage{booktabs}
 
@@ -23,7 +23,10 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-09/20/2018 & Cassandra Nicolak, Michelle Leung, Winnie Liang & Rev 0\\
+09/20/2018 & Cassandra Nicolak, Michelle Leung, Winnie Liang & Rev 0\\ 
+\color{blue}
+12/05/2018 & \color{blue} Cassandra Nicolak, Michelle Leung, Winnie Liang & \textcolor{blue}{Rev 1}\\
+
 %Date2 & Name(s) & Description of changes\\
 %... & ... & ...\\
 \bottomrule
@@ -39,15 +42,15 @@
 
 
 \section{Motivation}
-\hspace{5mm}Mosaic, McMaster's administrative and informative website, creates a schedule within its current website that students can use to visualize their day. As users of Mosaic know, it undergoes maintenance during which the site is available. Since the schedule is within the website, it is separate from other schedules for events and appointments an individual might have. \\
+\hspace{5mm}Mosaic, McMaster's administrative and informative website, creates a schedule within its current website that students can use to visualize their day. \color{blue} As most users of Mosaic know, the website undergoes frequent maintenance during which the site is unavailable. Moreover, since the schedule is within the website, it is separate from other schedules for events and appointments an individual might have. Thus, the sporadic availability and disorganization of multiple schedules led to the motivation to create a tool that will allow students to have an easy access to their schedules.\color{black}\\
 
-Mosaic has a tool that allows users to import their timetable into their Google calendar; however, this tool has many limitations. For instance, the tool is not supported on all browsers (Microsoft Edge and Internet Explorer) and users must wait a day after schedule changes before they can use the tool. Mosaic isn\textsc{\char13}t too mobile friendly either as frames cut off most of the schedule. Manually entering in this information into your Google calendar is also tedious and not an efficient use of time. Since time is such a valuable resource as a student, a more effective method of organizing this information would be useful.
+Mosaic has a tool that allows users to import their timetable into their Google calendar. \color{blue}However, this tool has many limitations. For instance, the tool is not supported on all browsers (Microsoft Edge and Internet Explorer) and the users must wait a day after schedule changes before they can use the tool. Mosaic is also not mobile friendly as the frames cut off most of the schedule. As well, manually entering in this information into your Google calendar is also tedious and not an efficient use of time. \color{black} Since time is such a valuable resource as a student, a more effective method of organizing this information would be useful.
 
 
 \section{Objectives and Scope}
 \hspace{5mm}The stakeholders for this software are McMaster University students, staff members, as well as current (Team 12) and future software developers. Other stakeholders include Mosaic and organizers such as Google Calendar.\\
 
-UMD Google Calendar Schedule Importer is an open-source Google extension that imports the class schedule for students at the University of Maryland into Google Calendar. Also, as mentioned above, Mosaic\textsc{\char13}s import tool is very limited. The scope of this project will be to re-implement the Google Chrome extension into a  Desktop application tailored towards McMaster University students. This will make it easier for users to import their schedules from Mosaic into their Google calendar which they can then access easily with their mobile phone or through a browser.
+\color{blue} UMD Google Calendar Schedule Importer is an open-source Google extension that imports the class schedule for students at the University of Maryland into the student's Google Calendar. Also, as mentioned above, Mosaic's import tool is very limited. The scope of this project will be to re-implement the Google Chrome extension into a  desktop application tailored towards McMaster University students. \color{black} This will make it easier for users to import their schedules from Mosaic into their Google calendar which they can then access easily with their mobile phone or through a browser.
 
 
 %\wss{comment}
