@@ -1,5 +1,5 @@
 \documentclass[12pt, titlepage]{article}
-
+\usepackage{xcolor}
 \usepackage{cite}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -40,7 +40,9 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-2018-10-05 1 & 1.0 & Current version of SRS\\
+2018-10-05 1 & 1.0 & Rev 0\\
+\textcolor{blue}{2018-12-05 1}
+ & \textcolor{blue}{2.0} & \textcolor{blue}{Rev 1}\\
 %Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -49,27 +51,43 @@
 \newpage
 
 \pagenumbering{arabic}
-
-This document describes the requirements for MAC Schedule Importer.  The template for the Software
+\color{blue}
+This document describes the functional and nonfunctional requirements for MAC Schedule Importer. As well, the document includes various constraints and issues this project may encounter. This document is written for the purpose of informing the users of the overview of the project as well as the requirements and criterias the project will meet. The template that the team decided to use for the Software
 Requirements Specification (SRS) is a subset of the Volere
 template  \cite{volere}.
-
+\color{black}
 \section{Project Drivers}
 
 \subsection{The Purpose of the Project}
-\hspace{5mm}The purpose of this project is to reimplement the open-source Chrome extension UMD Google Calendar Schedule Importer, which imports the class schedule for students at the University of Maryland into Google Calendar. The reimplementation will be modified to allow students from McMaster University to import their schedules from Mosaic through a Desktop application.
+\hspace{5mm}The purpose of this project is to reimplement the open-source Chrome extension UMD Google Calendar Schedule Importer, which imports the class schedule for students at the University of Maryland into Google Calendar.
+\color{blue} The reimplementation will be modified to allow students from McMaster University to import their schedules to their Google Calendar from the Mosaic website through a Desktop application. 
+\color{black}
 
 \subsection{The Client, the Customer, and Other Stakeholders}
-\hspace{5mm}The stakeholders of this project are currently the development team (0C) as well as the students and educational staff of the McMaster University course SFWRENG 3XA3. Other stakeholders of the application include McMaster University students and McMaster's University Technology Services.  Additionally, potential stakeholders include third parties such as Google, open-software developers and other universities that may be interested in our product for their usage.
+\hspace{5mm}The stakeholders of this project are currently the development team (0C) as well as the students and educational staff of the McMaster University course SFWRENG 3XA3. Other stakeholders of the application include McMaster University students and McMaster's University Technology Services.  Additionally, potential stakeholders include third parties such as Google, open-software developers and other universities that may be interested in our product for their usage.\\
 
+
+\color{blue}
+The client for this project will be McMaster students and staff, since the motivation for the tool to be made was from the students' frustration towards the irregular shut downs that the Mosaic website has. Moreover, a potential client for this application in the future is Mosaic themselves as they may be interested in hiring the software development team to produce the application as an additional feature for their website.\\
+
+
+On the other hand, the customers of the application are the staff and students of McMaster University as well as anyone that uses Mosaic. Additionally, other universities are potential customers since they may be interested in using our application for their university. Google may also be interested in our program and can be a future customer for this application.
+\color{black}
 \subsection{Users of the Product}
-\hspace{5mm}The main users of this application will be McMaster students who would like to have their academic schedules easily accessible through their Google Calendars. The user group may vary from having very basic to advance knowledge of computers, software applications and mobile devices. All users are expected to be able to use and have access to a computer. Moreover, the user is assumed to be connected to the Internet to have access to Mosaic and Google Calendars from their preferred browser. 
+\hspace{5mm}The main users of this application will be McMaster students who would like to have their academic schedules easily accessible through their Google Calendars.
+\color{blue} Other users include McMaster University staff, software developers, and interested organizations such as personnel from Mosaic and Google.
+\color{black}
+The user group may vary from having very basic to advance knowledge of computers, software applications and mobile devices. \color{blue} For example, students with a computer and software development background will find the application easier to use in comparison to other students that do not have such background knowledge. However, users with  no prior software knowledge will be able to use the product. The minimum requirement is that users are expected to be able to use and have access to a computer. \color{black}
+Moreover, the user is assumed to be connected to the Internet to have access to Mosaic and Google Calendars from their preferred browser. 
 
 \section{Project Constraints}
 
 \subsection{Mandated Constraints}
 \hspace{5mm}The primary constraint for this application is that it must have similar functionality and design to the original source code. The application must be a reimplementation of the UMD Schedule Importer. Additionally, the user's operating system must also be taken into consideration. 
 Another constraint is that Mosaic shuts down for weekly maintenance every Thursday from 18:00 - 22:00. Also, Mosaic may have outages from certain periods of time which will impact development and testing. Lastly, all deliverables for this application must be completed prior to December 5th, 2018.
+\color{blue}
+As well, the user must have a computer (laptop, personal computer, etc.) which must be connected to the Internet.
+\color{black}
 \subsection{Naming Conventions and Definition}
 \begin{itemize}
 \item Mosaic: McMaster University's online administrative information system.
@@ -82,11 +100,20 @@ Another constraint is that Mosaic shuts down for weekly maintenance every Thursd
 \item Calendar: Refers to a user's Google Calendar.
 \item Schedule: A user's academic timetable accessed through Mosaic.
 \item SFWRENG 3XA3: Software Engineering 3XA3 - Software Engineering Practice and Experience: Software Project Management. A course at McMaster University.
-
+\color{blue}
+\item Stakeholder: A person, company, or an organization that has interest and concerns pertaining to the product.
+\item Chrome Extension: A software program tailored to Chrome that customizes the behaviour and preference of the user.
+\item Google: A technology company that provides Internet-related services and products.
+\item Constraint: A limitation or restriction that the application must abide to.
+\item Assumption: Something that is certified and accepted as true without proofs.
+\color{black}
 \end{itemize}
 \subsection{Relevant Facts and Assumptions}
 
 \hspace{5mm}The application will be intended to be used by McMaster University students who are currently enrolled in courses. Users must also have a valid MacID and password in order to log into Mosaic. Users must have a valid Google Mail account as well. It will be assumed that users have, at a minimum, general knowledge to operate computers in order to run the desktop application. 
+\color{blue}
+The user is also assumed to be connected to the Internet with no connection and speed problems. The user is assumed to have access to a computer in order to use the product. 
+\color{black}
 
 \section{Functional Requirements}
 
@@ -112,7 +139,9 @@ Deliverables:
 \item Final Documentation (December 5)
 \end{itemize}
 \subsection{The Scope of the Product}
-\hspace{5mm} Not Applicable.
+\color{blue}
+\hspace{5mm} The application will first require the student to download a html file of their schedule which they can retrieve through the application's link to Mosaic. Next, the program will request the user to upload the file to the application where the application will display schedule information in text format. The user will then confirm that the schedule is correct and the application will direct the student to log in to their Google account. Once the program acquires the user's permission to access their Google account and their Google Calendar, the application will import the schedule into Google Calendars. 
+\color{black}
 \subsection{Functional and Data Requirements}
 \begin{itemize}
 \item Requirement number : FR01\\
@@ -136,15 +165,32 @@ Rationale: To allow users to check the changes.
 \item Requirement number : FR07\\
 The application must ask for confirmation to confirm that the listed changes are correct. \\
 Rationale: To allow users to confirm their changes.
+\color{blue}
 \item Requirement number : FR08\\
-The application will display a preview of the user's timetable before importing.\\
-Rationale: To allow users to confirm the information prior to importing.
+This requirement is incorporated into FR06.
+\color{black}
+%The application will display a preview of the user's timetable before importing.\\
+%Rationale: To allow users to confirm the information prior to importing.
 \item Requirement number : FR09\\
 The application must request permission to access the user's personal information in their Mosaic and Google account. \\
 Rationale: To ensure users are informed of processing private information.
 \item Requirement number : FR10\\
 The application must have an option that allows a user to exit the application at any given time.\\
 Rationale: To  allow users to exit the application.
+
+\color{blue}
+\item Requirement number : FR11\\
+The application must confirm with the user that they can only fetch their Mosaic calendar once.\\
+Rationale: To  ensure that the user is ready to retrieve their Mosaic schedule.
+
+\item Requirement number : FR12\\
+The application must indicate that the application has successfully imported the schedule into Google Calendar.\\
+Rationale: To inform users on the progress status.
+
+\item Requirement number : FR13\\
+The application must indicate that the application has successfully accessed the user's Google account.\\
+Rationale: To inform users on the progress status.
+\color{black}
 
 \end{itemize}
 
@@ -191,15 +237,18 @@ Priority: Medium\\
 History: Created October 5, 2018
 
 \item Requirement number : NF06 \\
-The application will have status indicators to show users how close they are to completion.\\
-Priority: Medium\\
-History: Created October 5, 2018
+\color{blue}
+This non-functional requirement is incorporated into NF03.
+
+%The application will have status indicators to show users how close they are to completion.\\
+%Priority: Medium\\
+%History: Created October 5, 2018
 
 \item Requirement number : NF07\\
-Prompts should guide users step by step during use.\\
+The application shall guide users step by step during use.\\
 Priority: Medium\\
 History: Created October 5, 2018
-
+\color{black}
 \end{itemize}
 \subsection{Performance Requirements}
 \begin{itemize}
@@ -232,6 +281,10 @@ History: Created October 5, 2018
 \subsection{Maintainability and Support Requirements}
 \begin{itemize}
 \item Requirement number : NF11\\
+\color{blue}
+*Note: 
+This non-functional requirement is removed for the current implementation of the product due to time constraints. However, future versions of the application will include this requirement.\\
+\color{black}
 The programming language used will be currently supported on multiple operating systems.\\
 Rationale: The application can be easily modified and maintained if needed.\\
 Fit Criterion: The programming language is supported on Windows and Linux.\\
@@ -292,7 +345,13 @@ The application shall not impair the health and safety of users.\\
 Fit Criterion:  Users will be able to run the application with no harm to their health and safety. \\
 Priority: Low\\
 History: Created October 5, 2018
-
+\color{blue}
+\item Requirement number : NF18\\
+The application shall not impair and harm the environment and cause extreme pollution that may contaminate and  jeopardize the use's safety.\\
+Fit Criterion:  Users will be able to run the application with no harm to the environment. \\
+Priority: Low\\
+History: Created December 3, 2018
+\color{black}
 \end{itemize}
 \section{Project Issues}
 
@@ -304,8 +363,11 @@ The original source code that the application is based on is written in a web-ba
 \end{itemize}
 \subsection{Off-the-Shelf Solutions}
 \hspace{5mm}
-Mosaic has an available schedule exporter. However, it is limited since it cannot be used with certain browsers and requires a waiting period of one day before schedule changes can be included in the export. Hence, we would like to create a more reliable and efficient application. 
+Mosaic has an available schedule exporter. However, it is limited since it cannot be used with certain browsers and requires a waiting period of one day before schedule changes can be included in the export. Hence, we would like to create a more reliable and efficient application.\\
 
+\color{blue}
+Additionally, the open-source UMD Importer is another off-the-shelf solution. However, the application is tailored towards University of Maryland rather than McMaster University. Moreover, the UMD Importer supports only Chrome browser. Thus, we would like to create a product that enables the user to use a variety of browsers.
+\color{black}
 \subsection{New Problems}
 \hspace{5mm}
 Not applicable. The application will not affect the existing UMD Importer or Mosaic in any way.
@@ -322,12 +384,18 @@ Mosaic's schedule layout may change in the future. Hence, the application must b
 \begin{itemize}
 \item Finanical:\\
 \\
-Not Applicable. The application shall be free and open for all McMaster University students. 
+Not Applicable. 
+The application shall be free and open for all McMaster University students. 
+
+\color{blue} Additionally, the product shall not require and rely on any external resources that requires to be bought.
+\color{black}
 		
 \item Time:
 \begin{itemize}
-\item 12 lab sessions x 2 hours each = 24 mandatory hours spent in lab.
-\item 9 In-person meetings x 1 hours each = 9 hours.
+\item 12 lab sessions x 2 hours each\\
+= 24 mandatory hours spent in lab.
+\item 9 In-person meetings x 1 hours each\\
+= 9 hours.
 \item These figures are approximations, real times may vary:
 \begin{itemize}
 \item 10 hours of online meetings
@@ -344,15 +412,18 @@ Total estimated hours needed: 88 hours.
 
 \subsection{User Documentation and Training}
 \hspace{5mm}
-No user training will be required. The software shall be straightforward and intuitive to use. User prompts will guide users when necessary. A user guide (documentation) will list the features of the program and reiterate instructions. 
+\color{blue}
+No user training will be required. The software shall be straightforward and intuitive to use. Also, the application will guide users when necessary through the help option. A user guide (documentation) will list the features of the program and reiterate instructions. 
+\color{black}
 \subsection{Waiting Room}
 \hspace{5mm}
-Integration with facebook events, Mac Rec Schedule, and custom personal events. 
+Integration with Facebook events, Mac Rec Schedule, and custom personal events. 
 
 \subsection{Ideas for Solutions}
 \hspace{5mm}
 The original source code uses Google's API.  There's an API Client Library for the Python programming language. It is important that the final implementation of the application is an executable. This conversion must be taken into consideration to make installation easy for the end-user.
 
+\newpage
 
 \bibliographystyle{ieeetr}
 
@@ -361,14 +432,18 @@ The original source code uses Google's API.  There's an API Client Library for t
 \newpage
 
 \section{Appendix}
-
-This section has been added to the Volere template.  This is where you can place
-additional information.
+\color{blue}
+%This section has been added to the Volere template.  This is where you can place
+%additional information.
+Not applicable. There are no added resources that are included in this documentation.
+\color{black}
 
 \subsection{Symbolic Parameters}
-
-The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
-
+\color{blue}
+Not applicable. The product does not have symbolic parameters.
+%The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
+%Their values are defined in this section for easy maintenance.
+\color{black}
 
 \end{document}
+
