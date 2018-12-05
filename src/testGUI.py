@@ -14,7 +14,7 @@ import urllib
 import webbrowser
 
 
-## This class represents test cases for parseMosaic.py.
+## This class represents test cases for guiClient.py.
 class TestGui(unittest.TestCase):
 
     # initialize varaibles to be used in test cases

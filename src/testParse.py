@@ -23,7 +23,7 @@ class TestParse(unittest.TestCase):
         ret = pm.run_me(self.file_url)
         print(ret)
 
-        with open ("testoutput.txt","w")as fp:
+        with open ("testfiles/testoutput.txt","w")as fp:
             for line in ret:
                 fp.write(str(line)+"\n")      
 
