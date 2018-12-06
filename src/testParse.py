@@ -4,9 +4,7 @@
 ## @date 12/3/2018
  
 #  Imports.
-import os
 import unittest
-import subprocess as sp
 import parseMosaic as pm
 
 
@@ -25,7 +23,7 @@ class TestParse(unittest.TestCase):
         self.__class__.ret = pm.run_me(self.file_url)
 
         #test if output is expected
-        self.assertEqual(self.__class__.ret, self.output)       
+        self.assertEqual(self.__class__.ret, self.output_list)       
 
 
     def tearDown(self):

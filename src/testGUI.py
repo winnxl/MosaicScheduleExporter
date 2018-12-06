@@ -8,10 +8,6 @@ import unittest
 import PySimpleGUI as sg
 import parseMosaic as pm
 import guiClient as gui
-import connector
-import converter  
-import urllib 
-import webbrowser
 
 
 ## This class represents test cases for guiClient.py.
