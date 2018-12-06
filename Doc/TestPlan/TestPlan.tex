@@ -117,6 +117,8 @@ Notepad ++ & Text editor.\\
 \end{table}	
 
 \newpage
+10
+
 \subsection{Overview of Document}
 \color{blue}
 \hspace{5mm}This application will be a reimplementation of the open source Chrome extension UMD Google Calendar Schedule Importer, which imports the classschedule for students at the University of Maryland into Google Calendar. The reimplementation will be modified to allow students from McMaster University to export their class schedule from Mosaic and import it into their Google Calendar through a desktop application.
@@ -345,41 +347,27 @@ Type: Functional, Dynamic
 					
 Initial State: None
 					
-Input: Time from CSV
+Input: Output from parseMosaic 
 					
 Output: Time formatted according to RFC3339
 					
 How test will be performed: 
 Time from the format that the parser outputs will be inputted into a function that converts it to RFC3339 format. The output of the function will be compared to the expected output. 
 
-\item{CV-02\\}
+\color{blue}\item{Test: test\_convert}
 
 Test Title Format
-Type: Functional, Dynamic
+Type: Functional, Dynamic, Manual
 					
 Initial State: None
 					
-Input: From Parser
+Input: From rfc\_output
 					
-Output: Title for Event
-					
-How test will be performed: 
-Data from the parser will be the input for a function that creates the title of the event. 
-The output of the function will be compared to the expected output.
-
-\item{CV-03\\}
-
-Type: Functional, Dynamic
-					
-Initial State: None
-					
-Input: From Parser
-					
-Output: Description for Event
+Output: List of dictionary items. They are the parameters that Google Calendar takes to create events. 
 					
 How test will be performed: 
-Data from the parser will be the input for a function that creates the description of the event. 
 The output of the function will be compared to the expected output.
+\color{black}
 \end{enumerate}
 
 
@@ -420,64 +408,69 @@ Type: Functional, Dynamic
 					
 Initial State: User is logged in
 					
-Input: create_cal function
+Input: create\_cal function
 					
-Output: Google Calendars will have a new calendar named Mac Schedule after refreshing the webpage
+Output: Google Calendars will have a new calendar named Mac Schedule after refreshing the web page
 					
 How test will be performed: 
-The user will run create_cal function and check Google Calendars on their browser to verify that a new calendar has been created. 
+The user will run create\_cal function and check Google Calendars on their browser to verify that a new calendar has been created. 
 
 \color{blue}\item{Test: test\_insert\_events,}
 Type: Functional, Dynamic
 					
 Initial State: User is logged in and a new calendar has just been created. The id of the calendar is saved to a variable.
 					
-Input: 
-The user will run insert_events and check 
+Input: insert\_events function
 					
-Output: 
+Output: The created calendar named Mac Schedule will be populated with events. 
 					
 How test will be performed: 
+The user will run insert\_events and check Google Calendars on their browser to verify that events with the right details have been created on the correct (newly created) calendar. 
 \color{blue}\item{Test: test\_get\_num\_events}
 Type: Functional, Dynamic
 					
 Initial State: None
 					
-Input: 
+Input: get\_num\_events function
 					
-Output: 
+Output: integer
 					
 How test will be performed: 
+User will check that the function returns a number
+
 \color{blue}\item{Test: test\_check\_insertion}
 Type: Functional, Dynamic
 					
-Initial State: None
+Initial State: Newly created calendar will be populated with events from the bodies parameter that the class had been initialized with.
 					
-Input: 
+Input: check\_insertion function
 					
-Output: 
+Output: Boolean indicating whether the number of events in Google Calendars matches the number of events given in the bodies parameter.
 					
 How test will be performed: 
+User will run the function after running create\_cal and insert\_events.
+
 \color{blue}\item{Test: test\_remove\_new_cal}
 Type: Functional, Dynamic
 					
-Initial State: None
+Initial State: New calendar created.
 					
-Input: 
+Input: remove\_new\_cal function
 					
-Output: 
+Output: True if successful or None if not
 					
-How test will be performed: 
+How test will be performed: User will run the function then check their Google Calendar for whether the Mac Schedule has been removed. 
+
 \color{blue}\item{Test: test\_push\_to\_schedule}
 Type: Functional, Dynamic
 					
 Initial State: None
 					
-Input: 
+Input: push\_to\_schedule function
 					
-Output: 
+Output: Events on a newly created Google Calendar
 					
-How test will be performed: 
+How test will be performed: User will run this function. This function puts several other functions in a wrapper. The user will check that the events on the newly created calendar are correct. 
 \color{black}
 
 \end{enumerate}
