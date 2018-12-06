@@ -1,5 +1,7 @@
 \documentclass[12pt, titlepage]{article}
-
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{placeins}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
@@ -40,6 +42,7 @@
 \midrule
 2018-10-25 & 1.0 & Rough Draft\\
 2018-10-26 & 1.1 & Final Draft\\
+\textcolor{blue}{2018-10-26} & \textcolor{blue}{1.1} & \textcolor{blue}{Rev 1} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -53,10 +56,18 @@
 \section{General Information}
 
 \subsection{Purpose}
-The purpose of the test plan is to build confidence in the correctness of the implementation for the project. 
+\hspace{5mm}
+The purpose of the test plan is to build confidence in the correctness of the implementation for the project, MAC Schedule Importer. 
+\color{blue}The test plan will provide an overview of the potential test cases for the product. As well, the plan will have a guideline on the testing approaches and methods used along with the testing tools that will be used to implement the tests. Additionally, the document shall have a brief summary of the tests to verify and validate that the functional and non-functional requirements are met.
+\color{black}
 
 \subsection{Scope}
+\hspace{5mm}
 The scope of the test plan is to provide a basic testing platform for the correctness and functionality of the software. The test plan includes a description of the testing procedures, tools and test cases that will be implemented to verify and validate the software for this project.
+\color{blue}
+Each functional and non-functional requirement that is listed in the Software Specifications Requirements document will be provided a test case to ensure the requirement is met for the final version of the application. The test case will include the type of testing (manual, automated, black box, white box, etc.) as well as the input and output results expected for the test case. Furthermore, a brief description on how the test will be performed will be given for teach test case.
+\color{black}
+
 \subsection{Acronyms, Abbreviations, and Symbols}
 	
 \begin{table}[hbp]
@@ -69,6 +80,9 @@ The scope of the test plan is to provide a basic testing platform for the correc
 CSV & Comma-separated values file\\
 URL & Uniform Resource Locator/web address\\
 Google API & Google’s Application Programming Interface\\
+\textcolor{blue}{UMD} & \textcolor{blue}{University of Maryland}\\
+\textcolor{blue}{XPATH} & \textcolor{blue}{Extensible Markup Language (XML) Path Language}\\
+\textcolor{blue}{HTML} & \textcolor{blue}{Hypertext Markup Language}\\
 \bottomrule
 \end{tabularx}
 
@@ -87,6 +101,15 @@ Crawler & Web crawler/spider that collects information from an html webpage.\\
 XPATH Selector & Uses path expressions to select nodes/node-sets in an XML document. \\
 Google Calendar & Google’s online free calendar connected to a gmail account.\\
 Notepad ++ & Text editor.\\
+\textcolor{blue}
+{User} & \textcolor{blue}{A person who will be using the final version of the application.} \\
+\textcolor{blue}
+{Schedule} & \textcolor{blue}
+{ A user's academic timetable accessed through Mosaic.}\\
+\textcolor{blue}
+{PyTest} & \textcolor{blue}
+{A software test framework tailored for the Python Programming language}\\
+\textcolor{blue}{PyCharm} & \textcolor{blue}{integrated development environment used in computer programming, specifically for the Python language}\\
 %Term3 & Definition3\\
 \bottomrule
 \end{tabularx}
@@ -95,18 +118,37 @@ Notepad ++ & Text editor.\\
 
 \newpage
 \subsection{Overview of Document}
-This application will be a reimplementation of the open source Chrome extension UMD Google Calendar Schedule Importer. The reimplementation will be modified to allow students from McMaster University to export their class schedule from Mosaic and import it into their Google Calendar.
+\color{blue}
+\hspace{5mm}This application will be a reimplementation of the open source Chrome extension UMD Google Calendar Schedule Importer, which imports the classschedule for students at the University of Maryland into Google Calendar. The reimplementation will be modified to allow students from McMaster University to export their class schedule from Mosaic and import it into their Google Calendar through a desktop application.
+\color{black}
+
 \section{Plan}
 	
 \subsection{Software Description}
-The software will parse Mosaic for a user's schedule and then export it to an array. This array will then be used to import their schedule into their Google calendar. The implementation will be completed in Python 3.6.
+\hspace{5mm}
+The software will parse Mosaic for a user's schedule and then export it to a list. This list will then be used to import their schedule into their Google calendar. The implementation will be completed in Python 3.6.\\
+
+
+\color{blue}
+The  application  will  first  require  the  student  to  download  a  html  fileof  their  schedule  which  they  can  retrieve  through  the  application’s  link  toMosaic.   Next,  the  program  will  request  the  user  to  upload  the  file  to  theapplication where the application will display schedule information in textformat.   The  user  will  then  confirm  that  the  schedule  is  correct  and  theapplication will direct the student to log in to their Google account.  Oncethe program acquires the user’s permission to access their Google accountand  their  Google  Calendar,  the  application  will  import  the  schedule  intoGoogle Calendars.
+\color{black}
 
 \subsection{Test Team}
-The members of Team 0C are Cassandra Nicolak, Michelle Leung and Winnie Liang are the test team for this project.
+\hspace{5mm}
+The members of Team 0C are Cassandra Nicolak, Michelle Leung and Winnie Liang are the current test team for this project. \\
+
+
+\color{blue}
+However, in the future development of this project, the test team will be separate from the design and implementation team to ensure no conflict of interest when testing. Thus, different teams will be used to test the product for future implementations of the application.
+\color{black}
 \subsection{Automated Testing Approach}
 
 \subsection{Testing Tools}
-The testing tools that will be used are PyTest and Pycharm. PyTest will be used to automate unit testing and Pycharm will be used for coverage checking and debugging.
+\hspace{5mm}The current testing tools that will be used are PyTest and Pycharm. PyTest will be used to automate unit testing. \color{blue} Coverage.py will be used for coverage checking and PyCharm will be used for debugging.
+
+\color{blue}
+In the future revision of the product, other testing tools will be considered. Some testing tools that may be considered are doctest, testify, testlib and PyMock. The usage of the multiple testing tools will build confidence in the correctness of the MAC Schedule Importer application.
+\color{black}
 
 \subsection{Testing Schedule}
 See Gantt Chart at the following url: \color{blue}
@@ -124,7 +166,8 @@ See Gantt Chart at the following url: \color{blue}
 
 \begin{enumerate}
 
-\item{Test: FUI-01\\}
+%\item{Test: FUI-01}
+\color{blue}\item{Test: test\_convert\_url\\}\color{black}
 
 Type: Functional, Dynamic, Manual
 					
@@ -135,21 +178,17 @@ Input: Valid URL or absolute file path.
 					
 Output: The specified location of the html file will be saved at the URL required for the parsing component of the software.
 
-					
-How test will be performed: The function that acquires the URL input from the user will check if the XPATHs are present.
+%How test will be performed: The function that acquires the URL input from the user will check if the XPATHs are present.					
+\color{blue}How test will be performed: The function that acquires the URL input from the user will convert it to the proper absolute path format.\color{black}
 
-					
-\item{Test: FUI-02\\}
-
-Type: Functional, Dynamic
-					
-Initial State:  File explorer that is used to select the html file of the schedule.
-					
-Input: Valid URL or absolute file path.
-					
-Output: Error message that will direct the user to the correct URL.
-					
-How test will be performed: Automated test suite will be used to check if error message is thrown correctly.
+				
+%\item{Test: FUI-02\\}
+%Type: Functional, Dynamic
+%Initial State:  File explorer that is used to select the html file of the schedule.
+%Input: Valid URL or absolute file path.
+%Output: Error message that will direct the user to the correct URL.
+%How test will be performed: Automated test suite will be used to check if error message is thrown correctly.\\
+%REASON FOR REMOVAL: This is handled by Scrapy.
 
 \end{enumerate}
 
@@ -159,21 +198,17 @@ How test will be performed: Automated test suite will be used to check if error 
 
 \begin{enumerate}
 
-\item{Test: FEX-01\\}
+%\item{Test: FEX-01\\
+%Type: Functional, Dynamic
+%Initial State: Parsing an html document.
+%Input: Absolute file path.
+%Output: Successful execution of crawler.
+%How test will be performed: Automated test cases will be used to handle exceptions associated with incorrect paths.
+%REASON FOR REMOVAL: This is handled by Scrapy.
 
-Type: Functional, Dynamic
-					
-Initial State: Parsing an html document.
-					
-Input: Absolute file path.
-					
-Output: Successful execution of crawler.
-					
-How test will be performed: Automated test cases will be used to handle exceptions associated with incorrect paths.
-
-\item{Test: FEX-02\\}
-
-Type: Functional, Dynamic
+%\item{Test: FEX-02\\}
+\color{blue}\item{Test: test\_parsed\_output\\}\color{black}
+Type: Functional, Dynamic, \color{blue}Manual\color{black}
 					
 Initial State: Parsing an html document.
 					
@@ -181,21 +216,121 @@ Input: Correct XPATH selectors.
 					
 Output: XPATH values assigned to yield variables.
 					
-How test will be performed: Automated test cases will be used to determine if variables are assigned the correct value.
-
-\item{Test: FEX-03\\}
-
+How test will be performed: Automated test cases will be used to determine if variables are assigned the correct value. \color{blue}This can be checked manually by writing the output to a file.\color{black}\\
+%\item{Test: FEX-03\\}
+\color{blue}\item{Test: test\_print\_sched\_err\\}\color{black}
 Type: Functional, Dynamic
 					
-Initial State: Assigning parsed information to an array.
+Initial State: Assigning parsed information to an list.
 					
-Input: Array containing parsed information
+Input: List containing parsed information
 					
-Output: Array with parsed information to be passed to another function.
+Output: List with parsed information to be passed to another function.
 					
-How test will be performed: Automated test cases will be used to determine if the array is being passed correctly.
+How test will be performed: Automated test cases will be used to determine if the list is being passed correctly.\\
+
+\color{blue}\item{Test: test\_print\_sched\\}
+Type: Functional, Dynamic
+					
+Initial State: List containing parsed information.
+					
+Input: None
+					
+Output: String converted from list with parsed information.
+					
+How test will be performed: Automated test cases will be used to determine if the list is being converted into a string properly.\\ 
+\color{black}
+
+\color{blue}\item{Test: test\_fetch\\}
+Type: Functional, Dynamic
+					
+Initial State: A flag variable set to False.
+					
+Input: Url to location of file to be parsed.
+					
+Output: String converted from list with parsed information.
+					
+How test will be performed: Automated test cases will be used to determine if the system can handle this function being executed more than once by the user.\\
+\color{black}
+
+\color{blue}\item{Test: test\_set\_list\\}
+Type: Functional, Dynamic
+					
+Initial State: An empty list.
+					
+Input: A list containing parsed information.
+					
+Output: String converted from list with parsed information.
+					
+How test will be performed: Automated test cases will be used to determine if the input list was properly assigned to the global list.\\
+\color{black}
 
 \end{enumerate}
+
+\subsubsection{Testing for User Interface}
+
+
+\paragraph{Buttons}
+
+\color{blue}
+\begin{enumerate}
+\item{Test: test\_fetch\_button\\}
+Type: Functional, Manual
+					
+Initial State: Button pressed.
+					
+Input: -
+					
+Output: Status message in textbox.
+					
+How test will be performed: Manual tests will be performed to test that the application prompts the user with a pop-up asking if they have selected their schedule.\\
+
+\item{Test: test\_fetch\_popup\\}
+Type: Functional, Manual
+					
+Initial State: Fetch Schedule button pressed.
+					
+Input: User response (Yes/No).
+					
+Output: No - Close and do nothing. Yes - parse user's schedule.
+					
+How test will be performed: Manual tests will be performed to test that the application responds correctly depending on whether Yes or No is clicked.\\
+
+\item{Test: test\_login\_button\\}
+Type: Functional, Manual
+					
+Initial State: Button pressed.
+					
+Input: -
+					
+Output: Status message in textbox.
+					
+How test will be performed: Manual tests will be performed to test that a user can open the Google login authorization in a browser.\\
+
+\item{Test: test\_import\_button\\}
+Type: Functional, Manual
+					
+Initial State: Button pressed.
+					
+Input: -
+					
+Output: Status message in textbox.
+					
+How test will be performed: Manual tests will be performed to test that a user can successfully import a calendar.\\
+\item{Test: test\_browse\_button\\}
+Type: Functional, Manual
+					
+Initial State: Button pressed.
+					
+Input: Windows file path.
+					
+Output: Converted filepath.
+					
+How test will be performed: Manual tests will be performed to test that a user can select a file from their computer and update the text box field.\\
+
+\end{enumerate}
+\color{black}
+
 
 \subsubsection{Testing for Importing to Google Calendar}
 
@@ -203,8 +338,8 @@ How test will be performed: Automated test cases will be used to determine if th
 
 \begin{enumerate}
 
-\item{CV-01\\}
-
+\item{\color{blue}test\_rfc\_output}\\
+\color{black}
 Test Time Format
 Type: Functional, Dynamic
 					
@@ -254,80 +389,162 @@ The output of the function will be compared to the expected output.
 The test must show that the class is able to connect to a user's Google account.
 \begin{enumerate}
 
-\item{Test: GC-01\\}
-
+\color{blue}\item{Test: test\_check\_perms, test\_login\\}
+\color{black}
 Type: Functional, Manual
 					
 Initial State: The client is not connected to their Google account. 
 					
-Input: Run function.
+Input: - 
+\color{blue}					
+Output: Boolean indicating that the program now has access to a user's account.
 					
-Output: Access to a user's account.
-					
-How test will be performed: The function will run for authentication and authorization. 
-Next, the user will follow the given instructions and the user will receive text confirming authentication and authorization.
+How test will be performed: check\_perms() and login() functions will be run
+Next, the user will follow the given instructions and the user will receive text confirming authentication and authorization. A boolean value indicating success or failure will be returned
 \end{enumerate}
-
+\color{black}
 \paragraph{Information Retrieval and Upload Test}
 
 The test must show that the class for retrieving and exporting data to a Google calendar is able to do so for:
 \begin{enumerate}
-    \item Getting calendars.
-    \item Getting events in calendars.
-    \item Creating events in calendars.
-    \item Removing events in calendars.
+    \item Getting the number events in calendars.
+    \item Creating a calendar
+    \item Creating events in the calendars.
+    \item Removing events in the calendars.
 \end{enumerate}
 
 \begin{enumerate}
 
-\item{Test: GC-02\\}
-
+\color{blue}\item{Test: test\_create_cal}
 Type: Functional, Dynamic
 					
-Initial State: Calendars are present in Account
+Initial State: User is logged in
 					
-Input: None
-Output: List of Calendars
+Input: create_cal function
 					
-How test will be performed: The test will run the function and check that a list of dictionaries and calendar ids with their titles are returned.
+Output: Google Calendars will have a new calendar named Mac Schedule after refreshing the webpage
+					
+How test will be performed: 
+The user will run create_cal function and check Google Calendars on their browser to verify that a new calendar has been created. 
 
-\item{Test: GC-03\\}
-
+\color{blue}\item{Test: test\_insert\_events,}
 Type: Functional, Dynamic
 					
-Initial State: Events are in specified calendar
+Initial State: User is logged in and a new calendar has just been created. The id of the calendar is saved to a variable.
 					
-Input: Calendar Id
-Output: List of events
+Input: 
+The user will run insert_events and check 
 					
-How test will be performed:  The test will run the function and check that a list of dictionaries, events ids and their properties are returned.
-
-\item{Test: GC-04\\}
-
+Output: 
+					
+How test will be performed: 
+\color{blue}\item{Test: test\_get\_num\_events}
 Type: Functional, Dynamic
 					
-Initial State: List of calendar events are saved
+Initial State: None
 					
-Input: Calendar Id, Event to be inserted.
-Output: New list of events
+Input: 
 					
-How test will be performed: The test will save a current list of events from calendar, insert event into that calendar, get list of events from calendar, and finally compare the new list to the old list to check that the event is inserted. 
-
-\item{Test: GC-05\\}
-
+Output: 
+					
+How test will be performed: 
+\color{blue}\item{Test: test\_check\_insertion}
 Type: Functional, Dynamic
 					
-Initial State: List of calendar events are saved.
-
+Initial State: None
 					
-Input: Calendar Id, event to be deleted. 
-Output: New list of events.
+Input: 
 					
-How test will be performed: The test will save the current list of events from calendar, delete event from that calendar, get list of events from calendar, and compare the new list to the old list to check that the event has been deleted.
+Output: 
+					
+How test will be performed: 
+\color{blue}\item{Test: test\_remove\_new_cal}
+Type: Functional, Dynamic
+					
+Initial State: None
+					
+Input: 
+					
+Output: 
+					
+How test will be performed: 
+\color{blue}\item{Test: test\_push\_to\_schedule}
+Type: Functional, Dynamic
+					
+Initial State: None
+					
+Input: 
+					
+Output: 
+					
+How test will be performed: 
+\color{black}
 
 \end{enumerate}
-
-
+\color{blue}
+\subsubsection{Testing for Conversion from Python program to Executable application}
+\hspace{5mm}Due to the nature of this module, all testing will be done manually. The setup.py file contains the secret of the conversion from python to executable file.
+The code contains importing the packages, libraries, and modules. The simple cx\_freeze command to convert the selected python program into a executable is also included in the setup.py module.
+\begin{enumerate}
+    \item Test: CPE-01\\
+    
+    Type: Manual\\
+    Initial State: Application is installed and ready to open\\
+    Input: Mouse click to open the application\\
+    Output: Application is opened.\\
+    How the test will be performed: The tester shall open the application via a mouse click. After double clicking on the application, the application shall be opened with the main page displayed.\\
+    
+    \item Test: CPE-02\\
+    
+    Type: Manual\\
+    Initial State: Application is opened\\
+    Input: Browse option is pressed\\
+    Output: File explorer of the user's computer displayed.\\
+    How the test will be performed: The tester shall press the browse button via a mouse click. After clicking on the application, the application shall be open the file explorer.\\
+    
+    \item Test: CPE-03\\
+    
+    Type: Manual\\
+    Initial State: Application is opened\\
+    Input: Fetch option is pressed\\
+    Output: The schedule information will be displayed in the text box on the application.\\
+    How the test will be performed: The tester shall press the fetch button via a mouse click. After clicking on the button, the application shall display all the content of the Mosaic schedule.\\
+    
+        
+    \item Test: CPE-04\\
+    
+    Type: Manual\\
+    Initial State: Application is opened\\
+    Input: Login option is pressed\\
+    Output: A browser will be opened to Google's sign in page where the user can enter their credentials and give permission for the application to access their account.\\
+    How the test will be performed: The tester shall press the login button via a mouse click. After clicking on the button, the application shall open the web browser to the Google sign-in page.\\
+    
+    \item Test: CPE-05\\
+    
+    Type: Manual\\
+    Initial State: Application is opened\\
+    Input: Import button is pressed\\
+    Output: Import successful will be displayed and the schedule is imported to the user's Google Calendar.\\
+    How the test will be performed: The tester shall press the import button via a mouse click. After clicking on the button, the application shall upload the mosaic schedule information into Google Calendar.\\
+    
+    \item Test: CPE-06\\
+    
+    Type: Manual\\
+    Initial State: Application is opened\\
+    Input: Help option is pressed\\
+    Output: A list of the user manual and about information option is displayed.\\
+    How the test will be performed: The tester shall press the help button via a mouse click. After clicking on the button, the application shall display of help options.\\
+    
+     \item Test: CPE-07\\
+    
+    Type: Manual\\
+    Initial State: Application is opened\\
+    Input: Exit button is pressed\\
+    Output: Application is closed and the user is logged out of their Google account.\\
+    How the test will be performed: The tester shall press the exit button via a mouse click. After clicking on the button, the application shall shut down.\\
+    
+\end{enumerate}
+\color{black}
 \subsection{Tests for Nonfunctional Requirements}
 
 \subsubsection{Look and Feel}
@@ -336,8 +553,8 @@ How test will be performed: The test will save the current list of events from c
 
 \begin{enumerate}
 
-\item{AC-01\\}
-
+%\item{AC-01\\}
+\color{blue}\item{app\_exe\\}\color{black}
 Type: Dynamic
 					
 Initial State: None
@@ -346,7 +563,7 @@ Input/Condition: Valid URL or absolute file path.
 					
 Output/Result: Mosaic schedule in Google Calendar.
 					
-How test will be performed: The software will be tested on various browsers and operating systems to ensure that the software is accessible to users with different operating systems and browsers. This includes Google Chrome, Internet Explorer, Mozilla FireFox, as well as Windows and Linux.
+How test will be performed: The software will be tested on various browsers and operating systems to ensure that the software is accessible to users with different operating systems and browsers. This includes Google Chrome, Internet Explorer, Mozilla FireFox, as well as Windows. %and Linux.
 	
 \end{enumerate}
 
@@ -354,8 +571,8 @@ How test will be performed: The software will be tested on various browsers and 
 
 \begin{enumerate}
 
-\item{US-01\\}
-
+%\item{general\_ui\\}
+\color{blue}\item{general\_ui\\}\color{black}
 Type: Manual
 					
 Initial State: None
@@ -429,16 +646,19 @@ How test will be performed: Risk assessments and Defect Detection Preventation (
 \begin{tabular}{ |p{3cm}|p{8cm}|p{2cm}| }
 \hline Requirement \#  &Description/Summary& Test ID(s) \\
 \toprule
-FR01 & Notify user if unable to access the Mosaic schedule. & FUI-02 \\
-FR02 & Notify user of information that will be imported into Google Calendar prior to proceeding. & \\
-FR03 & Multiple uses from user. &\\
-FR04 & Simple GUI & \\
-FR05 & UI has ‘Help’ option. & \\
-FR06 & Show user changes to existing Google Calendar prior to changing it. & \\
-FR07 & Ask for confirmation to confirm that the listed changes are correct. & \\
-FR08 & Display a preview of the user’s timetable before importing. & \\
+%FR01 & Notify user if unable to access the Mosaic schedule. & FUI-02 \\
+FR02 & Notify user of information that will be imported into Google Calendar prior to proceeding. & \textcolor{blue}{CPE-04}\\
+FR03 & Multiple uses from user. &\textcolor{blue}{CPE-01}\\
+FR04 & Simple GUI & \textcolor{blue}{general\_ui}\\
+FR05 & UI has ‘Help’ option. & \textcolor{blue}{CPE-06}\\
+FR06 & \textcolor{blue}{This requirement is removed from the final version of the SRS} & \textcolor{blue}{N/A}\\
+FR07 & Ask for confirmation to confirm that the listed changes are correct. & \textcolor{blue}{CPE-03}\\
+FR08 & \textcolor{blue}{This function is incorporated into FR02} & \textcolor{blue}{N/A}\\
 FR09 & Request permission to access user’s personal information in their Mosaic and Google account. & GC-01\\
-FR10 & Have an option that allows a user to exit. & \\
+FR10 & Have an option that allows a user to exit. &  \textcolor{blue}{CPE-07}\\
+\textcolor{blue}{FR11} & \textcolor{blue}{The application must confirm with the user that they can only fetch their Mosaic calendar once.} & \textcolor{blue}{CPE-03}\\
+\textcolor{blue}{FR12}& \textcolor{blue}{The application must indicate that the application has successfully imported the schedule into Google Calendar.} & \textcolor{blue}{CPE-06}\\
+\textcolor{blue}{FR13} & \textcolor{blue}{The application must indicate that the application has successfully accessed the user's Google account.} & \textcolor{blue}{CPE-05}\\
 \bottomrule
 \end{tabular}
 \caption{**Note that the functional requirements that have yet to be traced are in development.}
@@ -447,23 +667,23 @@ FR10 & Have an option that allows a user to exit. & \\
 \begin{tabular}{ |p{3cm}|p{8cm}|p{2cm}| }
 \hline Requirement \#  & Fit-Criterion/Summary & Test ID(s) \\
 \toprule
-NF01 & All information will be visible and not be dependant on colour.  & \\
+NF01 & All information will be visible and not be dependant on colour.  &  \textcolor{blue}{general\_ui}\\
 NF02 & Perform the import in less than five steps. & \\
-NF03 & Easy to use. & US-01 \\
-NF04 & Application is easy to install. & \\
+NF03 & Easy to use. & general\_ui \\
+NF04 & Application is easy to install. & \textcolor{blue}{CPE-01}\\
 NF05 & All information should be at a basic English reading level.  & LF-01 \\
-NF06 & Status indicators. & \\
-NF07 & Prompts to guide users step by step. & \\
-NF08 & Run and use the application on a desktop computer or laptop.  & \\
-NF09 & Respond to a user’s input in a reasonable amount of time (0.5 seconds). & \\
-NF10 & Available on reliable site. & \\
-NF11 & The programming language is supported on Windows and Linux.  & AC-01\\
-NF12 & The source code can be accessed by the public.  & \\
+NF06 & Status indicators. & \textcolor{blue}{CPE-04}\\
+NF07 & Guide users step by step. & \textcolor{blue}{CPE-06}\\
+NF08 & Run and use the application on a desktop computer or laptop.  & \textcolor{blue}{CPE-01}\\
+NF09 & Respond to a user’s input in a reasonable amount of time (0.5 seconds). & \textcolor{blue}{PF-01}\\
+NF10 & Available on reliable site. & \textcolor{blue}{general\_ui}\\
+NF11 & The programming language is supported on Windows.  & \textcolor{blue}{CPE-01}\\
+NF12 & The source code can be accessed by the public.  & \textcolor{blue}{MN-01} \\
 NF13 & Current developers can be contacted by the public.  & MN-01 \\
-NF14 & The application will not have the ability to store user data. & \\
-NF15 & Inoffensive display. & \\
-NF16 & Adheres to relevant standards and laws. & \\
-NF17 & Able to run the application with no harm to their health and safety.  & \\
+NF14 & The application will not have the ability to store user data. & \textcolor{blue}{CPE-07}\\
+NF15 & Inoffensive display. & \textcolor{blue}{general\_ui} \\
+NF16 & Adheres to relevant standards and laws. & \textcolor{blue}{general\_ui}\\
+NF17 & Able to run the application with no harm to their health and safety.  & \textcolor{blue}{general\_ui}\\
 
 \bottomrule
 \end{tabular}
@@ -613,7 +833,7 @@ Both implementations perform the task of parsing an html document that contains 
 
 
 \section{Unit Testing Plan}
-Test cases will run on different operating systems, including Windows, and Linux.	
+\color{blue}Test cases will run on Windows.	\color{black}
 \subsection{Unit testing of internal functions}
 Every internal function will be tested with the following cases, where applicable: 
 
@@ -626,24 +846,36 @@ Every internal function will be tested with the following cases, where applicabl
 	
 \subsection{Unit testing of output files}		
 Due to the user privacy constraint, no output files will be saved locally on a user's machine.
-However, the output of the software will be live on a user's Google calendar. The correctness of the output will be tested by getting calendar data of a sample event from a Google calendar and compared it to what it should be. 
+However, the output of the software will be live on a user's Google calendar. The correctness of the output will be tested by getting calendar data of a sample event from a Google calendar and \color{blue} manually \color{black} compared it to what it should be. 
 
 \newpage
 
 \section{Appendix}
-
-More will be added to this section in the next revision of this document.
+\color{blue}
+Not applicable. There are no added resources that are included in this documentation.
+\color{black}
 
 \subsection{Symbolic Parameters}
-Currently not applicable at this time.
+\color{blue}
+Not applicable. The product does not have symbolic parameters.
+\color{black}
 
 \subsection{Usability Survey Questions?}
 \begin{enumerate}
-\item How easy were the instructions to follow?
+\color{blue}
+\item Did you successfully use the software to import your Mosaic Schedule into Google Calendars? [Y/N + Comments]
 
-\item Were you confused at how to use the tool? If so, where and why?
+\item Was the software easy to use? [Y/N + Comments]
 
-\item Are there any other feature that you would like to see?
+\item Were the instructions clear? Did they guide you step by step? [Y/N + Comments]
+
+\item Were the response times to your actions acceptable? [Y/N]
+
+\item Did you run into any difficulty/problems/errors during use? [Comments]
+
+\item Given the color scheme, was the text easy to read? [Y/N]
+
+\item Other feedback or comments?
 
 \end{enumerate}
 \end{document}
