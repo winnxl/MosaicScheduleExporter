@@ -25,7 +25,7 @@ class Connector:
                                            __file__, scope='https://www.googleapis.com/auth/calendar')
             print(self.service)
             print(flags)
-            return
+            return True
         except ServerNotFoundError:
             print('Unable to connect. Retry when you have internet access.')
             return None
@@ -35,7 +35,7 @@ class Connector:
     def logout(self):
         self.service = None
         os.remove("calendar.dat")
-        return
+        return True
 
     ## @brief Checks if there is service.
     # @return Returns True if permissions granted, False otherwise

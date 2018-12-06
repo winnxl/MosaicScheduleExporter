@@ -5,3 +5,4 @@
 *.dat
 client_secrets.json
 *.pyc
+src/.coverage
