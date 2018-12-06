@@ -1,0 +1,25 @@
+Mosaic Schedule Importer User survey
+
+Please respond to as many fields as possible with comments as needed. 
+
+Did you successfully use the software to import your Mosaic Schedule into Google Calendars? [Y/N + Comments]
+
+Yes, things weren't opening when it was supposed to. The help screen had to be closed before I could proceed. The information disappeared from the box before i knew it was correct
+
+Was the software easy to use? [Y/N + Comments]
+No, it confused me that I had to open a how to use tool bar to find the steps, seems like it would be easier if the steps were easier to follow along with on the page itself
+
+Were the instructions clear? Did they guide you step by step? [Y/N + Comments]
+Yes, the steps were clear, but I was confused to whether or not I had completed a step, but that was due to the information disappearing before I could review it.
+
+Were the response times to your actions acceptable? [Y/N]
+Yes, it was working fine. A slight inconvenience was the importation into the calender, it made me think that it had stopped working
+
+Did you run into any difficulty/problems/errors during use? [Comments]
+Information disappeared before I clicked log in. I 
+
+Given the color scheme, was the text easy to read? [Y/N]
+Yes, Colour scheme is fine, I personally prefer the dark theme over the light theme but that is personal preference. The text was easy to read.
+
+Other feedback or comments?
+Why do I need to have a tab that tells me how to use it and have the steps in there. I feel like for a user sake, it should be as obvious as possible to help them use the software quicker and without taking too much of their time.

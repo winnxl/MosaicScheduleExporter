@@ -1,0 +1,24 @@
+Mosaic Schedule Importer User survey
+
+Please respond to as many fields as possible with comments as needed. 
+
+Did you successfully use the software to import your Mosaic Schedule into Google Calendars? [Y/N + Comments]
+Y
+
+Was the software easy to use? [Y/N + Comments]
+Y. Just have to click the blue buttons from left to right, top to bottom.
+
+Were the instructions clear? Did they guide you step by step? [Y/N + Comments]
+Y. Did not need them. A blue button to view the results of the calendar would be nice.
+
+Were the response times to your actions acceptable? [Y/N]
+Importing the calendar took a little longer. A status bar would be nice.
+
+Did you run into any difficulty/problems/errors during use? [Comments]
+N
+
+Given the color scheme, was the text easy to read? [Y/N]
+Y
+
+Other feedback or comments?
+N
