@@ -334,27 +334,9 @@ if __name__ == '__main__':
 
         # Help
         elif event == 'Full User Manual':
-            url = 'http://c.nicolak.ca/3XA3/User_Manual.pdf'
+            url = 'User_Manual.pdf'
             webbrowser.open(url)       
-            #sg.Popup('Button not implemented yet. May open a pdf')   
 
         elif event == 'About...':
             sg.Popup('Developers:', 'Cassandra Nicolak, Winnie Liang and Michelle Leung.', 'GitLab: https://gitlab.cas.mcmaster.ca/liangw15/3XA3Project')                           
 
-
-
-'''
-******************************************************************************
-Development Notes: (status)
-******************************************************************************
-
-- Error checking must be added to account for incorrect filename inputs.
-  Also, Fetch Schedule should perhaps produce a warning message if pressed
-  before browsing for a url.
-
-
-The authentication flow has completed.
-
-******************************************************************************
-
-'''
