@@ -10,7 +10,7 @@ class Rfc:
 
     ## @brief Offsets a date to the next weekday occurrance
     # @param date is a datetime.date(year, month, day) object.
-    # @param target_weekday is the numerical representation of the weekdays,
+    # @param target_weekday is a list of the numerical representation of the weekdays,
     # monday = 0, ... , friday = 4
     # @returns list of strings containing [year, month, day]
     @staticmethod
@@ -33,6 +33,7 @@ class Rfc:
     ## @brief Converts date from 'YYYY/MM/DD - YYYY/MM/DD' to 'YYYY-MM-DD'
     # Also offsets start day to the next occurring weekday ex. "next occuring tuesday"
     # @param Takes input in the form of 'YYYY/MM/DD - YYYY/MM/DD'
+    # @param weekday_num is a list of the numerical representation of the weekdays,
     # @return Returns 2 outputs, start, in the form of 'YYYY-MM-DD'
     # @return and end, in the form of 'YYYYMMDD'
     # Because start is for Rfc 2232 and end needs to be in Rfc 5545
@@ -48,7 +49,6 @@ class Rfc:
             start = '-'.join(start)
             end = ''.join(end.split('/'))
         # For 04/09/2018 formats
-        # Fixme: Offset Case for this
         else:
             day, month, year = start.split('/')
             d = datetime.date(int(year), int(month), int(day))
@@ -56,12 +56,13 @@ class Rfc:
             start = '-'.join(start)
             day, month, year = end.split('/')
             end = ''.join([year, month, day])
-        print(start)
         return start, end
 
     ## @brief Converts 12-hour to 24-hour time
     # @param Takes a 12-hour time input in the form of for example, '2:30PM'
-    # @return Returns military time
+    # @return Returns military time, for example '14:30'
+    # Does not make single digit hours have an extra 0. Except for 12:00AM
+    # Does not handle seconds. Only hr:min:am/pm formats
     @staticmethod
     def to_military(input):
         mil = None
@@ -89,6 +90,9 @@ class Rfc:
     ## @brief Converts a string like "MoTuWeThFr" to "MO,TU,WE,TH,FR"
     # @param Takes a string containing weekdays ex. "MoTuWeThFr"
     # @return Returns capitalized string with commas between the weekdays: "MO,TU,WE,TH,FR"
+    # @return A list of the numerical representation of the weekdays,
+    # where monday = 0, ... , friday = 4
+    # Does not handle saturdays and sundays
     @staticmethod
     def extract_weekdays(input):
         weekdays = ""
@@ -123,7 +127,6 @@ class Rfc:
     ## @brief Converts date and time strings to Rfc 2232 and 5545 format
     # @param Takes 2 inputs, a date string '2019/01/07 - 2019/04/09' and a time string 'We 2:30PM - 3:20PM'
     # @return Returns a start and end dateTime in RFC 2232 format, and a rrule in Rfc 5545 format
-    # Todo deal with daylight savings
     @staticmethod
     def rfc_output(date_str, time_str):
         # Extract and Process Strings
@@ -158,16 +161,5 @@ class Converter:
                 'recurrence': [rrule]
             }
 
-            print(event)
             output.append(event)
         return output
-
-# Testing Constants/Formats
-# Rfc Inputs:
-# date_str = '2019/01/07 - 2019/04/09'
-# time_str = 'We 2:30PM - 3:20PM'
-
-# Rfc Outputs:
-#'dateTime': '2015-05-28T09:00:00-07:00'
-#'dateTime': '2015-05-28T17:00:00-07:00'
-#'RRULE:FREQ=WEEKLY;UNTIL=20181128T045959Z;BYDAY=TU,TH'
