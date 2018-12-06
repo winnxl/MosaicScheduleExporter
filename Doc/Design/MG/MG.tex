@@ -29,7 +29,7 @@
 \newcommand{\mthemnum}{M\themnum}
 \newcommand{\mref}[1]{M\ref{#1}}
 
-\title{SE 3XA3: Module Internal Specification\\MAC Schedule Importer}
+\title{SE 3XA3: Module Guide\\MAC Schedule Importer}
 
 \author{Team 12, 0C
 		\\ Cassandra Nicolak, nicolace
@@ -55,8 +55,8 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+11/10/2018 & 1.0 & Rev 0\\
+\textcolor{blue}{12/04/2018} & \textcolor{blue}{ 2.0} & \textcolor{blue}{Rev 1}\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -140,6 +140,9 @@ The models below are the 'leaves' of the hierarchy tree and will be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mcv}:] convertor Module
 \item [\refstepcounter{mnum} \mthemnum \label{mcn}:] connect Module
 \item [\refstepcounter{mnum} \mthemnum \label{mgc}:] guiClient Module
+\color{blue}
+\item [\refstepcounter{mnum} \mthemnum \label{mst}:] setup Module
+\color{black}
 \end{description}
 
 *Note: The Hardware-Hiding Module is not implemented for this software-based project. Inclusion of this module is for formality purposes.
@@ -151,7 +154,7 @@ The models below are the 'leaves' of the hierarchy tree and will be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & ~ \\
+{Hardware-Hiding Module*} & ~ \\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Behaviour-Hiding Module} & convertor\\
@@ -161,7 +164,7 @@ The models below are the 'leaves' of the hierarchy tree and will be implemented.
 
 %{Software Decision Module} & ~ \\
 \multirow{1}{0.3\textwidth}{Software Decision Module} & parseMosaic\\
-%& guiClient\\
+& \textcolor{blue}{setup}\\
 %& ?\\
 \bottomrule
 
@@ -244,6 +247,15 @@ proposed by David Parnas. Each module is comprised of \emph{Secrets}, \emph{Serv
 \item[Implemented By:] parseMosaic
 \end{description}
 
+\color{blue}
+\subsubsection{Convert Python to Executable Input Module (\mref{mst})}
+\begin{description}
+\item[Secrets:]The method to covert the python program into a executable application.
+\item[Services:]It obtains the input python program and returns the corresponding executable application.
+\item[Implemented By:] setup
+\end{description}
+\color{black}
+
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: between the modules and the
@@ -264,9 +276,12 @@ FR04 & \mref{mgc}\\
 FR05 & \mref{mgc}\\
 FR06 & \mref{mgc} \\
 FR07 & \mref{mgc}\\
-FR08 & \mref{mgc}\\
+FR08 & \textcolor{blue}{N/A}\\
 FR09 & \mref{mcn}, \mref{mgc}\\
 FR10 & \mref{mgc}\\
+\textcolor{blue}{FR11} & \textcolor{blue}{\mref{mst}}\\
+\textcolor{blue}{FR12} & \textcolor{blue}{\mref{mst}}\\
+\textcolor{blue}{FR13} & \textcolor{blue}{\mref{mst}}\\
 NF01 & \mref{mgc}\\
 NF02 & \mref{mgc}\\
 NF03 & \mref{mgc}\\
@@ -307,15 +322,16 @@ NF17 & \mref{mpM}, \mref{mcv}, \mref{mcn}, \mref{mgc} \\
 \label{TblACT}
 \end{table}
 
+\color{blue}
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{uh.jpg}
-\caption{Use hierarchy among modules}
+\caption{\textcolor{blue}{Use hierarchy among modules}}
 \label{FigUH}
 \end{figure}
-
+\color{black}
 \section{Schedule}
 Please refer to the link to find the current Gantt Chart:
 \color{blue}
