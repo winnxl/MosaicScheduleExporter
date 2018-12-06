@@ -316,7 +316,7 @@ if __name__ == '__main__':
                             '2. Click [Fetch Schedule].', 'Please note: At this time, you can only fetch your schedule once.', 'You must close and re-open the application to fetch a different schedule.', ' ',
                             '3. If successful, you should see your schedule appear in the large textbox.', 'Make sure to confirm this information is correct prior to proceeding.', ' ', 
                             ) 
-        elif event == 'Logging into your google account':
+        elif event == 'Logging into your Google account':
             sg.Popup(                 
                             'Logging into your google account:', ' ',                      
                             '1. After fetching your schedule and visually confirming that the information is correct,', ' ', ' click the [Login] button in the Mosaic Google Calendar Importer application.', ' ',
