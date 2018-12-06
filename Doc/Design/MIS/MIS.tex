@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage[normalem]{ulem}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -56,7 +57,7 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 2018-11-07 & 1.0 & Rough Draft\\
-Date 2 & 1.1 & Notes\\
+2018-12-04 & 1.1 & Updated renames and added new methods.\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -116,33 +117,35 @@ scrapy, subprocess
 \begin{tabular}[pos]{|c|c|c|c|}
 	\hline
 	\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ \hline
-	parse & response: TextResponse & dataList: list of string tuples & -\\ \hline %!! What's the type for response?
+	parse & response: TextResponse & \sout{dataList} \color{blue}data\_list\color{black}: list of string tuples & -\\ \hline %!! What's the type for response?
 	%close & - & GUI & -\\ \hline
-	runMe & passed\_url: url (str) & GUI & -\\ \hline
+	\sout{runMe}  \color{blue}run\_me\color{black} & passed\_url: url (str) & GUI & -\\ \hline
 			
 \end{tabular}\\
 $*$Note: Exceptions are still in development.
 
 \subsection{Interface Semantics}
 \subsubsection{State Variables}
-dataList : list of string tuples
+\sout{dataList} \color{blue}data\_list\color{black} : list of string tuples
 \subsubsection{Environmental Variables}
 process : CrawlerSpiderProcess() from the Scrapy Library %process? name?
 \subsubsection{State Invariant}
-$0 \le |$dataList$|$
+$0 \le |$\sout{dataList} \color{blue}data\_list\color{black}$|$
 \subsubsection{Assumptions}
-parse() is called before runMe().
+parse() is called before \sout{runMe()} \color{blue}run\_me()\color{black}.
 \subsubsection{Access Program Semantics}
 parse(response)
 \begin{itemize}
-    \item transition: dataList $:= $ modify dataList so that it uses the Scrapy library to parse data from \emph{response} and stores a list of string tuples with the tuple containing (course name, component, schedule, location, dates) of each course.
+    \item transition: \sout{dataList} \color{blue}data\_list\color{black} $:= $ modify \sout{dataList} \color{blue}data\_list \color{black} so that it uses the Scrapy library to parse data from \emph{response} and stores a list of string tuples with the tuple containing (course name, component, schedule, location, dates) of each course.
     \item exception : None
 \end{itemize}
-runMe()
+\sout{runMe()} \color{blue}run\_me()\color{black}
 \begin{itemize}
-    \item output $:= $ dataList 
+    \item output $:= $ \sout{dataList} \color{blue}data\_list\color{black} 
     \item exception: None
 \end{itemize}
+
+\newpage
 
 \section{MIS of Converter} \label{SecM1}
 \subsection{Uses}
@@ -205,12 +208,13 @@ convert(input)
     \item exception: None
 \end{itemize}
 
-\section{MIS of Connector} \label{SecM3}
+\newpage
+\section{MIS of Connector} \label{SecM4}
 \subsubsection{Uses}
 sys, os, googleapiclient, socket, oauth2client, httplib2
 \subsection{Interface Syntax}
 \subsubsection{Exported Access Programs}
-\begin{tabular}[pos]{|c|c|c|c|}
+\begin{tabular}[pos]{|p{3cm}|p{1cm}|p{2cm}|p{10cm}|}
 	\hline
 	\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ \hline
 	login & - & GUI & ServerNotFoundError\\ \hline
@@ -291,7 +295,31 @@ push\_to\_schedule
     \item output: Pushes events to Google calendars. Returns True if successful. False otherwise.
 \end{itemize}
 
-\section{MIS of guiClient} \label{SecM4}
+\newpage
+\color{blue}
+\section{MIS of Setup} \label{SecM4}
+\subsection{Uses}
+sys, os, cx\_freeze
+
+\subsection{Interface Syntax}
+\subsubsection{Exported Access Programs}
+Not applicable.
+\subsection{Interface Semantics}
+\subsubsection{State Variables}
+build\_exe\_options
+\subsubsection{Environmental Variables}
+os.environ['TCL\_LIBRARY']\\
+os.environ['TK\_LIBRARY']
+\subsubsection{State Invariant}
+None
+\subsubsection{Assumptions}
+None, unless stated in the access program.
+\subsubsection{Access Program Semantics}
+This module is a configuration file for cx\_freeze, a software that converts Python programs into executable applications. The module consists of import statements that imports all relevant libraries and a setup function of cx\_freeze. The function contains an input file parameter with the input Python program guiClient.py and build options that include the packages that is required to build the program.
+\color{black}
+
+\newpage
+\section{MIS of guiClient} \label{SecM5}
 \subsubsection{Uses}
 PySimpleGUI, parseMosaic, connector, converter, urllib, webbrowser
 
@@ -301,53 +329,67 @@ PySimpleGUI, parseMosaic, connector, converter, urllib, webbrowser
 \begin{tabular}[pos]{|c|c|c|c|}
 	\hline
 	\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ \hline
-    convertURL & str & str & - \\ \hline		
-	parseMosaic & str & fetchedList: list of tuple of str & -\\ \hline
-    printSched & fetchedList: list of tuple of str & str & - \\ \hline		
+    \sout{convertURL} &  &  &  \\ 
+    \color{blue}convert\_url\color{black} & str & str & - \\ \hline		
+	\sout{parseMosaic} &  & \sout{fetchedList: list of tuple of str} &  \\  
+	\color{blue}parse\_mosaic\color{black} & str &  \color{blue}fetched\_list\color{black}: list of tuple of str & -\\ \hline
+	\color{blue}set\_list & \color{blue}parsed\_list: list of tuple of str & \color{blue}fetched\_list: list of tuple of str & \color{blue}-\color{black} \\ \hline
+    \sout{printSched} & \sout{fetchedList: list of tuple of str} &  &  \\ 
+    \color{blue}print\_sched\color{black} & \color{blue}fetched\_list\color{black}: list of tuple of str & str & - \\ \hline	
 	fetch & str & str & - \\ \hline
 	conn & - & Object & - \\ \hline	
 	login & - & bool & - \\ \hline
-	logout & - & - & - \\ \hline	
-    pushSchedule & - & bool & - \\ \hline	
-			
+	logout & - & \color{blue}bool\color{black} & \color{blue}AttributeError\color{black} \\ \hline	
+    \sout{pushSchedule} &   &  & \\ 
+    \color{blue}push\_schedule\color{black} & - & bool & - \\ \hline
+	\color{blue}fetch\_button & \color{blue}- & \color{blue}- & \color{blue}-\color{black} \\ \hline
+	\color{blue}fetch\_popup & \color{blue}- & \color{blue}bool & \color{blue}-\color{black} \\ \hline	
+	\color{blue}login\_button & \color{blue}- & \color{blue}- & \color{blue}-\color{black} \\ \hline
+	\color{blue}import\_button & \color{blue}- & \color{blue}- & \color{blue}AttributeError\color{black} \\ \hline
+% \color{blue}data\_list\color{black}			
 \end{tabular}
 
 \subsection{Interface Semantics}
 \subsubsection{State Variables}
-fetchFLG: bool\\
-fetchedList: list of string tuples\\
-googleConn: None
+\sout{fetchFLG} \color{blue}\_fetch\_flg\color{black}: bool\\
+\sout{fetchedList} \color{blue}\_fetched\_list\color{black}: list of string tuples\\
+\sout{googleConn} \color{blue}\_google\_conn\color{black}: None
 \subsubsection{Environmental Variables}
 layout: list of lists of type GUI\\
 window: GUI\\
 menu\_def: list of lists of str
 \subsubsection{State Invariant}
-$|$fetchedList$| \ge 0$
+$|$\sout{fetchedList} \color{blue}\_fetched\_list\color{black}$| \ge 0$
 \subsubsection{Assumptions}
 None, unless stated by the access programs.
 \subsubsection{Access Program Semantics}
-convertURL(userInput) 
+\sout{convertURL(userInput)} \color{blue}convert\_url(user\_input)\color{black} 
 \begin{itemize}
-    \item output: userURL $:=$ given a url from a path name (str), it returns the absolute file path (str).
+    \item output: \sout{userURL} \color{blue}user\_url\color{black}  $:=$ given a url from a path name (str), it returns the absolute file path (str).
     \item exception: None
 \end{itemize}
-parseMosaic(url)
+\sout{parseMosaic(url)} \color{blue}parse\_mosaic(url)\color{black}
 \begin{itemize}
     \item output: url:= Parses the html document from \emph{url} and displays the \emph{url} on the GUI.
     \item exception: None
 \end{itemize}
-printSched(fetchList)
+\color{blue}set\_list()\color{black}
 \begin{itemize}
-    \item output: out:= Converts fetchList into the following format of str: "Course, Type, When, Location, Start/End Dates"
+    \color{blue}\item output: url:= Sets \emph{\_fetched\_list} to \emph{parsed\_list}.\color{black}
+    \color{blue}\item exception: None\color{black}
+\end{itemize}
+\sout{printSched(fetchList)} \color{blue}print\_sched(fetch\_list)\color{black}
+\begin{itemize}
+    \item output: out:= Converts \sout{fetchList} \color{blue}fetch\_list \color{black} into the following format of str: "Course, Type, When, Location, Start/End Dates"
 \end{itemize}
 fetch(url)
 \begin{itemize}
-    \item output: out:= Parses url using parseMosaic() function and returns the schedule using printSched().
+    \item output: out:= Parses url using\sout{parseMosaic()} \color{blue}parse\_mosaic() \color{black} function and returns the schedule using \sout{printSched()} \color{blue}print\_sched()\color{black}.
     \item exception: None
 \end{itemize}
 conn()
 \begin{itemize}
-    \item transition: Converts the output of parseMosaic to Google API inputs.
+    \item transition: Converts the output of \sout{parseMosaic} \color{blue}parse\_mosaic \color{black} to Google API inputs.
     \item exception: None
 \end{itemize}
 login()
@@ -357,14 +399,35 @@ login()
 \end{itemize}
 logout()
 \begin{itemize}
-    \item transition: deletes access key to user's account. 
-    \item exception: None
+    \item \sout{transition: deletes access key to user's account. }
+    \item \color{blue}output: out:= Deletes access key to user's account. Returns true if this is successful, otherwise false.\color{black}
+    \item exception: \sout{None} \color{blue}AttributeError\color{black}
 \end{itemize}
-pushSchedule()
+\sout{pushSchedule()} \color{blue}push\_schedule()\color{black}
 \begin{itemize}
     \item output: out:= Uploads event items to a Google Calendar. Returns true if the import is successful and false otherwise.
 \end{itemize}
-
+\color{blue}fetch\_button()\color{black}
+\begin{itemize}
+    \color{blue}\item output: url:= Updates the \emph{tbxSchedule} textbox with a str.\color{black}
+    \color{blue}\item exception: None\color{black}
+\end{itemize}
+\color{blue}fetch\_popup()\color{black}
+\begin{itemize}
+    \color{blue}\item output: url:= Displays a pop-up window to the user. Returns true if user selects 'Yes', otherwise false.\color{black}
+    \color{blue}\item exception: None\color{black}
+\end{itemize}
+\color{blue}login\_button()\color{black}
+\begin{itemize}
+    \color{blue}\item transition: url:= Opens a new connection with \emph{conn()}.\color{black}
+    \color{blue}\item output: url:= Updates the \emph{tbxLogin} textbox with a str.\color{black}
+    \color{blue}\item exception: None\color{black}
+\end{itemize}
+\color{blue}import\_button()\color{black}
+\begin{itemize}
+    \color{blue}\item transition: url:= Updates the \emph{tbxImport} textbox with a str.\color{black}
+    \color{blue}\item exception: AttributeError\color{black}
+\end{itemize}
 
 %\begin{figure}[H]
 %\centering
