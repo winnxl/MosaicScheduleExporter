@@ -1,5 +1,6 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{placeins}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
@@ -12,17 +13,17 @@
 }
 \usepackage[round]{natbib}
 
-\title{SE 3XA3: Test Report\\Title of Project}
+\title{SE 3XA3: Test Report\\MAC Schedule Importer}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 12, Team 0C
+		\\ Cassandra Nicolak, nicolace
+		\\ Michelle Leung, leungm16
+		\\ Winnie Liang, liangw15
 }
 
 \date{\today}
 
-\input{../Comments}
+%\input{../Comments}
 
 \begin{document}
 
@@ -38,44 +39,1257 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+12/02/18 & 1.0 & Revision 0\\
+12/05/18 & 1.1 & Revision 1\\
 \bottomrule
 \end{tabularx}
 \end{table}
-
+\FloatBarrier
 \newpage
 
 \pagenumbering{arabic}
 
-This document ...
+This document presents the testing results from the test cases, methods and tools described in the Test Plan document. The test report will give a summary of the function and non-functional requirement evaluations. This document will also list the outcomes of the unit testing for each of the modules that are described in the Module Guide document changes made from testing.
 
 \section{Functional Requirements Evaluation}
+	Description of Tests: The purpose of these tests is to ensure that the user is able to use the software according to the requirements in the Specifications Documentation. These tests will include: mostly manual testing. The correctness will be verified through unit testing. \\ \\
+	
+	Test Name: TFR01 \\
+	
+	Results: The user is able to access the correct location to download their schedule from a button in the user interface. The user clicks 'Open Timetable' under 'File' in the menu of the application. \\ \\
+	
+	Test Name: TFR02 \\
+	
+	Results: The user is able to verify that the information being inserted into the calendar is correct. The application provides the user with this information through the use of a text box in the user interface. \\ \\
+	
+	Test Name: TFR03 \\
+	
+	Results: The user is able to make changes to their McMaster timetable and re-import this new schedule. The application accounts for multiple uses from a user by having individual calendars imported.\\ \\
+	
+	Test Name: TFR04 \\
+	
+	Results: The user is able to navigate the user interface as it has a simple GUI. This was tested through User tests and feedback surveys. \\ \\
 
+	Test Name: TFR05 \\
+	
+	Results: The user is able to use the application easily and quickly by using the 'Help' menu and accessing a User Manual. There is also a shortcut menu for 'How to use' the application. \\ \\
+
+	Test Name: TFR06 \\
+	
+	Results: The user is able to confirm their schedule information prior to importing as the fetch, login and import steps are separate commands (buttons) and there are text boxes in the user interface to update the user on the current progress. \\ \\
+
+	Test Name: TFR07 \\
+	
+	Results: The user is informed of processing private information. After a user clicks the 'Login' button, they are brought to a page in their browser that requests permission to access the user's personal information in their Mosaic (Open Timetable) and Google account (Open Calendar and Import). \\ \\	
+	
+	Test Name: TFR08 \\
+	
+	Results: The user is able to exit the application by either clicking the 'X' in the top-right corner of window or by clicking 'Exit' under 'File' in the menu. \\ \\
+
+
+\newpage	 %fix formatting	
+	Test Name: TFR09 \\
+	
+	Results: The user is able to confirm they are ready to retrieve their Mosaic schedule prior to executing the function. The user is also notified that they can only fetch their Mosaic calendar once per session. \\ \\	
+
+	Test Name: TFR10 \\
+	
+	Results: The user is informed on the progress status of the import step. The application updates a text box in the user interface with a message indicating whether the import was successful or unsuccessful. \\ \\		
+
+	Test Name: TFR11 \\
+	
+	Results: The user is informed on the progress status of the login step. The application updates a text box in the user interface with a message indicating that the application has successfully accessed the user's Google account.\\ \\	
+	
 \section{Nonfunctional Requirements Evaluation}
 
 \subsection{Usability}
+
+	\subsubsection{GUI Testing}
+	
+	Description of Tests: Usability of the Graphical User Interface (GUI) was tested by a several McMaster students, most of whom are not in a technical-related field of study. This allows for the assumption that our intended users have basic knowledge of how to use computers. Participants were given the application and were told to follow the displayed instructions. No further help, hints, cues, etc were given. Afterwards, the participants filled out a feedback form that evaluated the system on its usability.\\
+	\\
+\newpage	 %fix formatting		
+	Test Name: general\_ui\\
+	Results: The overall user interface is simple to use based on the majority of the feedback. It's intuitive with minimal buttons, in the English language and does not use colour to convey meaning. Users were able to operate the application on a desktop and laptop.\\
+	\\
+	Test Name: app\_exe\\
+	Results: Users were able to operate the application on a desktop and laptop.\\
+	\\	
+	Test Name: browse\_button\\
+	Results: The Browse button successfully allows a user to select the file from their computer and update the text box field.\\
+	\\	
+	Test Name: fetch\_button\\
+	Results: The Fetch Schedule button successfully prompts the user with a pop-up asking if they have selected their schedule. After the schedule has been parsed, the application properly leaves an error message for the user if they click the button again. \\
+	\\
+	Test Name: fetch\_popup\\
+	Results: If the user selected 'Yes', the application successfully parses the user's information and displays this information in the text box. If the user selects 'No', the application closes the pop-up and doesn't execute any functions.\\
+	\\		
+	Test Name: login\_button\\
+	Results: The Login button successfully opens the Google login authorization in a user's browser. The text box updates with the correct status response. \\
+	\\	
+	Test Name: import\_button\\
+	Results: The Import button successfully imports a user's calendar. The text box updates with the correct status response.\\
+	\\
+	Test Name: exit\_app\\
+	Results: The application gracefully closes with the 'Exit' button or the 'X' in the top-right corner.\\
+	\\
+\newpage	 %fix formatting		
+	Test Name: internal\_menu\\
+	Results: The following internal menu options work as intended: Obtaining your schedule, Fetching your schedule, Logging into your Google account, Importing your schedule, Exit, and About... (which contains information about Gitlab and the developers).\\
+	\\
+	Test Name: external\_menu\\
+	Results: The following external menu options work as intended: Open Timetable, Open Calendar, and Full User Manual.\\
+	\\		
+
 		
 \subsection{Performance}
+	\subsubsection{Installation}
+	Description of Tests: The following test tests the performance of the user's ability to install the program.\\
+	\\
+	Test Name: install\_perf\\
+	Results: All participants were able to successfully complete the task of installing the program in under 10 minutes. This includes download and extraction time for slow internet connections.
+	
+	\subsubsection{Parsing}
+	Description of Tests: The following tests test the performance of the parsing component of the application.\\
+	\\
+	Test Name: parse\_perf\\
+	Results: The application parses a user's schedule in under 0.5 seconds.
+	
+	\subsubsection{Google Connection}
+	
+	Description of Tests: The following tests test the performance of the Google API component of the application.\\
+	\\
+	Test Name: login\_perf\\
+	Results: A user is able to authenticate their account in under 3 steps. This takes overall less than 10 seconds to do. The Chrome window opens in less than 0.5 seconds. \\
+	\\
+	Test Name: import\_perf\\
+	Results: The application takes up to 30 seconds depending on a user's connection speed. The user is notified of this through a text box once the user reaches this step.
 
-\subsection{etc.}
+	
+%\subsection{etc.}
 	
 \section{Comparison to Existing Implementation}	
 
-This section will not be appropriate for every project.
+The existing implementation is a Google Chrome extension developed using JavaScript, HTML, CSS and the Google API (for web). The re-implementation is a Python desktop application developed using Python, Scrapy web crawler, A Tkinter wrapper library and the Google API (for Python). Both implementations parse an HTML document and import this information into a student's Google calendar. The existing implementation uses regular expressions to parse and select the HTML DOM elements. The re-implementation uses XPath selectors.
 
 \section{Unit Testing}
 
+	\subsection{GUI Testing}
+	    
+	    % test_convert_url()
+		\begin{table}[!htbp]
+		
+			\begin{tabularx}{\textwidth}{|l|X|}
+			
+				\hline
+				\textbf{Test Name} & test\_convert\_url
+				\\ 
+				\hline
+				\textbf{Initial State} & - \\ 
+				\hline
+				\textbf{Input} & user\_input  \\ 
+				\hline 
+				\textbf{Expected Output} & test\_url \\ 
+				\hline				
+				\textbf{Actual Output} & The requested action passed assertEqual test. \\				
+				\hline
+			\end{tabularx}
+			\caption{Test for convert\_url()}
+			\label{Table}
+		\end{table}
+		
+	    % test_set_list()		
+		\begin{table}[!htbp]			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				\textbf{Test Name} & test\_set\_list
+				\\ 
+				\hline
+				\textbf{Initial State} & \_fetched\_list := [ ] \\ 
+				\hline
+				\textbf{Input} & fetch\_list  \\ 
+				\hline 
+				\textbf{Expected Output} & - \\ 
+				\hline				
+				\textbf{Actual Output} & The requested action passed assertEqual test. \\				
+				\hline
+			\end{tabularx}
+			\caption{Test for set\_list()}
+			\label{Table}
+		\end{table}
+		
+	    % test_print_sched()		
+		\begin{table}[!htbp]			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				\textbf{Test Name} & test\_print\_sched
+				\\ 
+				\hline
+				\textbf{Initial State} & - \\ 
+				\hline
+				\textbf{Input} & fetch\_list  \\ 
+				\hline 
+				\textbf{Expected Output} & sched\_str \\ 
+				\hline				
+				\textbf{Actual Output} & The requested action passed assertEqual test. \\				
+				\hline
+			\end{tabularx}
+			\caption{Test for print\_sched()}
+			\label{Table}
+		\end{table}
+		
+	    % test_print_sched_err()		
+		\begin{table}[!htbp]			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				\textbf{Test Name} & test\_print\_sched\_err
+				\\ 
+				\hline
+				\textbf{Initial State} & \_google\_conn := None \\ 
+				\hline
+				\textbf{Input} & Int  \\ 
+				\hline 
+				\textbf{Expected Output} & - \\ 
+				\hline				
+				\textbf{Actual Output} & The requested action successfully raised a TypeError if an incorrect type is passed through. \\				
+				\hline
+			\end{tabularx}
+			\caption{Test for print\_sched\_err()}
+			\label{Table}
+		\end{table}
+
+	    % test_push_schedule_err()		
+		\begin{table}[!htbp]			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				\textbf{Test Name} & test\_push\_schedule\_err
+				\\ 
+				\hline
+				\textbf{Initial State} & \_google\_conn := None \\ 
+				\hline
+				\textbf{Input} & -  \\ 
+				\hline 
+				\textbf{Expected Output} & bool \\ 
+				\hline				
+				\textbf{Actual Output} & The requested action successfully raised an AttributeError if called before a connection is created. \\				
+				\hline
+			\end{tabularx}
+			\caption{Test for push\_schedule\_err()}
+			\label{Table}
+		\end{table}
+
+	    % test_fetch()		
+		\begin{table}[!htbp]			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				\textbf{Test Name} & test\_fetch
+				\\ 
+				\hline
+				\textbf{Initial State} & \_fetch\_flg := False \\ 
+				\hline
+				\textbf{Input} & test\_url  \\ 
+				\hline 
+				\textbf{Expected Output} & sched\_str \\ 
+				\hline				
+				\textbf{Actual Output} & The requested action passed assertEqual tests. \\				
+				\hline
+			\end{tabularx}
+			\caption{Test for fetch()}
+			\label{Table}
+		\end{table}
+
+	    % test_login_err()		
+		\begin{table}[!htbp]			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				\textbf{Test Name} & test\_login\_err
+				\\ 
+				\hline
+				\textbf{Initial State} & \_google\_conn := None \\ 
+				\hline
+				\textbf{Input} & -  \\ 
+				\hline 
+				\textbf{Expected Output} & bool \\ 
+				\hline				
+				\textbf{Actual Output} & The requested action successfully raised an AttributeError if called before a connection is created.  \\				
+				\hline
+			\end{tabularx}
+			\caption{Test for login\_err()}
+			\label{Table}
+		\end{table}
+
+	    % test_logout()		
+		\begin{table}[!htbp]			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				\textbf{Test Name} & test\_logout
+				\\ 
+				\hline
+				\textbf{Initial State} & \_google\_conn := None \\ 
+				\hline
+				\textbf{Input} & -  \\ 
+				\hline 
+				\textbf{Expected Output} & False \\ 
+				\hline				
+				\textbf{Actual Output} & The requested action passed assertEqual test. \\				
+				\hline
+			\end{tabularx}
+			\caption{Test for logout()}
+			\label{Table}
+		\end{table}
+		
+\FloatBarrier       %float end for GUI Testing
+    \subsection{Parse Testing}
+    
+    	\begin{table}[!htbp]
+    	
+			\begin{tabularx}{\textwidth}{|l|X|}
+			
+    			\hline
+    			\textbf{Test Name} & test\_parse\_output\\ 
+    			\hline
+    			\textbf{Initial State} & ret := [ ] \\ 
+    			\hline
+    			\textbf{Input} & file\_url  \\ 
+    			\hline 
+    			\textbf{Expected Output} & output\_list \\
+    			\hline 				
+    			\textbf{Actual Output} & The requested action passed assertEqual test. \\		
+    			\hline
+    			
+			\end{tabularx}
+    		\caption{Test for parse\_output()}
+    		\label{Table}
+    	\end{table}
+\FloatBarrier       %float end for Parse Testing
+
+
+	\subsection{Connector Testing}
+	The unit tests for the connector are to be done manually. The tester is to run testConnector.py. 
+	The tester proceeds through each case by pressing "enter" to setup the test	and is to follow the instructions printed on the console, listed under Input in the tables below. \newline
+        \begin{table}[!htbp]
+            % dummy table. dont remove this or the first tabular will be out of alignment
+            %\color{white}\begin{tabularx}{\textwidth}{|l|X|}% start case
+			%\end{tabularx}\\ %end case
+			\color{black}
+			% end of dummy table.
+        
+            \hfill	%empty space 
+            
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_check\_perms\_1
+                \\\hline
+                \textbf{Initial State} & self.service = None. calendar.dat file does not exist.
+                \\\hline
+                \textbf{Input} & No particular input. User presses enter to start test.
+                \\\hline 
+                \textbf{Expected Output} & False
+                \\\hline
+                \textbf{Actual Output} & Console printed False - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+    	\end{table}			
+			\hfill	%empty space 
+		\begin{table}[!htbp]			
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_login\_1
+                \\\hline
+                \textbf{Initial State} & self.service = None
+                \\\hline
+                \textbf{Input} & User presses "allow" on the webpage that appears.
+                \\\hline 
+                \textbf{Expected Output} & Browser displays: The authentication flow has completed.\newline Console prints True. calendar.dat file exists.
+                \\\hline
+                \textbf{Actual Output} & Browser displayed the image. Console printed True - Pass
+                \\\hline
+            \end{tabularx}\\ %end case
+    	\end{table}	
+            \hfill	%empty space 
+		\begin{table}[!htbp]	        
+	        %check_perms_2
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_check\_perms\_2
+                \\\hline
+                \textbf{Initial State} & self.service = Not None. calendar.dat file exists.
+                \\\hline
+                \textbf{Input} & No particular input. User presses enter to start test.
+                \\\hline 
+                \textbf{Expected Output} & true
+                \\\hline
+                \textbf{Actual Output} & True - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+    	\end{table}	
+            \hfill	%empty space 
+ 		\begin{table}[!htbp]          
+	        %create_cal_1
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_create\_cal\_1
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & No particular input. User presses enter to start test.
+                \\\hline 
+                \textbf{Expected Output} & Console prints True, a schedule named Mac Schedule appears in Google calendars. There should be no event in the schedule.
+                \\\hline
+                \textbf{Actual Output} & True and blank calendar appears. - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+    	\end{table}	
+            \hfill	%empty space 
+		\begin{table}[!htbp]
+	        %insert_events_1
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_insert\_events\_1
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & No particular input. User presses enter to start test.
+                \\\hline 
+                \textbf{Expected Output} & Console prints True, a schedule named Mac Schedule appears in Google calendars. There should be no event in the schedule.
+                \\\hline
+                \textbf{Actual Output} & Console prints True and blank calendar appears. - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+    	\end{table}	
+            \hfill	%empty space 
+		\begin{table}[!htbp]
+	        %get_num_events
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_get\_num\_events\_1
+                \\\hline
+                \textbf{Initial State} & Calendar made with create\_cal() during the session has been filled with events.
+                \\\hline
+                \textbf{Input} & No particular input. User presses enter to start test.
+                \\\hline 
+                \textbf{Expected Output} & Console prints a number
+                \\\hline
+                \textbf{Actual Output} & Console prints 3 - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+    	\end{table}	
+            \hfill	%empty space 
+
+\newpage  %formatting          
+            
+		\begin{table}[!htbp]
+	        %check_insertion
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_check\_insertion\_1
+                \\\hline
+                \textbf{Initial State} & Calendar made with create\_cal() during the session has been filled with events using insert\_events().
+                \\\hline
+                \textbf{Input} & No particular input. User presses enter to start test.
+                \\\hline 
+                \textbf{Expected Output} & Console prints True
+                \\\hline
+                \textbf{Actual Output} & Console prints True - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+    	\end{table}	
+            \hfill	%empty space 
+        
+		\begin{table}[!htbp]
+	        %remove_new_cal
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_remove\_new\_cal\_1
+                \\\hline
+                \textbf{Initial State} & Calendar made with create\_cal() exists and its corresponding identifier is in self.bodies of the connector object.
+                \\\hline
+                \textbf{Input} & No particular input. User presses enter to start test.
+                \\\hline 
+                \textbf{Expected Output} & Console prints True. The created schedule has been removed from Google Calendars.
+                \\\hline
+                \textbf{Actual Output} & Console prints True and Mac Schedule is no longer on Google Calendars - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+    	\end{table}	
+            \hfill	%empty space 
+		\begin{table}[!htbp]
+	        %push_to_schedule
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_push\_to\_schedule\_1
+                \\\hline
+                \textbf{Initial State} & - 
+                \\\hline
+                \textbf{Input} & No particular input. User presses enter to start test.
+                \\\hline 
+                \textbf{Expected Output} & New Mac Schedule is created and filled with events.
+                \\\hline
+                \textbf{Actual Output} & Schedule created with events. Events match the inputs given. Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+    	\end{table}	
+            \hfill	%empty space 
+		\begin{table}[!htbp]            
+	        %logout_1
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_logout\_1
+                \\\hline
+                \textbf{Initial State} & self.service = Not None. calendar.dat file exists.
+                \\\hline
+                \textbf{Input} & No particular input. User presses enter to start test.
+                \\\hline 
+                \textbf{Expected Output} & True, self.service = None, calendar.dat no longer exists.
+                \\\hline
+                \textbf{Actual Output} & True - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+			%\caption{Tests for Connector()}
+			%\label{Table}
+    	\end{table}	
+    \FloatBarrier       %float end for Parse Testing
+	\subsection{Converter Testing}
+        \subsubsection{Function Tests: offset\_date}
+        \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & offset\_date\_1  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & date = datetime.date(2018, 12, 18) \newline Rfc.offset\_date(date, [0])
+                \\\hline 
+                \textbf{Expected Output} & ["2018", "12", "24"]
+                \\\hline
+                \textbf{Actual Output} & ["2018", "12", "24"] - Pass
+                \\\hline
+
+            \end{tabularx}\\ %end case
+    	\end{table}	
+            \hfill	%empty space 
+		\begin{table}[!htbp] 	    
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_offset\_date\_2  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & date = datetime.date(2018, 12, 18) \newline Rfc.offset\_date(date, [2])
+                \\\hline 
+                \textbf{Expected Output} & ["2018", "12", "19"]
+                \\\hline
+                \textbf{Actual Output} & ["2018", "12", "19"] - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+    	\end{table}	
+            \hfill	%empty space 
+		\begin{table}[!htbp] 	 
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & test\_offset\_date\_3  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & date = datetime.date(2018, 12, 18) \newline Rfc.offset\_date(date, [3, 0, 2])
+                \\\hline 
+                \textbf{Expected Output} & ["2018", "12", "19"]
+                \\\hline
+                \textbf{Actual Output} & ["2018", "12", "19"] - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+			\caption{Tests for Rfc.offset\_date()}
+			\label{Table}
+	    \end{table}
+	    
+\FloatBarrier       %float end 
+
+\newpage %formatting
+
+	    \subsubsection{Function Tests: extract\_date}
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & extract\_date\_1  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & date\_str = "2018/09/04 - 2018/12/05" \newline Rfc.extract\_date(date\_str, [0])
+                \\\hline 
+                \textbf{Expected Output} & ('2018-9-10', '20181205')
+                \\\hline
+                \textbf{Actual Output} & ('2018-9-10', '20181205') - Pass
+                \\\hline
+			\end{tabularx}\\ % end case
+	    \end{table}			
+            \hfill	%empty space 
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & extract\_date\_2  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & date\_str = "04/09/2018 - 05/12/2018" \newline Rfc.extract\_date(date\_str, [0])
+                \\\hline 
+                \textbf{Expected Output} & ('2018-9-10', '20181205')
+                \\\hline
+                \textbf{Actual Output} & ('2018-9-10', '20181205') - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+			\caption{Tests for Rfc.extract\_date()}
+			\label{Table}
+        \end{table}
+
+\FloatBarrier       %float end 
+
+	    \subsubsection{Function Tests: to\_military}
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & to\_military\_1  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Rfc.to\_military("2:00AM")
+                \\\hline 
+                \textbf{Expected Output} & "2:00"
+                \\\hline
+                \textbf{Actual Output} & "2:00" - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+        \end{table}			
+			\hfill	%empty space 
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & to\_military\_2  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Rfc.to\_military("2:00PM")
+                \\\hline 
+                \textbf{Expected Output} & "14:00"
+                \\\hline
+                \textbf{Actual Output} & "14:00" - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+	    \end{table}			
+			\hfill	%empty space 
+	    \begin{table}[!htbp]    
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & to\_military\_3  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Rfc.to\_military("12:00AM")
+                \\\hline 
+                \textbf{Expected Output} & "00:00"
+                \\\hline
+                \textbf{Actual Output} & "00:00" - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+	    \end{table}			
+			\hfill	%empty space 
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & to\_military\_4  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Rfc.to\_military("12:00PM")
+                \\\hline 
+                \textbf{Expected Output} & "12:00"
+                \\\hline
+                \textbf{Actual Output} & "12:00" - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+			\caption{Tests for Rfc.to\_military()}
+			\label{Table}
+	    \end{table}
+
+\FloatBarrier       %float end 
+
+    	\subsubsection{Function Tests: extract\_weekdays}
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & extract\_weekdays\_1  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Rfc.extract\_weekdays("MoWeFr")
+                \\\hline 
+                \textbf{Expected Output} & ("MO,WE,FR", [0, 2, 4])
+                \\\hline
+                \textbf{Actual Output} & ("MO,WE,FR", [0, 2, 4]) - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+	    \end{table}
+            \hfill	%empty space 
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & extract\_weekdays\_2  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Rfc.extract\_weekdays("Tu")
+                \\\hline 
+                \textbf{Expected Output} & ("TU", [1])
+                \\\hline
+                \textbf{Actual Output} & ("TU", [1]) - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+	    \end{table}
+            \hfill	%empty space 
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & extract\_weekdays\_3  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Rfc.extract\_weekdays("Th")
+                \\\hline 
+                \textbf{Expected Output} & ("TH", [3])
+                \\\hline
+                \textbf{Actual Output} & ("TH", [3]) - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+	    \end{table}
+            \hfill	%empty space 
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & extract\_weekdays\_4  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Rfc.extract\_weekdays("ThMo")
+                \\\hline 
+                \textbf{Expected Output} & ("MO,TH", [0, 3])
+                \\\hline
+                \textbf{Actual Output} & ("MO,TH", [0, 3]) - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+			\caption{Tests for Rfc.extract\_weekdays()}
+			\label{Table}
+	    \end{table}
+	    
+	    \FloatBarrier       %float end 
+		
+	    \subsubsection{Function Tests: rfc\_output}
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & rfc\_output\_1  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Rfc.rfc\_output("2019/01/07 - 2019/04/09", "We 2:30 - 3:20PM")
+                \\\hline 
+                \textbf{Expected Output} & ('2019-1-9T2:30:00', '2019-1-9T15:20:00', 'RRULE:FREQ=WEEKLY;UNTIL=20190409T045 \newline 959Z;BYDAY=WE')
+                \\\hline
+                \textbf{Actual Output} & ('2019-1-9T2:30:00', '2019-1-9T15:20:00', 'RRULE:FREQ=WEEKLY;UNTIL=20190409T045 \newline 959Z;BYDAY=WE') - Pass
+                \\\hline
+	        \end{tabularx}\\ %end case
+			\caption{Tests for Rfc.rfc\_output()}
+			\label{Table}
+	    \end{table}
+	    
+        \FloatBarrier       %float end 
+
+\newpage % formatting
+
+	    \subsubsection{Function Tests: convert}
+	    The inputs and outputs for this section are defined variables in the setUp function.
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & convert\_1  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Converter.convert(self.input\_1)
+                \\\hline 
+                \textbf{Expected Output} & self.output\_1
+                \\\hline
+                \textbf{Actual Output} & self.output\_1 - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+	    \end{table}			
+            \hfill	%empty space 
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & convert\_2  
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Converter.convert(self.input\_2)
+                \\\hline 
+                \textbf{Expected Output} & self.output\_2
+                \\\hline
+                \textbf{Actual Output} & self.output\_2 - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+	    \end{table}
+            \hfill	%empty space 
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & convert\_3
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Converter.convert(self.input\_3)
+                \\\hline 
+                \textbf{Expected Output} & self.output\_3
+                \\\hline
+                \textbf{Actual Output} & self.output\_3 - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+	    \end{table}
+            \hfill	%empty space 
+	    \begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|X|}% start case
+				\hline
+                \textbf{Test Name} & convert\_4 
+                \\\hline
+                \textbf{Initial State} & -
+                \\\hline
+                \textbf{Input} & Converter.convert(self.input\_4)
+                \\\hline 
+                \textbf{Expected Output} & self.output\_4
+                \\\hline
+                \textbf{Actual Output} & self.output\_4 - Pass
+                \\\hline
+			\end{tabularx}\\ %end case
+			\caption{Test for Converter.convert()}
+			\label{Table}
+	    \end{table}
+        \FloatBarrier       %float end 
+
+\newpage %formatting        
+\subsection{Setup Testing}
+	
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				
+				\textbf{Test Name} & CPE-01
+				\\ 
+				\hline
+				\textbf{Initial State} & Application is installed and ready to be opened \\ 
+				\hline
+				\textbf{Input} & Mouse click on application  \\ 
+				\hline 
+				\textbf{Expected Output} & The application opens to the main display \\ 	
+				\hline
+				\textbf{Actual Output} & Application opened - Pass \\
+				\hline
+
+			\end{tabularx}
+			\caption{Test for CPE-01}
+			\label{Table}
+		\end{table}
+		
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				
+				\textbf{Test Name} & CPE-02
+				\\ 
+				\hline
+				\textbf{Initial State} & Application is opened \\ 
+				\hline
+				\textbf{Input} & Mouse click on browse button  \\ 
+				\hline 
+				\textbf{Expected Output} & File explorer window is displayed \\ 
+				\hline
+				\textbf{Actual Output} & File explorer window opened - Pass\\
+				\hline
+				
+			\end{tabularx}
+			\caption{Test for CPE-02}
+			\label{Table}
+		\end{table}
+		
+				
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				
+				\textbf{Test Name} & CPE-03
+				\\ 
+				\hline
+				\textbf{Initial State} & Application is opened and html file selected\\ 
+				\hline
+				\textbf{Input} & Mouse click on fetch button  \\ 
+				\hline 
+				\textbf{Expected Output} & The schedule information will be displayed in the text box in the application.  \\ 
+				\hline
+				\textbf{Actual Output} & Schedule information displayed in text box - Pass\\
+				\hline
+			\end{tabularx}
+			\caption{Test for CPE-03}
+			\label{Table}
+		\end{table}
+		
+				
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				
+				\textbf{Test Name} & CPE-04
+				\\ 
+				\hline
+				\textbf{Initial State} & Application is opened \\ 
+				\hline
+				\textbf{Input} & Mouse click on login button  \\ 
+				\hline 
+				\textbf{Expected Output} & A browser will be opened to Google’s sign in page where the user can enter their credentials and give permission for the application to access their account. \\ 
+				\hline
+				\textbf{Actual Output} & Browser opened to Google sign in webpage - Pass\\
+				\hline
+				
+			\end{tabularx}
+			\caption{Test for CPE-04}
+			\label{Table}
+		\end{table}
+		
+				
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				
+				\textbf{Test Name} & CPE-05
+				\\ 
+				\hline
+				\textbf{Initial State} & Application is opened \\ 
+				\hline
+				\textbf{Input} & Mouse click on import button  \\ 
+				\hline 
+				\textbf{Expected Output} & Import  successful  will  be  displayed  and  the  schedule  is  imported to the user’s Google Calendar. \\ 
+				\hline
+				\textbf{Actual Output} & Google calendar created and import successful displayed - Pass\\
+				\hline
+			\end{tabularx}
+			\caption{Test for CPE-05}
+			\label{Table}
+		\end{table}
+
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				
+				\textbf{Test Name} & CPE-06
+				\\ 
+				\hline
+				\textbf{Initial State} & Application is opened \\ 
+				\hline
+				\textbf{Input} & Mouse click on the help option\\ 
+				\hline 
+				\textbf{Expected Output} &  A list of the  user  manual  and  the additional  information  option  is displayed. \\ 
+				\hline
+				\textbf{Actual Output} & User manual and additional information list displayed - Pass\\
+				\hline
+			\end{tabularx}
+			\caption{Test for CPE-06}
+			\label{Table}
+		\end{table}	
+
+
+		\begin{table}[!htbp]
+			
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				
+				\textbf{Test Name} & CPE-07
+				\\ 
+				\hline
+				\textbf{Initial State} & Application is opened \\ 
+				\hline
+				\textbf{Input} & Exit button is pressed\\ 
+				\hline 
+				\textbf{Expected Output} &  Application is closed and the user is logged out of their Google account. \\ 
+				\hline
+				\textbf{Actual Output} & Application closed and user signed out of Google - Pass\\
+				\hline
+			\end{tabularx}
+			\caption{Test for CPE-07}
+			\label{Table}
+		\end{table}	
+		
+\FloatBarrier %
 \section{Changes Due to Testing}
+	\subsection{GUI Testing}
+	After conducting usability test on the GUI, it was decided that some methods were to become more modular. Click events now only call a method for their intended function.
+	\subsection{Parse Testing}
+  There have been no changes to the methods of testing as a result of completed tests. 
+	\subsection{Connector Testing}
+  There have been no changes to the methods of testing as a result of completed tests. 
+	\subsection{Converter Testing}
+  There have been no changes to the methods of testing as a result of completed tests. 
+  \subsection{Setup Testing}
+  There have been no changes to the methods of testing as a result of completed tests. 
 
 \section{Automated Testing}
-		
+	\subsection{GUI Testing}
+		Description of tests: testGUI.py was the test suite used to test guiClient.py. Majority of the functions needed to be tested manually except for functions that referenced other modules.
+	\subsection{Parse Testing}
+		Description of tests: testParse.py was the test suite used to test parseMosaic.py. For automated testing of the output, one unit test was used.
+	\subsection{Connector Testing}
+		This module must be tested manually. However the compilation of unit tests for the tester is located in testConnector.py.
+	\subsection{Converter Testing}
+        Description of tests: testConverter.py was the test suit used to test converter.py. Each module was tested with at minimum, a case for each input domain. 
+
 \section{Trace to Requirements}
+		\begin{table}[!htbp]
+			\begin{tabular}{ll}
+				\toprule
+				Test & Requirements \\
+				\midrule
+				\multicolumn{2}{c}{Functional Requirements Testing} \\
+				\midrule
+                TFR01 & FR01 \\
+                TFR02 & FR02, FR06, FR08 \\
+                TFR03 & FR03 \\
+                TFR04 & FR04 \\
+                TFR05 & FR05 \\
+                TFR06 & FR07 \\
+                TFR07 & FR09 \\
+                TFR08 & FR10 \\
+                TFR09 & FR11 \\
+                TFR10 & FR12 \\
+                TFR11 & FR13 \\
+ 
+ 				\bottomrule
+			\end{tabular}
+			%\caption{Trace Between Tests and Requirements}
+			% Colour for the rulings in tables:
+			\makeatletter
+			\def\rulecolor#1#{\CT@arc{#1}}
+			\def\CT@arc#1#2{%
+				\ifdim\baselineskip=\z@\noalign\fi
+				{\gdef\CT@arc@{\color#1{#2}}}}
+			\let\CT@arc@\relax
+			\rulecolor{black!50}
+			\makeatother
+			\label{Table}
+		\end{table}
 		
+		\FloatBarrier
+                
+ 		\begin{table}[!htbp]
+			\begin{tabular}{ll}
+				\toprule
+				Test & Requirements \\               
+                
+				\midrule
+				\multicolumn{2}{c}{Non-functional Requirements Testing} \\
+				\midrule
+                general\_ui & NF01, NF02, NF03, NF05, NF06 \\
+                app\_exe & NF08 \\
+                browse\_button & NF14 \\
+                fetch\_popup & NF07 \\
+                login\_button & NF07 \\
+                import\_button & NF07 \\
+                exit\_app & - \\
+                internal\_menu & NF07 \\
+                external\_menu & NF07, NF10, NF12, NF13 \\
+                install\_perf & NF04 \\
+                parse\_perf & NF09 \\
+                login\_perf & NF09 \\
+                import\_perf & - \\
+
+				\midrule
+				\multicolumn{2}{c}{Automated Testing} \\
+				\midrule
+                test\_convert\_url & NF14 \\
+                test\_set\_list & FR02, FR06, FR08 \\
+                test\_print\_sched & FR02, FR06, FR08 \\
+                test\_print\_sched\_err & FR02, FR06, FR08 \\
+                test\_push\_schedule\_err & FR07, NF07 \\
+                test\_fetch & FR02, FR06, FR08 \\
+                test\_login\_err & FR09\\
+                test\_logout & NF14 \\
+                test\_parse\_output & FR02, FR06, FR08 \\
+
+				\bottomrule
+			\end{tabular}
+			\caption{Trace Between Tests and Requirements}
+			% Colour for the rulings in tables:
+			\makeatletter
+			\def\rulecolor#1#{\CT@arc{#1}}
+			\def\CT@arc#1#2{%
+				\ifdim\baselineskip=\z@\noalign\fi
+				{\gdef\CT@arc@{\color#1{#2}}}}
+			\let\CT@arc@\relax
+			\rulecolor{black!50}
+			\makeatother
+			\label{Table}
+		\end{table}
+		
+		\FloatBarrier
+	
+
+
+	
 \section{Trace to Modules}		
+\begin{table}[!htbp]
+	\begin{tabular}{ll}
+		\toprule
+		Test & Modules \\
+		\midrule
+		\multicolumn{2}{c}{Functional Requirements Testing} \\
+		\midrule
+        TFR01 & M2, M5 \\
+        TFR02 & M5, M5,  \\
+        TFR03 & M4, M5 \\
+        TFR04 & M5 \\
+        TFR05 & M5 \\
+        TFR06 & M5 \\
+        TFR07 & M4, M5 \\
+        TFR08 & M5 \\
+        TFR09 & M6 \\
+        TFR10 & M6 \\
+        TFR11 & M6 \\
+		\midrule
+		\multicolumn{2}{c}{Non-functional Requirements Testing} \\
+		\midrule
+        general\_ui & M5 \\
+        app\_exe & M5 \\
+        browse\_button & M2, M3, M5 \\
+        fetch\_popup & M5 \\
+        login\_button & M5 \\
+        import\_button & M5 \\
+        exit\_app & - \\
+        internal\_menu & M5 \\
+        external\_menu & M5 \\
+        install\_perf & M5 \\
+        parse\_perf & M2, M3, M4, M5 \\
+        login\_perf & M2, M3, M4, M5 \\
+        import\_perf & - \\
+ 		\bottomrule
+	\end{tabular}
+	\caption{Trace Between Tests and Modules}
+	% Colour for the rulings in tables:
+	\makeatletter
+	\def\rulecolor#1#{\CT@arc{#1}}
+	\def\CT@arc#1#2{%
+		\ifdim\baselineskip=\z@\noalign\fi
+		{\gdef\CT@arc@{\color#1{#2}}}}
+	\let\CT@arc@\relax
+	\rulecolor{black!50}
+	\makeatother
+	\label{Table}
+\end{table}       
+        
+\begin{table}[!htbp]
+	\begin{tabular}{ll}
+		\toprule
+		Test & Modules \\        
+		\midrule
+		\multicolumn{2}{c}{Automated Testing} \\
+		\midrule
+        test\_convert\_url & M2, M3, M5 \\
+        test\_set\_list & M5  \\
+        test\_print\_sched & M5 \\
+        test\_print\_sched\_err & M5  \\
+        test\_push\_schedule\_err & M5 \\
+        test\_fetch & M5 \\
+        test\_login\_err & M4, M5\\
+        test\_logout & M2, M3, M5 \\
+        test\_parse\_output & M5 \\
+
+		\bottomrule
+	\end{tabular}
+	\caption{Trace Between Tests and Modules}
+	% Colour for the rulings in tables:
+	\makeatletter
+	\def\rulecolor#1#{\CT@arc{#1}}
+	\def\CT@arc#1#2{%
+		\ifdim\baselineskip=\z@\noalign\fi
+		{\gdef\CT@arc@{\color#1{#2}}}}
+	\let\CT@arc@\relax
+	\rulecolor{black!50}
+	\makeatother
+	\label{Table}
+\end{table}
+
+\FloatBarrier %		
+\FloatBarrier
+
 
 \section{Code Coverage Metrics}
+	The 0C team has managed to produce approximately 98 percent code coverage through our tests. This number is based off the fact that all of the modules have been covered in testing. Please refer to the trace to modules section to see how all of our modules have been covered. See the tables below for details on each test suite.
 
+
+		\begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|l|l|X|}
+				\hline
+				\textbf{Name} & \textbf{Stmts} & \textbf{Miss} & \textbf{Cover}
+				\\ 
+				\hline
+			    converter.py  & 92 & 2 & 98\% \\ 
+			    testConverter.py & 56 & 0 & 100\% \\ 
+				\hline
+				\hline
+			    TOTAL & 148 & 2 & 99\% \\ 
+				\hline
+			\end{tabularx}
+			\caption{Code coverage for testConverter.py}
+			\label{Table}
+		\end{table}
+		
+		\begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|l|l|X|}
+				\hline
+				\textbf{Name} & \textbf{Stmts} & \textbf{Miss} & \textbf{Cover}
+				\\ 
+				\hline
+			    parseMosaic.py  & 50 & 0 & 100\% \\ 
+			    testParse.py & 18 & 1 & 94\% \\ 
+				\hline
+				\hline
+			    TOTAL & 68 & 1 & 99\% \\ 
+				\hline
+			\end{tabularx}
+			\caption{Code coverage for testParse.py }
+			\label{Table}
+		\end{table}		
+		
+		\begin{table}[!htbp]
+			\begin{tabularx}{\textwidth}{|l|l|l|X|}
+				\hline
+				\textbf{Name} & \textbf{Stmts} & \textbf{Miss} & \textbf{Cover}
+				\\ 
+				\hline
+                connector.py & 88 & 71 & 19\% \\
+                converter.py & 92 & 83 & 10\% \\
+                guiClient.py & 114 & 67 & 41\% \\
+                parseMosaic.py & 50 & 0 & 100\% \\
+                testGUI.py & 42 & 1 & 98\% \\
+				\hline
+				\hline
+			    TOTAL & 148 & 2 & 99\% \\ 
+				\hline
+			\end{tabularx}
+			\caption{Code coverage for testGUI.py}
+			\label{Table}
+		\end{table}		
+		
+\FloatBarrier	
 \bibliographystyle{plainnat}
 
 \bibliography{SRS}
