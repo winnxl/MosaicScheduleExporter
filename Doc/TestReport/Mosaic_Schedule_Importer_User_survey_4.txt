@@ -5,21 +5,19 @@ Please respond to as many fields as possible with comments as needed.
 Did you successfully use the software to import your Mosaic Schedule into Google Calendars? [Y/N + Comments]
 
 Was the software easy to use? [Y/N + Comments]
-Yes.
+Yes, I had no issues understanding it.
 
 Were the instructions clear? Did they guide you step by step? [Y/N + Comments]
-Yes, to the point where I think the person would have to be retarded not to understand "save as".
+Yes, they even tell you how to properly use "Save as". It might be silly for most people but they don't miss a step.
 
 Were the response times to your actions acceptable? [Y/N]
-It was instant, it didn't satisfy me because I have ridiculous expectations. C-
-Yes it was acceptable.
+Yes it was acceptable, it did the job instantly.
 
 Did you run into any difficulty/problems/errors during use? [Comments]
 Avast (Anti-virus) thought it was a virus and deleted it, I had to disable it and re-unzip it.
 I broke it when I tried to log in to google by accident.
 
 Given the color scheme, was the text easy to read? [Y/N]
-First, you're Canadian, it's colour. Second, learn to colour scheme.
 Yes, the text was easy to read.
 
 Other feedback or comments?
